@@ -7,44 +7,47 @@
   <title>『山月記』二学期末試験対策｜香ヶ丘リベルテ高等学校 文学国語</title>
   <style>
 /* ==========================================================================
-   Moonlight Rose Edition v3
-   Editorial × Bento Grid × 60fps Micro-interactions
-   backdrop-filter は固定要素（ヘッダー・下部バー・モーダル背景）のみ厳格限定
+   Moonlight Rose Edition v4 — True Liquid Glass × Jelly Squash & Stretch UI
    ========================================================================== */
 :root {
-  --bg-mesh-base: #fdf5f8;
-  --surface-card: rgba(255, 250, 252, 0.88);
-  --surface-solid: #ffffff;
-  --surface-tint: rgba(250, 236, 242, 0.76);
-  --surface-night: linear-gradient(142deg, #271525 0%, #3d1c34 55%, #552340 100%);
+  --ink-primary: #1f0c1a;
+  --ink-secondary: #48243c;
+  --ink-muted: #693b59;
 
-  --edge-highlight: rgba(255, 255, 255, 0.92);
-  --edge-rose: rgba(214, 51, 108, 0.16);
-  --edge-rose-strong: rgba(184, 50, 96, 0.36);
+  --rose: #e02d73;
+  --rose-deep: #b81d5c;
+  --rose-glow: rgba(255, 118, 176, 0.55);
+  --gold: #f0be6a;
+  --gold-ink: #6e4209;
 
-  --ink-primary: #231421;
-  --ink-secondary: #523b4e;
-  --ink-muted: #72586c;
+  /* 本物の透明ガラス（不透明度 0.26〜0.44） */
+  --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.44) 0%, rgba(255, 234, 245, 0.22) 52%, rgba(255, 214, 236, 0.32) 100%);
+  --glass-bg-strong: linear-gradient(135deg, rgba(255, 255, 255, 0.56) 0%, rgba(255, 238, 247, 0.34) 100%);
+  --glass-night: linear-gradient(138deg, rgba(64, 16, 48, 0.64) 0%, rgba(122, 24, 76, 0.48) 56%, rgba(84, 22, 66, 0.58) 100%);
 
-  --rose: #d6336c;
-  --rose-deep: #b83260;
-  --rose-soft: rgba(214, 51, 108, 0.10);
-  --gold: #e5b869;
-  --gold-ink: #7a5216;
+  --glass-border: rgba(255, 255, 255, 0.68);
+  --glass-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.95),
+    inset 1.5px 0 1px rgba(255, 255, 255, 0.72),
+    inset 0 -3px 10px rgba(220, 60, 120, 0.18),
+    0 12px 34px rgba(190, 42, 102, 0.16);
+  --glass-shadow-hover:
+    inset 0 2px 2px rgba(255, 255, 255, 0.98),
+    inset 2px 0 2px rgba(255, 255, 255, 0.80),
+    inset 0 -4px 14px rgba(224, 45, 115, 0.26),
+    0 18px 42px rgba(214, 46, 114, 0.25);
 
-  --ok-text: #165e40;
-  --ok-bg: #e7f6ee;
-  --ok-border: #7bc7a3;
-  --ng-text: #a32543;
-  --ng-bg: #fdecef;
-  --ng-border: #e593a7;
+  --ok-text: #0f5739;
+  --ok-glass: linear-gradient(135deg, rgba(168, 244, 206, 0.58) 0%, rgba(220, 255, 238, 0.42) 100%);
+  --ok-border: rgba(68, 198, 138, 0.75);
+  --ng-text: #9c163b;
+  --ng-glass: linear-gradient(135deg, rgba(255, 196, 214, 0.60) 0%, rgba(255, 230, 238, 0.44) 100%);
+  --ng-border: rgba(232, 88, 128, 0.72);
 
   --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 24px;
-  --shadow-card: 0 10px 30px rgba(84, 30, 56, 0.08);
-  --shadow-night: 0 14px 36px rgba(35, 20, 33, 0.24);
+  --radius-sm: 14px;
+  --radius-md: 20px;
+  --radius-lg: 26px;
 
   --font-sans: "Yu Gothic UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", system-ui, -apple-system, sans-serif;
   --font-serif: "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", Georgia, serif;
@@ -56,7 +59,7 @@ html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   min-height: 100dvh;
-  background-color: var(--bg-mesh-base);
+  background: linear-gradient(155deg, #ffeaf3 0%, #f8e2f6 48%, #ffefe4 100%);
   color: var(--ink-primary);
   font-family: var(--font-sans);
   line-height: 1.62;
@@ -64,39 +67,201 @@ body {
   overflow-x: hidden;
 }
 
-/* 背面固定メッシュオーブ（軽量・GPU負荷ゼロ） */
-.ambient-mesh {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(255, 198, 220, 0.65) 0%, transparent 45%),
-    radial-gradient(circle at 90% 14%, rgba(235, 208, 252, 0.55) 0%, transparent 44%),
-    radial-gradient(circle at 82% 86%, rgba(252, 224, 186, 0.52) 0%, transparent 46%),
-    radial-gradient(circle at 14% 84%, rgba(248, 206, 224, 0.48) 0%, transparent 42%),
-    linear-gradient(165deg, #fff6f9 0%, #faf0f5 52%, #fef6f1 100%);
-}
-
 button, input { font-family: inherit; font-size: inherit; }
 .hidden { display: none !important; }
 
-/* タップ時の上品な沈み込み（全ボタン共通） */
-.tap-spring {
-  transition: transform 0.22s var(--ease-expo), background-color 0.2s var(--ease-expo), border-color 0.2s var(--ease-expo), box-shadow 0.2s var(--ease-expo), opacity 0.2s var(--ease-expo);
+/* ==================== 呼吸するオーロラピンクの光の玉（Floating Orbs） ==================== */
+.orb-stage {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(155deg, #ffe6f2 0%, #f5def7 48%, #ffece0 100%);
 }
-.tap-spring:active:not(:disabled) { transform: scale(0.97); }
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(58px);
+  will-change: transform;
+  opacity: 0.86;
+}
+.orb-1 {
+  width: 360px; height: 360px;
+  top: -80px; left: -90px;
+  background: radial-gradient(circle, #ff569c 0%, rgba(255, 118, 176, 0.45) 55%, transparent 75%);
+  animation: orbFloat1 16s ease-in-out infinite alternate;
+}
+.orb-2 {
+  width: 340px; height: 340px;
+  top: 10%; right: -100px;
+  background: radial-gradient(circle, #c884ff 0%, rgba(218, 166, 255, 0.45) 55%, transparent 75%);
+  animation: orbFloat2 20s ease-in-out infinite alternate;
+}
+.orb-3 {
+  width: 380px; height: 380px;
+  bottom: -110px; left: 10%;
+  background: radial-gradient(circle, #ff96b8 0%, rgba(255, 164, 198, 0.42) 55%, transparent 75%);
+  animation: orbFloat3 18s ease-in-out infinite alternate;
+}
+.orb-4 {
+  width: 300px; height: 300px;
+  bottom: 14%; right: -60px;
+  background: radial-gradient(circle, #ffc678 0%, rgba(255, 212, 148, 0.46) 55%, transparent 75%);
+  animation: orbFloat4 22s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(55px, 42px) scale(1.12); }
+  100% { transform: translate(22px, 88px) scale(0.96); }
+}
+@keyframes orbFloat2 {
+  0%   { transform: translate(0, 0) scale(1.04); }
+  50%  { transform: translate(-64px, 56px) scale(0.94); }
+  100% { transform: translate(-28px, -38px) scale(1.14); }
+}
+@keyframes orbFloat3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(62px, -48px) scale(1.10); }
+  100% { transform: translate(-24px, -74px) scale(0.95); }
+}
+@keyframes orbFloat4 {
+  0%   { transform: translate(0, 0) scale(0.96); }
+  50%  { transform: translate(-52px, -44px) scale(1.12); }
+  100% { transform: translate(20px, -82px) scale(1.02); }
+}
+
+/* ==================== 本物のぷるぷる Squash & Stretch 弾性物理 ==================== */
+@keyframes jellyPop {
+  0%   { transform: scale(1, 1); }
+  22%  { transform: scale(1.06, 0.91); }
+  46%  { transform: scale(0.95, 1.06); }
+  68%  { transform: scale(1.025, 0.975); }
+  85%  { transform: scale(0.99, 1.01); }
+  100% { transform: scale(1, 1); }
+}
+
+@keyframes jellyLand {
+  0%   { opacity: 0; transform: translateY(16px) scale(0.93, 1.07); }
+  45%  { opacity: 1; transform: translateY(-2px) scale(1.03, 0.97); }
+  72%  { transform: translateY(0) scale(0.985, 1.015); }
+  100% { opacity: 1; transform: translateY(0) scale(1, 1); }
+}
+
+@keyframes moonBounce {
+  0%   { transform: scale(1, 1); }
+  30%  { transform: scale(1.14, 0.88); }
+  58%  { transform: scale(0.92, 1.09); }
+  80%  { transform: scale(1.04, 0.97); }
+  100% { transform: scale(1, 1); }
+}
+
+@keyframes microShake {
+  0%, 100% { transform: translateX(0); }
+  22% { transform: translateX(-7px) rotate(-0.5deg); }
+  52% { transform: translateX(6px) rotate(0.5deg); }
+  78% { transform: translateX(-3px); }
+}
+
+.is-jelly {
+  animation: jellyPop 0.48s var(--ease-expo);
+}
+.is-moon-bounce {
+  animation: moonBounce 0.54s var(--ease-expo);
+}
+
+/* ==================== Liquid Glass 共通マテリアル & ポインター追従・艶 ==================== */
+.liquid-glass {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.32s var(--ease-expo), box-shadow 0.32s var(--ease-expo), border-color 0.25s ease;
+}
+
+/* ポインター追従パールスポットライト（::before） */
+.liquid-interactive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  background: radial-gradient(
+    230px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 245, 250, 0.78) 0%,
+    rgba(255, 162, 208, 0.26) 42%,
+    transparent 74%
+  );
+  transition: opacity 0.28s ease;
+}
+.liquid-interactive:hover::before { opacity: 1; }
+
+/* 斜め45度 Shining Sweep（ホバーでシュッと光の帯が横切る ::after） */
+.liquid-interactive::after {
+  content: "";
+  position: absolute;
+  top: -40%; left: -130%;
+  width: 68%; height: 180%;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.52) 50%,
+    rgba(255, 224, 242, 0.28) 62%,
+    transparent 82%
+  );
+  transform: skewX(-18deg);
+  transition: left 0.65s var(--ease-expo);
+}
+.liquid-interactive:hover::after { left: 145%; }
+
+@media (hover: hover) {
+  .liquid-hover-lift:hover:not(:disabled) {
+    transform: translateY(-4px) scale(1.015);
+    border-color: rgba(255, 210, 232, 0.95);
+    box-shadow: var(--glass-shadow-hover);
+  }
+}
+
+/* タップ座標からの Liquid Ripple（水面波紋） */
+.liquid-ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+  transform: translate(-50%, -50%) scale(0);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.72) 0%, rgba(255, 126, 184, 0.42) 55%, rgba(224, 45, 115, 0) 75%);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.85);
+  animation: liquidRippleOut 0.62s var(--ease-expo) forwards;
+}
+@keyframes liquidRippleOut {
+  0%   { opacity: 0.95; transform: translate(-50%, -50%) scale(0.15); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(3.1); }
+}
+
+/* 可読性ガード：ガラス越しでも文字クッキリ */
+.crisp-ink {
+  color: var(--ink-primary);
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.88);
+}
 
 .app-shell { min-height: 100dvh; display: flex; flex-direction: column; }
 
-/* ==================== 固定ヘッダー（Liquid Glass限定適用①） ==================== */
+/* ==================== ヘッダー ==================== */
 .app-header {
   position: sticky; top: 0; z-index: 30;
-  background: rgba(255, 248, 251, 0.78);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  backdrop-filter: blur(14px) saturate(150%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.78);
-  box-shadow: 0 2px 16px rgba(84, 30, 56, 0.05);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(255, 236, 246, 0.28));
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.74);
+  box-shadow: 0 4px 20px rgba(190, 42, 102, 0.08);
 }
 
 .header-inner {
@@ -106,138 +271,109 @@ button, input { font-family: inherit; font-size: inherit; }
 
 .brand-group { display: flex; align-items: center; gap: 10px; cursor: pointer; min-width: 0; }
 .brand-dot {
-  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, #2b1528 0%, #6d2649 100%);
-  box-shadow: inset -6px -2px 0 0 var(--gold), 0 3px 10px rgba(214, 51, 108, 0.24);
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, #3c1030 0%, #b81d5c 100%);
+  box-shadow: inset -6px -2px 0 0 var(--gold), 0 4px 12px rgba(224, 45, 115, 0.34);
 }
 .school-label {
-  margin: 0; font-size: 0.7rem; font-weight: 600; color: var(--ink-muted);
-  letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin: 0; font-size: 0.7rem; font-weight: 700; color: var(--ink-secondary);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .app-title {
-  margin: 0; font-size: 0.98rem; font-weight: 800; color: var(--ink-primary);
-  letter-spacing: 0.02em; line-height: 1.25;
+  margin: 0; font-size: 1rem; font-weight: 900; color: var(--ink-primary);
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.92); line-height: 1.2;
 }
 
-.header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.header-actions { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
 .hdr-pill {
-  border: 1px solid var(--edge-rose-strong);
-  border-top-color: var(--edge-highlight);
-  background: rgba(255, 255, 255, 0.86);
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.56), rgba(255, 228, 242, 0.32));
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
   color: var(--ink-primary);
-  border-radius: 999px;
-  padding: 6px 11px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  min-height: 36px;
-  cursor: pointer;
+  border-radius: 999px; padding: 6px 12px; font-size: 0.78rem; font-weight: 800;
+  min-height: 36px; cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 4px 12px rgba(190, 42, 102, 0.12);
   display: inline-flex; align-items: center; gap: 4px;
+  transition: transform 0.25s var(--ease-expo), border-color 0.2s, box-shadow 0.2s;
 }
-.hdr-pill:hover { background: #ffffff; border-color: var(--rose); color: var(--rose); }
-.hdr-pill.sound-on { background: var(--rose-soft); border-color: var(--rose); color: var(--rose-deep); }
+.hdr-pill:hover { border-color: #f6a4c8; box-shadow: 0 6px 16px rgba(224, 45, 115, 0.22); transform: translateY(-2px); }
+.hdr-pill.sound-on { background: linear-gradient(135deg, rgba(224, 45, 115, 0.24), rgba(255, 255, 255, 0.55)); color: var(--rose-deep); border-color: rgba(224, 45, 115, 0.55); }
 
 /* ==================== メイン領域 ==================== */
 .app-main {
   flex: 1; width: 100%; max-width: 760px; margin: 0 auto;
   padding: 14px 14px calc(28px + env(safe-area-inset-bottom));
 }
-
 .view { display: none; }
-.view.active { display: block; animation: viewFadeIn 0.28s var(--ease-expo); }
+.view.active { display: block; animation: jellyLand 0.42s var(--ease-expo); }
 
-@keyframes viewFadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ==================== ガラス立体エッジカード（backdrop-filter無しで60fps維持） ==================== */
-.glass-tile {
-  background: var(--surface-card);
-  border: 1px solid var(--edge-rose);
-  border-top: 1px solid var(--edge-highlight);
-  border-left: 1px solid var(--edge-highlight);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-}
-
-/* ==================== ブロック①：ヒーローBentoウィジェット（月夜のローズ） ==================== */
+/* ==================== ブロック①：ヒーローBento（スモークド・ローズガラス） ==================== */
 .hero-bento {
   position: relative;
   overflow: hidden;
-  background: var(--surface-night);
-  border: 1px solid rgba(255, 224, 236, 0.24);
-  border-top: 1px solid rgba(255, 236, 244, 0.42);
-  border-left: 1px solid rgba(255, 236, 244, 0.34);
-  border-radius: 26px;
+  background: var(--glass-night);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 224, 240, 0.42);
+  border-radius: 28px;
   padding: clamp(18px, 4vw, 24px);
-  color: #fff6fa;
-  box-shadow: var(--shadow-night);
+  color: #fff8fb;
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 240, 248, 0.55),
+    inset 0 -4px 16px rgba(255, 120, 178, 0.22),
+    0 18px 42px rgba(96, 18, 58, 0.26);
   margin-bottom: 14px;
 }
 
-.hero-top-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 14px;
-}
-
+.hero-top-row { position: relative; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .hero-left { min-width: 0; flex: 1; }
 
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
-  color: #f9d796;
-  background: rgba(255, 255, 255, 0.09);
-  border: 1px solid rgba(229, 184, 105, 0.32);
-  padding: 3px 10px; border-radius: 999px;
-  margin-bottom: 8px;
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em;
+  color: #ffe2a4;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 220, 160, 0.45);
+  padding: 3px 11px; border-radius: 999px; margin-bottom: 8px;
 }
 
-.hero-percent-wrap {
-  display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
-}
+.hero-percent-wrap { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .hero-percent {
-  font-size: clamp(2.4rem, 9vw, 3.2rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-  color: #ffffff;
+  display: inline-block;
+  font-size: clamp(2.5rem, 9.5vw, 3.3rem);
+  font-weight: 900; line-height: 1; letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums; color: #ffffff;
+  text-shadow: 0 4px 18px rgba(255, 160, 206, 0.45);
 }
-.hero-percent-sub {
-  font-size: 0.84rem; font-weight: 700; color: rgba(255, 236, 244, 0.85);
-}
-
-.hero-goal-text {
-  margin: 6px 0 0;
-  font-size: 0.83rem; font-weight: 600; color: rgba(255, 236, 244, 0.9);
-}
+.hero-percent-sub { font-size: 0.88rem; font-weight: 800; color: rgba(255, 240, 248, 0.92); }
+.hero-goal-text { margin: 6px 0 0; font-size: 0.85rem; font-weight: 700; color: rgba(255, 242, 248, 0.94); }
 
 .hero-moon-stage {
-  width: clamp(90px, 24vw, 114px);
-  height: clamp(90px, 24vw, 114px);
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
+  width: clamp(92px, 24vw, 118px); height: clamp(92px, 24vw, 118px);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
 }
-.hero-moon-svg { width: 100%; height: 100%; overflow: visible; }
+.hero-moon-svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 12px rgba(255, 198, 224, 0.48)); }
 
 .hero-stats-strip {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 224, 238, 0.16);
+  position: relative; z-index: 3;
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid rgba(255, 228, 242, 0.24);
   display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
 }
 .hero-chip {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.77rem; font-weight: 700;
-  padding: 4px 10px; border-radius: 999px;
-  background: rgba(255, 255, 255, 0.11);
-  color: #fff3f8;
+  font-size: 0.77rem; font-weight: 800; padding: 4px 11px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16); color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.26);
   font-variant-numeric: tabular-nums;
 }
-.hero-chip.gold-chip { background: rgba(229, 184, 105, 0.2); color: #fce1ad; }
+.hero-chip.gold-chip { background: rgba(240, 190, 106, 0.26); color: #ffe8b8; border-color: rgba(240, 190, 106, 0.48); }
 .hero-scope-link {
-  border: none; background: none; padding: 2px 0;
-  color: rgba(255, 228, 240, 0.88); font-size: 0.77rem; font-weight: 700;
-  cursor: pointer; text-decoration: underline;
+  border: none; background: none; padding: 3px 0;
+  color: #ffe8f2; font-size: 0.78rem; font-weight: 800; cursor: pointer; text-decoration: underline;
 }
 
 /* ==================== ブロック②：非対称2タイル Bento Grid ==================== */
@@ -249,314 +385,304 @@ button, input { font-family: inherit; font-size: inherit; }
 }
 
 .bento-tile {
+  border-radius: var(--radius-lg);
   padding: 16px 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 162px;
-  cursor: pointer;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 164px;
+  cursor: pointer; text-align: left;
 }
+.bento-tile > * { position: relative; z-index: 3; }
 .bento-tile.is-selected {
-  border-color: rgba(214, 51, 108, 0.45);
-  box-shadow: 0 10px 28px rgba(214, 51, 108, 0.14);
+  border-color: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    inset 0 2px 2px rgba(255, 255, 255, 0.98),
+    inset 0 -4px 14px rgba(224, 45, 115, 0.28),
+    0 14px 36px rgba(224, 45, 115, 0.24),
+    0 0 0 2px rgba(224, 45, 115, 0.42);
 }
 
 .tile-kicker {
-  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
-  color: var(--rose-deep);
-  display: inline-flex; align-items: center; gap: 5px;
-  margin-bottom: 6px;
+  font-size: 0.72rem; font-weight: 900; letter-spacing: 0.05em;
+  color: var(--rose-deep); display: inline-block; margin-bottom: 5px;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
 }
 .tile-kicker.content-kicker { color: var(--gold-ink); }
-
-.tile-head-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-}
-.tile-title {
-  margin: 0; font-size: clamp(1rem, 3.6vw, 1.14rem); font-weight: 800; color: var(--ink-primary); line-height: 1.25;
-}
+.tile-head-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.tile-title { margin: 0; font-size: clamp(1.02rem, 3.8vw, 1.16rem); font-weight: 900; line-height: 1.25; }
 .tile-big-num {
-  margin: 8px 0 2px;
-  font-size: clamp(1.45rem, 5.5vw, 1.85rem);
-  font-weight: 900; line-height: 1.1; color: var(--ink-primary);
+  margin: 8px 0 2px; font-size: clamp(1.5rem, 5.6vw, 1.9rem); font-weight: 900; line-height: 1.1;
   font-variant-numeric: tabular-nums;
 }
-.tile-big-num span { font-size: 0.82rem; font-weight: 700; color: var(--ink-muted); margin-left: 2px; }
-.tile-sub-note { margin: 0 0 10px; font-size: 0.76rem; font-weight: 600; color: var(--ink-muted); }
+.tile-big-num span { font-size: 0.82rem; font-weight: 800; color: var(--ink-secondary); margin-left: 2px; }
+.tile-sub-note { margin: 0 0 10px; font-size: 0.76rem; font-weight: 700; color: var(--ink-secondary); }
 
-/* SVG進捗リング */
-.ring-wrap { width: 46px; height: 46px; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center; }
-.ring-svg { width: 46px; height: 46px; transform: rotate(-90deg); }
-.ring-track { fill: none; stroke: rgba(214, 51, 108, 0.14); stroke-width: 5; }
-.ring-fill { fill: none; stroke: var(--rose); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 0.5s var(--ease-expo); }
-.ring-pct { position: absolute; font-size: 0.68rem; font-weight: 800; color: var(--rose-deep); font-variant-numeric: tabular-nums; }
+.ring-wrap { width: 48px; height: 48px; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center; }
+.ring-svg { width: 48px; height: 48px; transform: rotate(-90deg); }
+.ring-track { fill: none; stroke: rgba(255, 255, 255, 0.55); stroke-width: 5.5; }
+.ring-fill { fill: none; stroke: var(--rose); stroke-width: 5.5; stroke-linecap: round; transition: stroke-dashoffset 0.55s var(--ease-expo); }
+.ring-pct { position: absolute; font-size: 0.69rem; font-weight: 900; color: var(--rose-deep); font-variant-numeric: tabular-nums; }
 
-/* 光沢ミニバー */
 .gloss-bar-track {
-  width: 100%; height: 8px; border-radius: 999px;
-  background: rgba(184, 50, 96, 0.11); overflow: hidden;
+  width: 100%; height: 9px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: inset 0 1px 3px rgba(140, 40, 82, 0.16); overflow: hidden;
 }
 .gloss-bar-fill {
   height: 100%; border-radius: 999px;
-  background: linear-gradient(90deg, #d6336c, #f07aa4);
-  transition: width 0.45s var(--ease-expo);
+  background: linear-gradient(90deg, #d88a28, #f0be6a, #ffdf9e);
+  transition: width 0.5s var(--ease-expo);
 }
-.gloss-bar-fill.gold-fill { background: linear-gradient(90deg, #c68d3a, #e5b869); }
 
-.tile-quick-pills {
-  margin-top: 10px; display: flex; gap: 5px; flex-wrap: wrap;
-}
+.tile-quick-pills { margin-top: 10px; display: flex; gap: 5px; flex-wrap: wrap; }
 .tile-mini-chip {
-  font-size: 0.7rem; font-weight: 700; padding: 2px 7px; border-radius: 999px;
-  background: var(--surface-tint); color: var(--ink-secondary);
+  font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.56); color: var(--ink-primary);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
-.tile-mini-chip.ng { background: var(--ng-bg); color: var(--ng-text); }
+.tile-mini-chip.ng { background: rgba(255, 198, 218, 0.68); color: var(--ng-text); }
 
-/* ==================== ブロック③：主役CTA & Sliding Pill モードパネル ==================== */
+/* ==================== ブロック③：主役CTA & Sliding Pill デッキ ==================== */
 .cta-deck {
+  border-radius: var(--radius-lg);
   padding: 16px;
   margin-bottom: 12px;
 }
+.cta-deck > * { position: relative; z-index: 3; }
 
-/* Sliding Pill Indicator */
 .sliding-tabs {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 4px;
-  background: rgba(214, 51, 108, 0.08);
-  border-radius: 999px;
-  margin-bottom: 12px;
+  display: grid; grid-template-columns: 1fr 1fr; padding: 4px;
+  background: rgba(255, 255, 255, 0.34);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px; margin-bottom: 12px;
+  box-shadow: inset 0 1px 4px rgba(190, 42, 102, 0.12);
 }
 .sliding-indicator {
-  position: absolute;
-  top: 4px; bottom: 4px; left: 4px;
-  width: calc(50% - 4px);
+  position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px);
   border-radius: 999px;
-  background: #ffffff;
-  box-shadow: 0 3px 10px rgba(84, 30, 56, 0.12);
-  transition: transform 0.28s var(--ease-expo);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 234, 246, 0.76));
+  box-shadow: 0 4px 14px rgba(190, 42, 102, 0.18), inset 0 1px 1px #ffffff;
+  transition: transform 0.36s var(--ease-expo);
   z-index: 1;
 }
 .sliding-tab-btn {
-  position: relative; z-index: 2;
-  border: none; background: transparent;
-  padding: 9px 10px; border-radius: 999px;
-  font-size: 0.86rem; font-weight: 800; color: var(--ink-secondary);
-  cursor: pointer; min-height: 40px;
-  transition: color 0.2s var(--ease-expo);
+  position: relative; z-index: 2; border: none; background: transparent;
+  padding: 9px 10px; border-radius: 999px; font-size: 0.86rem; font-weight: 800;
+  color: var(--ink-secondary); cursor: pointer; min-height: 40px;
 }
 .sliding-tab-btn.active { color: var(--rose-deep); }
 
-/* カテゴリチップ行 */
-.cat-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
 .cat-chip {
-  border: 1px solid var(--edge-rose-strong); background: rgba(255, 255, 255, 0.85);
-  color: var(--ink-secondary); border-radius: 999px; padding: 6px 12px;
-  font-size: 0.8rem; font-weight: 700; min-height: 36px; cursor: pointer;
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.50), rgba(255, 232, 244, 0.28));
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  backdrop-filter: blur(16px) saturate(170%);
+  color: var(--ink-primary); border-radius: 999px; padding: 6px 13px;
+  font-size: 0.8rem; font-weight: 800; min-height: 36px; cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 3px 10px rgba(190, 42, 102, 0.08);
+  transition: transform 0.24s var(--ease-expo), border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
+.cat-chip:hover { border-color: #f4a4c6; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(224, 45, 115, 0.2); }
 .cat-chip.active {
-  background: var(--ink-primary); border-color: var(--ink-primary); color: #ffffff;
+  background: linear-gradient(135deg, #2b0f24 0%, #6b1b4a 100%);
+  border-color: rgba(255, 220, 238, 0.7); color: #ffffff;
+  box-shadow: 0 6px 18px rgba(84, 18, 56, 0.28);
 }
 
-/* 主役ピル型CTA（親指サムゾーン） */
-.hero-cta-row { display: flex; flex-direction: column; gap: 9px; margin-bottom: 10px; }
+.hero-cta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
 
 .btn {
+  position: relative; overflow: hidden;
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  min-height: 50px; padding: 11px 16px; border-radius: 999px;
-  border: 1px solid transparent; font-size: 0.95rem; font-weight: 800; cursor: pointer;
-  text-align: center;
+  min-height: 52px; padding: 11px 18px; border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  font-size: 0.96rem; font-weight: 800; cursor: pointer; text-align: center;
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  transition: transform 0.28s var(--ease-expo), box-shadow 0.28s var(--ease-expo), border-color 0.2s, opacity 0.2s;
 }
+.btn > * { position: relative; z-index: 3; }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .btn-hero {
-  min-height: 56px;
-  font-size: 1.02rem;
-  background: linear-gradient(135deg, #df3c75 0%, #b82c5c 100%);
+  min-height: 58px; font-size: 1.04rem;
+  background: linear-gradient(135deg, rgba(232, 46, 118, 0.88) 0%, rgba(182, 26, 90, 0.86) 100%);
   color: #ffffff;
-  border-top: 1px solid rgba(255, 224, 236, 0.55);
-  box-shadow: 0 8px 22px rgba(214, 51, 108, 0.30);
+  border: 1px solid rgba(255, 214, 232, 0.75);
+  box-shadow:
+    inset 0 2px 2px rgba(255, 240, 248, 0.65),
+    inset 0 -3px 10px rgba(122, 10, 56, 0.35),
+    0 12px 28px rgba(224, 45, 115, 0.36);
 }
-.btn-hero:hover:not(:disabled) { background: linear-gradient(135deg, #cc2f66 0%, #a32450 100%); }
+.btn-hero:hover:not(:disabled) { transform: translateY(-3px) scale(1.015); box-shadow: inset 0 2px 3px rgba(255, 240, 248, 0.8), 0 16px 36px rgba(224, 45, 115, 0.46); }
 
-.btn-write-direct {
-  background: #ffffff;
+.btn-glass {
+  background: var(--glass-bg-strong);
   color: var(--ink-primary);
-  border: 1.5px solid var(--edge-rose-strong);
-  box-shadow: 0 4px 12px rgba(84, 30, 56, 0.06);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.88);
+  box-shadow: var(--glass-shadow);
 }
-.btn-write-direct:hover:not(:disabled) { border-color: var(--rose); color: var(--rose-deep); }
+.btn-glass:hover:not(:disabled) { transform: translateY(-3px) scale(1.012); border-color: #f6a4c8; box-shadow: var(--glass-shadow-hover); }
 
-.secondary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-
-.btn-soft {
-  min-height: 46px; border-radius: 16px;
-  background: var(--surface-tint); border-color: var(--edge-rose); color: var(--ink-primary);
-  font-size: 0.86rem; font-weight: 700;
-}
-.btn-soft:hover:not(:disabled) { background: rgba(246, 222, 234, 0.9); }
+.secondary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.btn-soft { min-height: 46px; border-radius: 18px; font-size: 0.86rem; }
 
 .btn-primary {
-  background: linear-gradient(135deg, #d6336c 0%, #b83260 100%);
-  color: #ffffff; box-shadow: 0 5px 16px rgba(214, 51, 108, 0.24);
+  background: linear-gradient(135deg, rgba(224, 45, 115, 0.88), rgba(182, 26, 90, 0.86));
+  color: #ffffff; border-color: rgba(255, 214, 232, 0.75);
+  box-shadow: inset 0 1.5px 1px rgba(255, 240, 248, 0.6), 0 8px 22px rgba(224, 45, 115, 0.3);
 }
-.btn-secondary {
-  background: #ffffff; border-color: var(--edge-rose-strong); color: var(--ink-primary);
-}
-.btn-ok { background: var(--ok-text); color: #ffffff; }
-.btn-ng { background: var(--ng-bg); border-color: var(--ng-border); color: var(--ng-text); }
-.btn-danger-outline { background: #ffffff; border-color: var(--ng-border); color: var(--ng-text); }
-.btn-danger { background: var(--ng-text); color: #ffffff; }
+.btn-ok { background: linear-gradient(135deg, rgba(22, 134, 88, 0.9), rgba(15, 104, 68, 0.9)); color: #ffffff; border-color: rgba(180, 255, 222, 0.7); }
+.btn-ng { background: var(--ng-glass); border-color: var(--ng-border); color: var(--ng-text); }
+.btn-danger-outline { background: var(--glass-bg-strong); border-color: var(--ng-border); color: var(--ng-text); }
+.btn-danger { background: linear-gradient(135deg, #c22048, #9c163b); color: #ffffff; }
 .grow { flex: 1; }
 
-.sub-footer-links {
-  display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
-  margin-top: 6px;
-}
+.sub-footer-links { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; margin-top: 8px; }
 .sub-text-link {
   border: none; background: none; padding: 6px 4px;
-  font-size: 0.82rem; font-weight: 700; color: var(--ink-muted); cursor: pointer;
+  font-size: 0.83rem; font-weight: 800; color: var(--ink-secondary);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.92); cursor: pointer;
 }
-.sub-text-link:hover { color: var(--rose); text-decoration: underline; }
+.sub-text-link:hover { color: var(--rose-deep); text-decoration: underline; }
 
 /* ==================== 演習（クイズ）画面 ==================== */
 .quiz-topbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
-.back-btn, .text-btn {
-  border: 1px solid var(--edge-rose-strong); background: rgba(255, 255, 255, 0.88);
-  color: var(--ink-primary); border-radius: 999px; padding: 7px 13px;
-  font-size: 0.83rem; font-weight: 700; min-height: 38px; cursor: pointer;
-}
-.text-btn { color: var(--rose-deep); background: var(--rose-soft); border-color: rgba(214, 51, 108, 0.3); }
-
 .quiz-meta { display: flex; flex-direction: column; align-items: center; line-height: 1.2; }
-.quiz-part-label { font-size: 0.74rem; color: var(--ink-muted); font-weight: 700; }
-.quiz-counter { font-size: 0.92rem; font-weight: 800; color: var(--ink-primary); font-variant-numeric: tabular-nums; }
+.quiz-part-label { font-size: 0.74rem; color: var(--ink-secondary); font-weight: 800; text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9); }
+.quiz-counter { font-size: 0.94rem; font-weight: 900; color: var(--ink-primary); text-shadow: 0 1px 10px rgba(255, 255, 255, 0.92); font-variant-numeric: tabular-nums; }
 
-/* 光沢プログレスバー */
 .quiz-progress-wrap {
-  width: 100%; height: 7px; border-radius: 999px;
-  background: rgba(214, 51, 108, 0.13); overflow: hidden; margin-bottom: 14px;
+  width: 100%; height: 8px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  overflow: hidden; margin-bottom: 14px;
 }
 .quiz-progress-bar {
   height: 100%; border-radius: 999px;
-  background: linear-gradient(90deg, #d6336c, #f27aa6, #e5b869);
-  transition: width 0.35s var(--ease-expo);
+  background: linear-gradient(90deg, #e02d73, #ff7eb3, #f0be6a);
+  transition: width 0.38s var(--ease-expo);
 }
 
 .quiz-card {
-  position: relative;
+  border-radius: var(--radius-lg);
   padding: 20px 18px;
   margin-bottom: 14px;
 }
-.quiz-card.slide-in { animation: cardSlideIn 0.26s var(--ease-expo); }
-.quiz-card.micro-shake { animation: microShake 0.28s var(--ease-expo); }
+.quiz-card > *:not(.sparkle-layer):not(.combo-pop) { position: relative; z-index: 3; }
+.quiz-card.jelly-enter { animation: jellyLand 0.42s var(--ease-expo); }
+.quiz-card.micro-shake { animation: microShake 0.30s var(--ease-expo); }
 
-@keyframes cardSlideIn {
-  from { opacity: 0; transform: translateX(18px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-@keyframes microShake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  55% { transform: translateX(5px); }
-  80% { transform: translateX(-2px); }
-}
-
-/* 正解パーティクル（6個以内の軽量SVG・360ms・操作ロックなし） */
-.sparkle-layer {
-  position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 10;
-}
+/* 正解パーティクル（桜の花びら＆星屑SVG・操作ロックなし） */
+.sparkle-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 10; }
 .sparkle-item {
-  position: absolute; left: 50%; top: 34%;
-  width: 18px; height: 18px;
-  opacity: 0;
-  animation: sparkleBurst 0.38s var(--ease-expo) forwards;
+  position: absolute; left: 50%; top: 36%; width: 22px; height: 22px; opacity: 0;
+  animation: sparkleBurst 0.52s var(--ease-expo) forwards;
 }
 @keyframes sparkleBurst {
-  0% { opacity: 0.95; transform: translate(-50%, -50%) scale(0.5) rotate(0deg); }
-  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.15) rotate(var(--rot)); }
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(0.4) rotate(0deg); }
+  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.25) rotate(var(--rot)); }
 }
 
 .combo-pop {
   position: absolute; top: 14px; right: 16px; z-index: 12; pointer-events: none;
-  background: linear-gradient(135deg, #2b1528, #6d2649);
-  color: #fce1ad; font-size: 0.78rem; font-weight: 800;
-  padding: 4px 11px; border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(35, 20, 33, 0.22);
-  animation: comboPop 0.32s var(--ease-expo);
-}
-@keyframes comboPop {
-  from { opacity: 0; transform: translateY(6px) scale(0.86); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  background: linear-gradient(135deg, #3c1030, #b81d5c);
+  color: #ffe8b8; font-size: 0.8rem; font-weight: 900; padding: 5px 12px; border-radius: 999px;
+  border: 1px solid rgba(255, 224, 168, 0.6);
+  box-shadow: 0 6px 16px rgba(122, 18, 64, 0.34);
+  animation: moonBounce 0.48s var(--ease-expo);
 }
 
 .question-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
-.category-chip { font-size: 0.76rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; background: var(--rose-soft); color: var(--rose-deep); }
-.category-chip.hw-chip { background: rgba(229, 184, 105, 0.24); color: var(--gold-ink); }
-.status-pill { font-size: 0.74rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--surface-tint); color: var(--ink-muted); }
-.status-pill.correct { background: var(--ok-bg); color: var(--ok-text); }
-.status-pill.wrong { background: var(--ng-bg); color: var(--ng-text); }
+.category-chip {
+  font-size: 0.77rem; font-weight: 800; padding: 4px 11px; border-radius: 999px;
+  background: rgba(224, 45, 115, 0.14); color: var(--rose-deep);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+.category-chip.hw-chip { background: rgba(240, 190, 106, 0.30); color: var(--gold-ink); }
+.status-pill {
+  font-size: 0.74rem; font-weight: 800; padding: 3px 10px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.52); color: var(--ink-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+}
+.status-pill.correct { background: var(--ok-glass); color: var(--ok-text); border-color: var(--ok-border); }
+.status-pill.wrong { background: var(--ng-glass); color: var(--ng-text); border-color: var(--ng-border); }
 
-/* 問題文・選択肢・解説はゴシック体（15〜16px以上）で統一 */
-.question-prompt { margin: 0 0 14px; font-size: 1.02rem; font-weight: 700; line-height: 1.6; color: var(--ink-primary); }
+.question-prompt { margin: 0 0 14px; font-size: 1.04rem; font-weight: 800; line-height: 1.62; }
 
-/* 明朝体は本文引用の大きな文字（18px以上）のみに使用 */
 .excerpt-box {
   margin: 0 0 18px; padding: 14px 16px;
-  background: #ffffff;
-  border: 1px solid var(--edge-rose);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 242, 248, 0.40));
+  border: 1px solid rgba(255, 255, 255, 0.85);
   border-left: 4px solid var(--rose);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-family: var(--font-serif);
-  font-size: 1.14rem; /* 18.24px */
-  line-height: 1.82;
+  font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.82;
   color: var(--ink-primary);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95);
 }
-.excerpt-highlight { font-weight: 700; color: #9c1f4d; background: rgba(246, 198, 218, 0.52); padding: 0 4px; border-radius: 4px; }
+.excerpt-highlight { font-weight: 700; color: #9c1648; background: rgba(255, 184, 214, 0.56); padding: 0 5px; border-radius: 5px; }
 
-/* 4択選択肢（ゴシック体・高コントラスト） */
+/* 4択選択肢（透けるガラス＋ホバー発光＋ぷるぷる） */
 .choices-list { display: flex; flex-direction: column; gap: 10px; }
 .choice-btn {
-  width: 100%; min-height: 54px; padding: 13px 14px;
-  border: 1.5px solid var(--edge-rose-strong); border-radius: 16px;
-  background: #ffffff; color: var(--ink-primary); text-align: left;
-  display: flex; align-items: flex-start; gap: 11px; cursor: pointer;
-  font-size: 0.96rem; font-weight: 600; line-height: 1.55;
+  position: relative; overflow: hidden;
+  width: 100%; min-height: 56px; padding: 13px 15px;
+  border: 1.5px solid rgba(255, 255, 255, 0.78);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.52), rgba(255, 232, 244, 0.28));
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  color: var(--ink-primary);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.88);
+  text-align: left; display: flex; align-items: flex-start; gap: 12px; cursor: pointer;
+  font-size: 0.97rem; font-weight: 700; line-height: 1.55;
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.95), 0 6px 18px rgba(190, 42, 102, 0.10);
+  transition: transform 0.26s var(--ease-expo), border-color 0.2s, box-shadow 0.25s, background 0.25s;
 }
-.choice-btn:hover:not(:disabled) { border-color: var(--rose); background: #fff9fb; }
+.choice-btn > * { position: relative; z-index: 3; }
+@media (hover: hover) {
+  .choice-btn:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.012);
+    border-color: #f6a0c6;
+    box-shadow: inset 0 1.5px 1px #ffffff, 0 12px 26px rgba(224, 45, 115, 0.22);
+  }
+}
 .choice-btn:disabled { cursor: default; }
 .choice-num {
-  flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
-  background: var(--surface-tint); color: var(--ink-secondary); font-size: 0.82rem; font-weight: 800;
+  flex-shrink: 0; width: 27px; height: 27px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78); color: var(--rose-deep); font-size: 0.83rem; font-weight: 900;
   display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;
+  box-shadow: 0 2px 6px rgba(190, 42, 102, 0.14);
 }
-.choice-btn.is-correct { background: var(--ok-bg); border-color: var(--ok-border); color: var(--ok-text); font-weight: 700; }
+.choice-btn.is-correct {
+  background: var(--ok-glass); border-color: var(--ok-border); color: var(--ok-text);
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.95), 0 10px 24px rgba(22, 150, 96, 0.22);
+}
 .choice-btn.is-correct .choice-num { background: var(--ok-text); color: #ffffff; }
-.choice-btn.is-wrong { background: var(--ng-bg); border-color: var(--ng-border); color: var(--ng-text); }
+.choice-btn.is-wrong { background: var(--ng-glass); border-color: var(--ng-border); color: var(--ng-text); }
 .choice-btn.is-wrong .choice-num { background: var(--ng-text); color: #ffffff; }
-.choice-btn.is-dimmed { opacity: 0.56; }
+.choice-btn.is-dimmed { opacity: 0.54; }
 
-/* ==================== 手書きCanvas実用切り離しカード（ソリッド白・ノイズゼロ） ==================== */
+/* ==================== 手書きCanvas（マス内は純白・書きやすさ最優先） ==================== */
 .hw-utility-panel {
-  background: #ffffff;
-  border: 1.5px solid #e6d8df;
-  border-radius: 18px;
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 240, 248, 0.44));
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 20px; padding: 14px;
+  display: flex; flex-direction: column; gap: 12px;
 }
-
 .hw-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.hw-guide-hint { font-size: 0.82rem; color: var(--ink-secondary); font-weight: 700; }
+.hw-guide-hint { font-size: 0.83rem; color: var(--ink-secondary); font-weight: 800; }
 .hw-tool-btns { display: flex; gap: 8px; }
 .hw-mini-btn {
-  border: 1px solid #d7c3cd; background: #faf5f7; color: var(--ink-primary);
-  border-radius: 999px; padding: 6px 13px; font-size: 0.82rem; font-weight: 700; min-height: 36px; cursor: pointer;
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.85); background: rgba(255, 255, 255, 0.72);
+  color: var(--ink-primary); border-radius: 999px; padding: 6px 13px;
+  font-size: 0.82rem; font-weight: 800; min-height: 36px; cursor: pointer;
 }
 .hw-mini-btn:hover:not(:disabled) { border-color: var(--rose); color: var(--rose-deep); background: #ffffff; }
 .hw-mini-btn:disabled { opacity: 0.42; cursor: not-allowed; }
@@ -573,193 +699,177 @@ button, input { font-family: inherit; font-size: inherit; }
 
 .hw-canvas-box {
   position: relative; width: 112px; height: 112px;
-  background: #ffffff;
-  border: 2px solid #cfaec0;
-  border-radius: 12px;
-  overflow: hidden;
+  background: #ffffff; /* 純白で描画遅延ゼロ */
+  border: 2px solid rgba(224, 45, 115, 0.42);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 4px 14px rgba(190, 42, 102, 0.12);
 }
 .hw-grid.cols-1 .hw-canvas-box { width: 126px; height: 126px; }
 .hw-canvas-box::before, .hw-canvas-box::after { content: ""; position: absolute; pointer-events: none; z-index: 1; }
-.hw-canvas-box::before { left: 50%; top: 0; bottom: 0; width: 1px; border-left: 1px dashed rgba(184, 50, 96, 0.22); }
-.hw-canvas-box::after { top: 50%; left: 0; right: 0; height: 1px; border-top: 1px dashed rgba(184, 50, 96, 0.22); }
+.hw-canvas-box::before { left: 50%; top: 0; bottom: 0; width: 1px; border-left: 1px dashed rgba(224, 45, 115, 0.24); }
+.hw-canvas-box::after { top: 50%; left: 0; right: 0; height: 1px; border-top: 1px dashed rgba(224, 45, 115, 0.24); }
 
 .hw-overlay-char {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-serif); font-size: 4.5rem; font-weight: 700;
-  color: rgba(214, 51, 108, 0.24); line-height: 1;
+  color: rgba(224, 45, 115, 0.24); line-height: 1;
 }
 .hw-grid.cols-1 .hw-overlay-char { font-size: 5.2rem; }
 
 .hw-canvas {
   position: relative; z-index: 3; display: block; width: 100%; height: 100%;
-  background: transparent;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-  cursor: crosshair;
+  background: transparent; touch-action: none; user-select: none; -webkit-user-select: none; cursor: crosshair;
 }
 
 .hw-action-row { display: flex; flex-direction: column; gap: 9px; }
 .hw-compare-panel {
-  padding: 13px; border-radius: 14px; background: #fdf8fa; border: 1px solid #ead5df;
+  padding: 13px; border-radius: 16px; background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(255, 255, 255, 0.9);
   display: flex; flex-direction: column; gap: 10px;
 }
 .hw-compare-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.hw-compare-ans { font-size: 0.93rem; font-weight: 700; color: var(--ink-primary); }
-.hw-compare-ans strong { font-family: var(--font-serif); font-size: 1.25rem; color: var(--rose-deep); margin-left: 6px; letter-spacing: 0.08em; }
-.hw-ai-status { margin: 0; padding: 9px 12px; border-radius: 10px; font-size: 0.86rem; font-weight: 700; background: var(--rose-soft); color: var(--ink-primary); }
-.hw-ai-status.error { background: var(--ng-bg); color: var(--ng-text); }
+.hw-compare-ans { font-size: 0.93rem; font-weight: 800; color: var(--ink-primary); }
+.hw-compare-ans strong { font-family: var(--font-serif); font-size: 1.28rem; color: var(--rose-deep); margin-left: 6px; letter-spacing: 0.08em; }
+.hw-ai-status { margin: 0; padding: 9px 12px; border-radius: 12px; font-size: 0.86rem; font-weight: 800; background: rgba(224, 45, 115, 0.14); color: var(--ink-primary); }
+.hw-ai-status.error { background: var(--ng-glass); color: var(--ng-text); }
 .self-grade-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-/* 解説ボックス（ゴシック体・初期1〜2行＋詳細折りたたみ） */
+/* 解説ボックス */
 .feedback-box {
-  margin-top: 16px; padding: 14px 16px; border-radius: 16px;
-  border: 1.5px solid var(--edge-rose); background: #ffffff;
+  margin-top: 16px; padding: 15px 16px; border-radius: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.56);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+  animation: jellyLand 0.36s var(--ease-expo);
 }
-.feedback-box.ok { background: var(--ok-bg); border-color: var(--ok-border); }
-.feedback-box.ng { background: var(--ng-bg); border-color: var(--ng-border); }
-.feedback-box.neutral { background: #fff9fb; border-color: var(--edge-rose-strong); }
+.feedback-box.ok { background: var(--ok-glass); border-color: var(--ok-border); }
+.feedback-box.ng { background: var(--ng-glass); border-color: var(--ng-border); }
 
 .feedback-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.feedback-mark { font-size: 1.12rem; font-weight: 800; }
-.feedback-title { font-size: 0.96rem; font-weight: 800; }
+.feedback-mark { font-size: 1.15rem; font-weight: 900; }
+.feedback-title { font-size: 0.98rem; font-weight: 900; }
 .feedback-box.ok .feedback-header { color: var(--ok-text); }
 .feedback-box.ng .feedback-header { color: var(--ng-text); }
 .feedback-box.neutral .feedback-header { color: var(--rose-deep); }
 
-.feedback-summary { margin: 0; font-size: 0.95rem; line-height: 1.65; color: var(--ink-primary); font-weight: 500; }
+.feedback-summary { margin: 0; font-size: 0.95rem; line-height: 1.65; color: var(--ink-primary); font-weight: 600; text-shadow: 0 1px 8px rgba(255, 255, 255, 0.85); }
 
-.detail-fold { margin-top: 10px; border-top: 1px dashed rgba(35, 20, 33, 0.16); padding-top: 8px; }
-.detail-fold summary {
-  cursor: pointer; font-size: 0.86rem; font-weight: 800; color: var(--rose-deep);
-  user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px;
-}
+.detail-fold { margin-top: 10px; border-top: 1px dashed rgba(31, 12, 26, 0.18); padding-top: 8px; }
+.detail-fold summary { cursor: pointer; font-size: 0.86rem; font-weight: 800; color: var(--rose-deep); user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px; }
 .detail-fold summary::-webkit-details-marker { display: none; }
 .detail-fold summary::before { content: "▸"; font-size: 0.82rem; }
 .detail-fold[open] summary::before { content: "▾"; }
-.detail-text { margin: 8px 0 0; font-size: 0.93rem; line-height: 1.68; color: var(--ink-secondary); }
-
+.detail-text { margin: 8px 0 0; font-size: 0.93rem; line-height: 1.68; color: var(--ink-secondary); font-weight: 500; }
 .feedback-footer { margin-top: 10px; }
-.link-btn { border: none; background: none; padding: 4px 0; color: var(--rose-deep); font-size: 0.86rem; font-weight: 700; cursor: pointer; text-decoration: underline; }
+.link-btn { border: none; background: none; padding: 4px 0; color: var(--rose-deep); font-size: 0.86rem; font-weight: 800; cursor: pointer; text-decoration: underline; }
 
-/* ==================== 下部固定操作バー（Liquid Glass限定適用②） ==================== */
+/* 下部固定操作バー */
 .quiz-bottom-bar {
   position: sticky; bottom: 0; z-index: 20;
   margin: 12px -14px calc(-28px - env(safe-area-inset-bottom));
   padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
-  background: rgba(255, 248, 251, 0.82);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  backdrop-filter: blur(14px) saturate(150%);
-  border-top: 1px solid rgba(255, 255, 255, 0.85);
+  background: linear-gradient(180deg, rgba(255, 240, 248, 0.45), rgba(255, 250, 253, 0.65));
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+  border-top: 1px solid rgba(255, 255, 255, 0.82);
   display: flex; gap: 10px;
 }
 
 /* 結果画面 */
-.result-card { text-align: center; padding: 30px 20px; }
-.result-sub { margin: 0 0 6px; font-size: 0.86rem; font-weight: 700; color: var(--ink-muted); }
-.result-heading { margin: 0 0 18px; font-size: 1.38rem; font-weight: 900; }
+.result-card { border-radius: var(--radius-lg); text-align: center; padding: 30px 20px; }
+.result-card > * { position: relative; z-index: 3; }
+.result-sub { margin: 0 0 6px; font-size: 0.86rem; font-weight: 800; color: var(--ink-secondary); }
+.result-heading { margin: 0 0 18px; font-size: 1.42rem; font-weight: 900; }
 .result-score-box {
   display: inline-flex; flex-direction: column; align-items: center;
-  padding: 18px 34px; background: #ffffff; border: 1px solid var(--edge-rose);
-  border-radius: 22px; margin-bottom: 16px;
+  padding: 18px 36px; background: rgba(255, 255, 255, 0.58); border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 24px; margin-bottom: 16px;
 }
-.result-score-num { font-size: 2.2rem; font-weight: 900; color: var(--rose); font-variant-numeric: tabular-nums; }
-.result-score-rate { font-size: 0.92rem; font-weight: 800; color: var(--gold-ink); }
-.result-message { margin: 0 0 22px; font-size: 0.95rem; color: var(--ink-secondary); }
+.result-score-num { font-size: 2.3rem; font-weight: 900; color: var(--rose); font-variant-numeric: tabular-nums; }
+.result-score-rate { font-size: 0.94rem; font-weight: 800; color: var(--gold-ink); }
+.result-message { margin: 0 0 22px; font-size: 0.95rem; font-weight: 700; color: var(--ink-secondary); }
 .result-actions { display: flex; flex-direction: column; gap: 10px; max-width: 380px; margin: 0 auto; }
 
 /* 一覧画面 */
-.list-title { margin: 0; font-size: 1rem; font-weight: 800; }
-.list-count-badge { font-size: 0.82rem; font-weight: 800; color: var(--ink-muted); }
+.list-title { margin: 0; font-size: 1rem; font-weight: 900; }
+.list-count-badge { font-size: 0.82rem; font-weight: 800; color: var(--ink-secondary); }
 .filter-bar { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
 .filter-chip {
-  border: 1px solid var(--edge-rose-strong); background: #ffffff; color: var(--ink-secondary);
-  border-radius: 999px; padding: 6px 13px; font-size: 0.83rem; font-weight: 700; min-height: 36px; cursor: pointer;
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.82); background: rgba(255, 255, 255, 0.52);
+  color: var(--ink-primary); border-radius: 999px; padding: 6px 13px;
+  font-size: 0.83rem; font-weight: 800; min-height: 36px; cursor: pointer;
 }
-.filter-chip.active { background: var(--rose); border-color: var(--rose); color: #ffffff; }
-.question-list { display: flex; flex-direction: column; gap: 8px; }
+.filter-chip.active { background: linear-gradient(135deg, #e02d73, #b81d5c); border-color: rgba(255, 224, 240, 0.8); color: #ffffff; }
+.question-list { display: flex; flex-direction: column; gap: 9px; }
 .list-item {
-  width: 100%; text-align: left; background: var(--surface-card);
-  border: 1px solid var(--edge-rose); border-top-color: var(--edge-highlight);
-  border-radius: 16px; padding: 13px 15px; cursor: pointer;
+  width: 100%; text-align: left; border-radius: 18px; padding: 13px 15px; cursor: pointer;
   display: flex; flex-direction: column; gap: 5px;
 }
-.list-item:hover { border-color: var(--rose); background: #ffffff; }
+.list-item > * { position: relative; z-index: 3; }
 .list-item-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.list-item-num { font-size: 0.79rem; font-weight: 700; color: var(--ink-muted); }
+.list-item-num { font-size: 0.79rem; font-weight: 800; color: var(--ink-secondary); }
 .list-item-text {
-  margin: 0; font-size: 0.94rem; font-weight: 600; color: var(--ink-primary);
+  margin: 0; font-size: 0.94rem; font-weight: 700; color: var(--ink-primary);
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.empty-list { text-align: center; padding: 32px 16px; color: var(--ink-muted); font-size: 0.92rem; }
+.empty-list { text-align: center; padding: 32px 16px; color: var(--ink-secondary); font-size: 0.92rem; font-weight: 700; }
 
-/* ==================== モーダル（Liquid Glass限定適用③：背景のみ） ==================== */
+/* モーダル */
 .modal-backdrop {
   position: fixed; inset: 0; z-index: 50;
-  background: rgba(35, 20, 33, 0.45);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: rgba(48, 12, 36, 0.36);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
   display: flex; align-items: center; justify-content: center; padding: 14px;
 }
 .modal-dialog {
-  width: 100%; max-width: 540px; max-height: 88dvh; background: #fffbfd;
-  border-radius: 24px; border: 1px solid var(--edge-highlight);
+  width: 100%; max-width: 540px; max-height: 88dvh;
+  background: linear-gradient(145deg, rgba(255, 252, 254, 0.84), rgba(255, 238, 248, 0.76));
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  backdrop-filter: blur(24px) saturate(190%);
+  border-radius: 26px; border: 1.5px solid rgba(255, 255, 255, 0.88);
   display: flex; flex-direction: column; overflow: hidden;
-  box-shadow: 0 18px 44px rgba(35, 20, 33, 0.28);
+  box-shadow: 0 22px 54px rgba(72, 14, 48, 0.30);
+  animation: jellyLand 0.38s var(--ease-expo);
 }
 .modal-dialog.large { max-width: 720px; }
-.modal-header {
-  padding: 14px 18px; border-bottom: 1px solid var(--edge-rose);
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-}
-.modal-header h2 { margin: 0; font-size: 1.04rem; font-weight: 800; }
+.modal-header { padding: 14px 18px; border-bottom: 1px solid rgba(224, 45, 115, 0.16); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.modal-header h2 { margin: 0; font-size: 1.05rem; font-weight: 900; }
 .modal-header-controls { display: flex; align-items: center; gap: 12px; }
-.toggle-label { display: inline-flex; align-items: center; gap: 5px; font-size: 0.84rem; font-weight: 700; color: var(--ink-secondary); cursor: pointer; }
-.close-btn {
-  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--edge-rose-strong);
-  background: #ffffff; color: var(--ink-primary); font-size: 1rem; cursor: pointer;
-}
-.scene-tabs {
-  display: flex; gap: 6px; padding: 10px 16px; background: #fbf2f6;
-  border-bottom: 1px solid var(--edge-rose); overflow-x: auto;
-}
-.scene-tab {
-  flex-shrink: 0; border: 1px solid var(--edge-rose-strong); background: #ffffff;
-  color: var(--ink-secondary); border-radius: 999px; padding: 6px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
-}
-.scene-tab.active { background: var(--rose); border-color: var(--rose); color: #ffffff; }
+.toggle-label { display: inline-flex; align-items: center; gap: 5px; font-size: 0.84rem; font-weight: 800; color: var(--ink-secondary); cursor: pointer; }
+.close-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.9); background: rgba(255, 255, 255, 0.7); color: var(--ink-primary); font-size: 1rem; cursor: pointer; }
+
+.scene-tabs { display: flex; gap: 6px; padding: 10px 16px; background: rgba(255, 238, 246, 0.55); border-bottom: 1px solid rgba(224, 45, 115, 0.14); overflow-x: auto; }
+.scene-tab { flex-shrink: 0; border: 1px solid rgba(255, 255, 255, 0.85); background: rgba(255, 255, 255, 0.75); color: var(--ink-primary); border-radius: 999px; padding: 6px 12px; font-size: 0.82rem; font-weight: 800; cursor: pointer; }
+.scene-tab.active { background: linear-gradient(135deg, #e02d73, #b81d5c); color: #ffffff; border-color: rgba(255, 224, 240, 0.8); }
 
 .modal-body { padding: 18px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.pre-summary-box {
-  margin-bottom: 16px; padding: 12px 14px;
-  background: #fdf2f6; border: 1px solid var(--edge-rose); border-radius: 14px;
-  font-family: var(--font-sans);
-}
-.pre-summary-title { margin: 0 0 6px; font-size: 0.83rem; font-weight: 800; color: var(--rose-deep); }
+.pre-summary-box { margin-bottom: 16px; padding: 12px 14px; background: rgba(255, 255, 255, 0.65); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px; font-family: var(--font-sans); }
+.pre-summary-title { margin: 0 0 6px; font-size: 0.84rem; font-weight: 900; color: var(--rose-deep); }
 .pre-summary-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.pre-summary-list li { font-size: 0.86rem; line-height: 1.55; color: var(--ink-secondary); }
+.pre-summary-list li { font-size: 0.86rem; line-height: 1.55; color: var(--ink-primary); }
 
 .passage-body { font-family: var(--font-serif); font-size: 1.13rem; line-height: 2.05; color: var(--ink-primary); }
 .passage-body p { margin: 0 0 14px; }
 .passage-body.no-ruby rt { display: none; }
-
-.poem-block { margin: 14px 0; padding: 14px 16px; background: #fdf5f8; border: 1px solid var(--edge-rose); border-radius: 14px; }
-.poem-line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 5px 0; border-bottom: 1px dashed var(--edge-rose); }
+.poem-block { margin: 14px 0; padding: 14px 16px; background: rgba(255, 255, 255, 0.62); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px; }
+.poem-line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 5px 0; border-bottom: 1px dashed rgba(224, 45, 115, 0.2); }
 .poem-line:last-child { border-bottom: none; }
 .poem-kanbun { font-weight: 700; letter-spacing: 0.14em; color: var(--rose-deep); }
 .poem-yomi { font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink-secondary); }
 
-.settings-block h3 { margin: 0 0 6px; font-size: 0.96rem; font-weight: 800; }
+.settings-block h3 { margin: 0 0 6px; font-size: 0.96rem; font-weight: 900; }
 .settings-note { margin: 0 0 12px; font-size: 0.88rem; color: var(--ink-secondary); }
 .settings-btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .settings-btn-col { display: flex; flex-direction: column; gap: 10px; }
 .file-label { cursor: pointer; }
-.import-status { margin: 8px 0 0; font-size: 0.86rem; font-weight: 700; color: var(--ok-text); min-height: 1.2em; }
-.divider { border: none; border-top: 1px solid var(--edge-rose); margin: 18px 0; }
+.import-status { margin: 8px 0 0; font-size: 0.86rem; font-weight: 800; color: var(--ok-text); min-height: 1.2em; }
+.divider { border: none; border-top: 1px solid rgba(224, 45, 115, 0.16); margin: 18px 0; }
 
-/* アクセシビリティ：モーション軽減設定 */
 @media (prefers-reduced-motion: reduce) {
+  .orb { animation: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -767,13 +877,12 @@ button, input { font-family: inherit; font-size: inherit; }
   }
 }
 
-/* スマホ小型幅（360〜375px）最適化 */
 @media (max-width: 520px) {
   .header-inner { padding: 9px 12px; }
   .app-title { font-size: 0.93rem; }
   .hdr-pill { padding: 5px 9px; font-size: 0.74rem; }
   .bento-grid-2 { grid-template-columns: 1.08fr 0.92fr; gap: 10px; }
-  .bento-tile { padding: 14px 12px; min-height: 152px; }
+  .bento-tile { padding: 14px 12px; min-height: 154px; }
   .hw-canvas-box { width: 104px; height: 104px; }
   .hw-grid.cols-1 .hw-canvas-box { width: 120px; height: 120px; }
   .settings-btn-row { grid-template-columns: 1fr; }
@@ -781,7 +890,14 @@ button, input { font-family: inherit; font-size: inherit; }
   </style>
 </head>
 <body>
-  <div class="ambient-mesh" aria-hidden="true"></div>
+  <!-- 背面で呼吸・浮遊するオーロラピンクの光の玉 -->
+  <div class="orb-stage" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
   <div class="app-shell">
     <header class="app-header">
       <div class="header-inner">
@@ -793,17 +909,17 @@ button, input { font-family: inherit; font-size: inherit; }
           </div>
         </div>
         <div class="header-actions">
-          <button type="button" class="hdr-pill tap-spring" id="sound-toggle-btn" title="効果音のオン・オフ">🔇 音OFF</button>
-          <button type="button" class="hdr-pill tap-spring" id="open-passage-btn" title="試験範囲の本文を確認 (T)">本文</button>
+          <button type="button" class="hdr-pill jelly-btn" id="sound-toggle-btn" title="効果音のオン・オフ">🔇 音OFF</button>
+          <button type="button" class="hdr-pill jelly-btn" id="open-passage-btn" title="試験範囲の本文を確認 (T)">本文</button>
         </div>
       </div>
     </header>
 
     <main class="app-main">
-      <!-- ==================== ホーム画面（3ブロックBento Grid） ==================== -->
+      <!-- ==================== ホーム画面（3ブロック Liquid Bento Grid） ==================== -->
       <section id="view-home" class="view active" aria-label="ホームダッシュボード">
-        <!-- ブロック①：ヒーローBentoウィジェット（月の満ち欠け＆夜桜SVG） -->
-        <section class="hero-bento" aria-label="試験仕上がり度">
+        <!-- ブロック①：ヒーローBento（スモークド・ローズガラス＋満ち欠け月SVG） -->
+        <section class="hero-bento liquid-interactive" aria-label="試験仕上がり度">
           <div class="hero-top-row">
             <div class="hero-left">
               <span class="hero-eyebrow">MOONLIGHT ROSE · 二学期末</span>
@@ -813,29 +929,26 @@ button, input { font-family: inherit; font-size: inherit; }
               </div>
               <p class="hero-goal-text" id="hero-goal-text">合格圏（80%）まであと 72 問</p>
             </div>
-            <div class="hero-moon-stage" aria-hidden="true">
+            <div class="hero-moon-stage" id="hero-moon-stage" aria-hidden="true">
               <svg class="hero-moon-svg" viewBox="0 0 100 100">
                 <defs>
                   <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#f7c8dc" stop-opacity="0.72"/>
-                    <stop offset="100%" stop-color="#f7c8dc" stop-opacity="0"/>
+                    <stop offset="0%" stop-color="#ffc0dc" stop-opacity="0.82"/>
+                    <stop offset="100%" stop-color="#ffc0dc" stop-opacity="0"/>
                   </radialGradient>
                   <linearGradient id="moonFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#fff4e0"/>
-                    <stop offset="55%" stop-color="#f7c9d9"/>
-                    <stop offset="100%" stop-color="#e5b869"/>
+                    <stop offset="0%" stop-color="#fff8e8"/>
+                    <stop offset="52%" stop-color="#ffcce2"/>
+                    <stop offset="100%" stop-color="#f0be6a"/>
                   </linearGradient>
                 </defs>
-                <!-- レイヤー1：月光ハロー＆夜桜シルエット -->
-                <circle id="moon-halo" cx="50" cy="50" r="48" fill="url(#moonGlow)" opacity="0.2"/>
-                <circle cx="50" cy="50" r="34" fill="rgba(255, 255, 255, 0.08)" stroke="rgba(255, 232, 240, 0.22)" stroke-width="1"/>
-                <!-- レイヤー2：進捗連動の満ち欠けパス -->
+                <circle id="moon-halo" cx="50" cy="50" r="48" fill="url(#moonGlow)" opacity="0.28"/>
+                <circle cx="50" cy="50" r="34" fill="rgba(255, 255, 255, 0.12)" stroke="rgba(255, 236, 246, 0.36)" stroke-width="1.2"/>
                 <path id="moon-light-path" fill="url(#moonFill)" d="M 50 16 A 34 34 0 0 1 50 84 A 31 34 0 0 0 50 16 Z"/>
-                <!-- レイヤー3：夜桜の花びら＆星屑アクセント -->
-                <path d="M18 24 C21 26, 22 30, 18 34 C14 30, 15 26, 18 24 Z" fill="#f7b2cc" opacity="0.85"/>
-                <path d="M84 74 C87 76, 88 80, 84 84 C80 80, 81 76, 84 74 Z" fill="#f7b2cc" opacity="0.75"/>
-                <circle cx="82" cy="22" r="2" fill="#fce1ad"/>
-                <circle cx="22" cy="78" r="1.5" fill="#fce1ad" opacity="0.85"/>
+                <path d="M18 24 C21 26, 22 30, 18 34 C14 30, 15 26, 18 24 Z" fill="#ffb8d6" opacity="0.92"/>
+                <path d="M84 74 C87 76, 88 80, 84 84 C80 80, 81 76, 84 74 Z" fill="#ffb8d6" opacity="0.85"/>
+                <circle cx="82" cy="22" r="2.2" fill="#ffe6b2"/>
+                <circle cx="22" cy="78" r="1.7" fill="#ffe6b2" opacity="0.9"/>
               </svg>
             </div>
           </div>
@@ -848,45 +961,45 @@ button, input { font-family: inherit; font-size: inherit; }
           </div>
         </section>
 
-        <!-- ブロック②：非対称2タイル（語彙・漢字 ／ 内容・読解） -->
+        <!-- ブロック②：非対称2タイル（本物の透ける Liquid Glass） -->
         <div class="bento-grid-2">
-          <button type="button" class="glass-tile bento-tile tap-spring is-selected" id="tile-vocab">
+          <button type="button" class="liquid-glass liquid-interactive liquid-hover-lift bento-tile jelly-btn is-selected" id="tile-vocab">
             <div>
               <span class="tile-kicker">PART 01</span>
               <div class="tile-head-row">
-                <h2 class="tile-title">語彙・漢字</h2>
+                <h2 class="tile-title crisp-ink">語彙・漢字</h2>
                 <div class="ring-wrap" aria-hidden="true">
-                  <svg class="ring-svg" viewBox="0 0 46 46">
-                    <circle class="ring-track" cx="23" cy="23" r="18"/>
-                    <circle class="ring-fill" id="vocab-ring-fill" cx="23" cy="23" r="18" stroke-dasharray="113.1" stroke-dashoffset="113.1"/>
+                  <svg class="ring-svg" viewBox="0 0 48 48">
+                    <circle class="ring-track" cx="24" cy="24" r="18"/>
+                    <circle class="ring-fill" id="vocab-ring-fill" cx="24" cy="24" r="18" stroke-dasharray="113.1" stroke-dashoffset="113.1"/>
                   </svg>
                   <span class="ring-pct" id="vocab-ring-pct">0%</span>
                 </div>
               </div>
-              <p class="tile-big-num" id="vocab-big-num">0<span>/ 60</span></p>
+              <p class="tile-big-num crisp-ink" id="vocab-big-num">0<span>/ 60</span></p>
               <p class="tile-sub-note">読み・意味・手書き漢字</p>
             </div>
             <div class="tile-quick-pills" id="vocab-mini-pills"></div>
           </button>
 
-          <button type="button" class="glass-tile bento-tile tap-spring" id="tile-content">
+          <button type="button" class="liquid-glass liquid-interactive liquid-hover-lift bento-tile jelly-btn" id="tile-content">
             <div>
               <span class="tile-kicker content-kicker">PART 02</span>
-              <h2 class="tile-title">内容・読解</h2>
-              <p class="tile-big-num" id="content-big-num">0<span>/ 30</span></p>
+              <h2 class="tile-title crisp-ink">内容・読解</h2>
+              <p class="tile-big-num crisp-ink" id="content-big-num">0<span>/ 30</span></p>
               <p class="tile-sub-note">漢詩・心情・別れ</p>
             </div>
             <div>
               <div class="gloss-bar-track">
-                <div class="gloss-bar-fill gold-fill" id="content-bar-fill" style="width: 0%;"></div>
+                <div class="gloss-bar-fill" id="content-bar-fill" style="width: 0%;"></div>
               </div>
               <div class="tile-quick-pills" id="content-mini-pills"></div>
             </div>
           </button>
         </div>
 
-        <!-- ブロック③：主役CTA & Sliding Pill デッキ（親指サムゾーン） -->
-        <section class="glass-tile cta-deck" aria-label="学習モード選択">
+        <!-- ブロック③：主役CTA & Sliding Pill デッキ -->
+        <section class="liquid-glass liquid-interactive cta-deck" aria-label="学習モード選択">
           <div class="sliding-tabs" role="tablist">
             <div class="sliding-indicator" id="deck-indicator" aria-hidden="true"></div>
             <button type="button" class="sliding-tab-btn active" data-deck-part="vocab" role="tab">語彙・漢字（60）</button>
@@ -896,13 +1009,13 @@ button, input { font-family: inherit; font-size: inherit; }
           <div class="cat-chips" id="deck-cat-chips" role="group" aria-label="出題カテゴリ"></div>
 
           <div class="hero-cta-row">
-            <button type="button" class="btn btn-hero tap-spring" id="btn-hero-quick">⚡ 10問サクッと始める</button>
-            <button type="button" class="btn btn-write-direct tap-spring" id="btn-write-direct">✍️ 机で手書き漢字（0/12）</button>
+            <button type="button" class="btn btn-hero liquid-interactive jelly-btn" id="btn-hero-quick">⚡ 10問サクッと始める</button>
+            <button type="button" class="btn btn-glass liquid-interactive jelly-btn" id="btn-write-direct">✍️ 机で手書き漢字（0/12）</button>
           </div>
 
           <div class="secondary-actions">
-            <button type="button" class="btn btn-soft tap-spring" id="btn-deck-order">順番に解く</button>
-            <button type="button" class="btn btn-soft tap-spring" id="btn-deck-weak">弱点だけ復習</button>
+            <button type="button" class="btn btn-glass btn-soft liquid-interactive jelly-btn" id="btn-deck-order">順番に解く</button>
+            <button type="button" class="btn btn-glass btn-soft liquid-interactive jelly-btn" id="btn-deck-weak">弱点だけ復習</button>
           </div>
         </section>
 
@@ -915,19 +1028,19 @@ button, input { font-family: inherit; font-size: inherit; }
       <!-- ==================== 演習（クイズ）画面 ==================== -->
       <section id="view-quiz" class="view" aria-label="問題演習">
         <div class="quiz-topbar">
-          <button type="button" class="back-btn tap-spring" id="quiz-back-btn">← ホーム</button>
+          <button type="button" class="hdr-pill jelly-btn" id="quiz-back-btn">← ホーム</button>
           <div class="quiz-meta">
             <span class="quiz-part-label" id="quiz-part-label">語彙・漢字</span>
             <span class="quiz-counter" id="quiz-counter">1 / 10</span>
           </div>
-          <button type="button" class="text-btn tap-spring" id="quiz-passage-btn">該当本文</button>
+          <button type="button" class="hdr-pill jelly-btn" id="quiz-passage-btn">該当本文</button>
         </div>
 
         <div class="quiz-progress-wrap">
           <div class="quiz-progress-bar" id="quiz-session-bar" style="width: 0%;"></div>
         </div>
 
-        <article class="glass-tile quiz-card" id="quiz-card">
+        <article class="liquid-glass liquid-interactive quiz-card" id="quiz-card">
           <div class="sparkle-layer" id="sparkle-layer" aria-hidden="true"></div>
           <div class="combo-pop hidden" id="combo-pop" aria-live="polite"></div>
 
@@ -936,27 +1049,26 @@ button, input { font-family: inherit; font-size: inherit; }
             <span class="status-pill" id="q-status">未解答</span>
           </div>
 
-          <h2 class="question-prompt" id="q-prompt"></h2>
+          <h2 class="question-prompt crisp-ink" id="q-prompt"></h2>
           <blockquote class="excerpt-box" id="q-excerpt"></blockquote>
 
-          <!-- 4択エリア -->
           <div class="choices-list" id="choices-list" role="radiogroup" aria-label="選択肢"></div>
 
-          <!-- 手書きキャンバス（ソリッド白の実用切り離しカード） -->
+          <!-- 手書きキャンバス -->
           <div class="hw-utility-panel hidden" id="hw-area">
             <div class="hw-toolbar">
               <span class="hw-guide-hint">指やマウスでマスに書いてね</span>
               <div class="hw-tool-btns">
-                <button type="button" class="hw-mini-btn tap-spring" id="hw-undo-btn" disabled>1画戻す</button>
-                <button type="button" class="hw-mini-btn tap-spring" id="hw-clear-btn" disabled>全消去</button>
+                <button type="button" class="hw-mini-btn jelly-btn" id="hw-undo-btn" disabled>1画戻す</button>
+                <button type="button" class="hw-mini-btn jelly-btn" id="hw-clear-btn" disabled>全消去</button>
               </div>
             </div>
 
             <div class="hw-grid" id="hw-grid"></div>
 
             <div class="hw-action-row">
-              <button type="button" class="btn btn-primary tap-spring hidden" id="hw-ai-btn">AIで自動判定する</button>
-              <button type="button" class="btn btn-primary tap-spring" id="hw-compare-btn">お手本と比べる（答えを表示）</button>
+              <button type="button" class="btn btn-primary liquid-interactive jelly-btn hidden" id="hw-ai-btn">AIで自動判定する</button>
+              <button type="button" class="btn btn-primary liquid-interactive jelly-btn" id="hw-compare-btn">お手本と比べる（答えを表示）</button>
             </div>
 
             <p class="hw-ai-status hidden" id="hw-ai-status" aria-live="polite"></p>
@@ -970,13 +1082,12 @@ button, input { font-family: inherit; font-size: inherit; }
                 </label>
               </div>
               <div class="self-grade-row">
-                <button type="button" class="btn btn-ok tap-spring" id="self-ok-btn">〇 書けた</button>
-                <button type="button" class="btn btn-ng tap-spring" id="self-ng-btn">✕ 要復習</button>
+                <button type="button" class="btn btn-ok jelly-btn" id="self-ok-btn">〇 書けた</button>
+                <button type="button" class="btn btn-ng jelly-btn" id="self-ng-btn">✕ 要復習</button>
               </div>
             </div>
           </div>
 
-          <!-- 即時フィードバック・2段解説 -->
           <div class="feedback-box hidden" id="feedback-box" aria-live="polite">
             <div class="feedback-header">
               <span class="feedback-mark" id="feedback-mark"></span>
@@ -994,33 +1105,33 @@ button, input { font-family: inherit; font-size: inherit; }
         </article>
 
         <div class="quiz-bottom-bar">
-          <button type="button" class="btn btn-secondary tap-spring" id="quiz-prev-btn">前へ</button>
-          <button type="button" class="btn btn-primary grow tap-spring" id="quiz-next-btn" disabled>回答を選択してください</button>
+          <button type="button" class="btn btn-glass jelly-btn" id="quiz-prev-btn">前へ</button>
+          <button type="button" class="btn btn-primary liquid-interactive grow jelly-btn" id="quiz-next-btn" disabled>回答を選択してください</button>
         </div>
       </section>
 
-      <!-- ==================== セッション結果画面 ==================== -->
+      <!-- ==================== 結果画面 ==================== -->
       <section id="view-result" class="view" aria-label="演習結果">
-        <div class="glass-tile result-card">
+        <div class="liquid-glass liquid-interactive result-card">
           <p class="result-sub" id="result-mode-label">語彙・漢字</p>
-          <h2 class="result-heading">演習おつかれさま！</h2>
+          <h2 class="result-heading crisp-ink">演習おつかれさま！</h2>
           <div class="result-score-box">
             <span class="result-score-num" id="result-score-num">0 / 0</span>
             <span class="result-score-rate" id="result-score-rate">正答率 0%</span>
           </div>
           <p class="result-message" id="result-message"></p>
           <div class="result-actions">
-            <button type="button" class="btn btn-write-direct tap-spring" id="result-retry-wrong-btn">今回間違えた問題だけ解き直す</button>
-            <button type="button" class="btn btn-hero tap-spring" id="result-home-btn">ホームへ戻る</button>
+            <button type="button" class="btn btn-glass liquid-interactive jelly-btn" id="result-retry-wrong-btn">今回間違えた問題だけ解き直す</button>
+            <button type="button" class="btn btn-hero liquid-interactive jelly-btn" id="result-home-btn">ホームへ戻る</button>
           </div>
         </div>
       </section>
 
-      <!-- ==================== 一覧・確認画面 ==================== -->
+      <!-- ==================== 一覧画面 ==================== -->
       <section id="view-list" class="view" aria-label="問題一覧と進捗確認">
         <div class="quiz-topbar">
-          <button type="button" class="back-btn tap-spring" id="list-back-btn">← ホーム</button>
-          <h2 class="list-title">全90問 一覧・確認</h2>
+          <button type="button" class="hdr-pill jelly-btn" id="list-back-btn">← ホーム</button>
+          <h2 class="list-title crisp-ink">全90問 一覧・確認</h2>
           <span class="list-count-badge" id="list-count-badge">0問</span>
         </div>
 
@@ -1031,10 +1142,10 @@ button, input { font-family: inherit; font-size: inherit; }
         </div>
 
         <div class="filter-bar" role="group" aria-label="ステータス絞り込み">
-          <button type="button" class="filter-chip tap-spring active" data-filter="all">すべて</button>
-          <button type="button" class="filter-chip tap-spring" data-filter="wrong">要復習</button>
-          <button type="button" class="filter-chip tap-spring" data-filter="unanswered">未解答</button>
-          <button type="button" class="filter-chip tap-spring" data-filter="correct">正解済み</button>
+          <button type="button" class="filter-chip jelly-btn active" data-filter="all">すべて</button>
+          <button type="button" class="filter-chip jelly-btn" data-filter="wrong">要復習</button>
+          <button type="button" class="filter-chip jelly-btn" data-filter="unanswered">未解答</button>
+          <button type="button" class="filter-chip jelly-btn" data-filter="correct">正解済み</button>
         </div>
 
         <div class="question-list" id="question-list"></div>
@@ -1048,11 +1159,8 @@ button, input { font-family: inherit; font-size: inherit; }
       <div class="modal-header">
         <h2 id="passage-modal-title">試験範囲 本文参照</h2>
         <div class="modal-header-controls">
-          <label class="toggle-label">
-            <input type="checkbox" id="ruby-toggle" checked>
-            <span>ルビ表示</span>
-          </label>
-          <button type="button" class="close-btn tap-spring" id="close-passage-btn" aria-label="閉じる">✕</button>
+          <label class="toggle-label"><input type="checkbox" id="ruby-toggle" checked><span>ルビ表示</span></label>
+          <button type="button" class="close-btn jelly-btn" id="close-passage-btn" aria-label="閉じる">✕</button>
         </div>
       </div>
       <div class="scene-tabs" id="scene-tabs"></div>
@@ -1065,38 +1173,36 @@ button, input { font-family: inherit; font-size: inherit; }
     <div class="modal-dialog">
       <div class="modal-header">
         <h2 id="settings-modal-title">学習記録の管理・リセット</h2>
-        <button type="button" class="close-btn tap-spring" id="close-settings-btn" aria-label="閉じる">✕</button>
+        <button type="button" class="close-btn jelly-btn" id="close-settings-btn" aria-label="閉じる">✕</button>
       </div>
       <div class="modal-body">
         <div class="settings-block">
           <h3>バックアップ（JSON）</h3>
           <p class="settings-note">スマホ⇔PC間で学習記録を移すときや、バックアップに利用できます。</p>
           <div class="settings-btn-row">
-            <button type="button" class="btn btn-secondary tap-spring" id="export-json-btn">記録を書き出す</button>
-            <label class="btn btn-secondary tap-spring file-label">
+            <button type="button" class="btn btn-glass jelly-btn" id="export-json-btn">記録を書き出す</button>
+            <label class="btn btn-glass jelly-btn file-label">
               記録を読み込む
               <input type="file" id="import-json-input" accept=".json,application/json" hidden>
             </label>
           </div>
           <p class="import-status" id="import-status" aria-live="polite"></p>
         </div>
-
         <hr class="divider">
-
         <div class="settings-block">
           <h3>進捗のリセット</h3>
           <p class="settings-note">やり直したい部の記録だけを消去できます（確認ダイアログが出ます）。</p>
           <div class="settings-btn-col">
-            <button type="button" class="btn btn-danger-outline tap-spring" id="reset-vocab-btn">語彙・漢字の記録をリセット</button>
-            <button type="button" class="btn btn-danger-outline tap-spring" id="reset-content-btn">内容・読解の記録をリセット</button>
-            <button type="button" class="btn btn-danger tap-spring" id="reset-all-btn">すべての学習記録をリセット</button>
+            <button type="button" class="btn btn-danger-outline jelly-btn" id="reset-vocab-btn">語彙・漢字の記録をリセット</button>
+            <button type="button" class="btn btn-danger-outline jelly-btn" id="reset-content-btn">内容・読解の記録をリセット</button>
+            <button type="button" class="btn btn-danger jelly-btn" id="reset-all-btn">すべての学習記録をリセット</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 純粋な問題・本文データ配列（全90問・v2から無劣化継承） -->
+  <!-- 純粋な問題・本文データ配列（全90問・無劣化継承） -->
   <script>
 window.PRE_SCOPE_SUMMARY = [
   "① 隴西の秀才・李徴は若くして進士に合格したが、自尊心の強さから官を辞して詩作に専念。しかし文名は揚がらず、生活苦から地方官吏に復職するも、かつて軽蔑した同輩の下命を受ける屈辱に耐えられず発狂し行方不明となる。",
@@ -2757,38 +2863,21 @@ window.CONTENT_QUESTIONS = [
   const PRE_SUMMARY = window.PRE_SCOPE_SUMMARY;
 
   let store = loadStore();
-  let homeDeckPart = "vocab"; // "vocab" | "content"
+  let homeDeckPart = "vocab";
   let selectedGroup = { vocab: "all", content: "all" };
-  let soundEnabled = false;   // 電車内誤爆防止のためデフォルトOFF
+  let soundEnabled = false;
   let audioCtx = null;
 
   let session = {
-    part: "vocab",
-    mode: "order",
-    group: "all",
-    queue: [],
-    index: 0,
-    answered: false,
-    compared: false,
-    aiBusy: false,
-    currentChoices: [],
-    correctCount: 0,
-    wrongQueue: []
+    part: "vocab", mode: "order", group: "all", queue: [], index: 0,
+    answered: false, compared: false, aiBusy: false,
+    currentChoices: [], correctCount: 0, wrongQueue: []
   };
 
-  let hwState = {
-    cells: [],
-    strokeHistory: [],
-    drawing: false,
-    activeCell: -1,
-    activeStroke: null,
-    overlayOn: false
-  };
-
+  let hwState = { cells: [], strokeHistory: [], drawing: false, activeCell: -1, activeStroke: null, overlayOn: false };
   let listState = { part: "vocab", filter: "all" };
   let activeSceneId = "scene1";
 
-  // DOM要素
   const views = {
     home: document.getElementById("view-home"),
     quiz: document.getElementById("view-quiz"),
@@ -2802,6 +2891,7 @@ window.CONTENT_QUESTIONS = [
   const elHeroGoalText = document.getElementById("hero-goal-text");
   const elHeroCombo = document.getElementById("hero-combo");
   const elHeroToday = document.getElementById("hero-today");
+  const elMoonStage = document.getElementById("hero-moon-stage");
   const elMoonLightPath = document.getElementById("moon-light-path");
   const elMoonHalo = document.getElementById("moon-halo");
 
@@ -2875,6 +2965,54 @@ window.CONTENT_QUESTIONS = [
   const elSettingsModal = document.getElementById("settings-modal");
   const elImportStatus = document.getElementById("import-status");
 
+  // ==================== ぷるぷる弾性 ＋ Liquid Ripple ＋ スポットライト追従 ====================
+  function triggerJelly(el) {
+    if (!el) return;
+    el.classList.remove("is-jelly");
+    void el.offsetWidth;
+    el.classList.add("is-jelly");
+  }
+
+  function spawnRipple(el, clientX, clientY) {
+    if (!el || el.disabled) return;
+    const rect = el.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 0.72;
+    const ripple = document.createElement("span");
+    ripple.className = "liquid-ripple";
+    ripple.style.width = `${size}px`;
+    ripple.style.height = `${size}px`;
+    ripple.style.left = `${clientX - rect.left}px`;
+    ripple.style.top = `${clientY - rect.top}px`;
+    el.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 650);
+  }
+
+  function setupGlobalLiquidInteractions() {
+    // ポインター追従スポットライト（イベント委譲で動的要素にも自動適用）
+    document.addEventListener("pointermove", (e) => {
+      const target = e.target && e.target.closest ? e.target.closest(".liquid-interactive") : null;
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      target.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+      target.style.setProperty("--my", `${e.clientY - rect.top}px`);
+    }, { passive: true });
+
+    // タップ・クリック時の Liquid Ripple ＋ ぷるぷる Squash & Stretch
+    document.addEventListener("pointerdown", (e) => {
+      const el = e.target && e.target.closest ? e.target.closest(".jelly-btn") : null;
+      if (!el || el.disabled) return;
+      spawnRipple(el, e.clientX, e.clientY);
+      triggerJelly(el);
+    }, { passive: true });
+  }
+
+  function bounceElement(el) {
+    if (!el) return;
+    el.classList.remove("is-moon-bounce");
+    void el.offsetWidth;
+    el.classList.add("is-moon-bounce");
+  }
+
   // ---------- Web Audio クリスタルベル音（デフォルトOFF） ----------
   function playTone(type) {
     if (!soundEnabled) return;
@@ -2884,37 +3022,23 @@ window.CONTENT_QUESTIONS = [
       if (!audioCtx) audioCtx = new AC();
       if (audioCtx.state === "suspended") audioCtx.resume();
       const now = audioCtx.currentTime;
-
       if (type === "tap") {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(660, now);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.07);
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        osc.start(now); osc.stop(now + 0.08);
+        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = "sine"; osc.frequency.setValueAtTime(720, now);
+        gain.gain.setValueAtTime(0.05, now); gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.07);
+        osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now); osc.stop(now + 0.08);
       } else if (type === "ok") {
         [880, 1174.66, 1318.5].forEach((freq, i) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = "triangle";
-          osc.frequency.setValueAtTime(freq, now + i * 0.055);
-          gain.gain.setValueAtTime(0.06, now + i * 0.055);
-          gain.gain.exponentialRampToValueAtTime(0.0008, now + i * 0.055 + 0.24);
-          osc.connect(gain); gain.connect(audioCtx.destination);
-          osc.start(now + i * 0.055); osc.stop(now + i * 0.055 + 0.26);
+          const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+          osc.type = "triangle"; osc.frequency.setValueAtTime(freq, now + i * 0.055);
+          gain.gain.setValueAtTime(0.06, now + i * 0.055); gain.gain.exponentialRampToValueAtTime(0.0008, now + i * 0.055 + 0.24);
+          osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now + i * 0.055); osc.stop(now + i * 0.055 + 0.26);
         });
       } else if (type === "ng") {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(340, now);
-        osc.frequency.exponentialRampToValueAtTime(270, now + 0.14);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.16);
-        osc.connect(gain); gain.connect(audioCtx.destination);
-        osc.start(now); osc.stop(now + 0.17);
+        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = "sine"; osc.frequency.setValueAtTime(340, now); osc.frequency.exponentialRampToValueAtTime(270, now + 0.14);
+        gain.gain.setValueAtTime(0.05, now); gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.16);
+        osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now); osc.stop(now + 0.17);
       }
     } catch (e) {}
   }
@@ -2932,12 +3056,9 @@ window.CONTENT_QUESTIONS = [
         const parsed = JSON.parse(raw);
         if (parsed && typeof parsed.records === "object") {
           return {
-            records: parsed.records,
-            updatedAt: parsed.updatedAt || null,
-            streak: Number(parsed.streak) || 0,
-            maxStreak: Number(parsed.maxStreak) || 0,
-            dailyDate: parsed.dailyDate || todayKey(),
-            dailyCount: Number(parsed.dailyCount) || 0
+            records: parsed.records, updatedAt: parsed.updatedAt || null,
+            streak: Number(parsed.streak) || 0, maxStreak: Number(parsed.maxStreak) || 0,
+            dailyDate: parsed.dailyDate || todayKey(), dailyCount: Number(parsed.dailyCount) || 0
           };
         }
       }
@@ -2950,23 +3071,13 @@ window.CONTENT_QUESTIONS = [
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); } catch (e) {}
   }
 
-  function getStatus(qId) {
-    const rec = store.records[qId];
-    return rec ? rec.status : "unanswered";
-  }
+  function getStatus(qId) { const rec = store.records[qId]; return rec ? rec.status : "unanswered"; }
 
   function recordAnswer(qId, isCorrect) {
     const prev = store.records[qId] || { attempts: 0 };
-    store.records[qId] = {
-      status: isCorrect ? "correct" : "wrong",
-      attempts: (prev.attempts || 0) + 1,
-      lastAnsweredAt: new Date().toISOString()
-    };
+    store.records[qId] = { status: isCorrect ? "correct" : "wrong", attempts: (prev.attempts || 0) + 1, lastAnsweredAt: new Date().toISOString() };
     const tk = todayKey();
-    if (store.dailyDate !== tk) {
-      store.dailyDate = tk;
-      store.dailyCount = 0;
-    }
+    if (store.dailyDate !== tk) { store.dailyDate = tk; store.dailyCount = 0; }
     store.dailyCount += 1;
     if (isCorrect) {
       store.streak = (store.streak || 0) + 1;
@@ -2977,7 +3088,6 @@ window.CONTENT_QUESTIONS = [
     saveStore();
   }
 
-  // ---------- ユーティリティ ----------
   function shuffleArray(arr) {
     const copy = arr.slice();
     for (let i = copy.length - 1; i > 0; i--) {
@@ -2987,13 +3097,8 @@ window.CONTENT_QUESTIONS = [
     return copy;
   }
 
-  function escapeHtml(str) {
-    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-  }
-
-  function formatExcerpt(text) {
-    return escapeHtml(text).replace(/【([^】]+)】/g, '<span class="excerpt-highlight">$1</span>');
-  }
+  function escapeHtml(str) { return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function formatExcerpt(text) { return escapeHtml(text).replace(/【([^】]+)】/g, '<span class="excerpt-highlight">$1</span>'); }
 
   function getPool(part, group) {
     const base = part === "vocab" ? VOCAB_QS : CONTENT_QS;
@@ -3006,46 +3111,34 @@ window.CONTENT_QUESTIONS = [
     let correct = 0, wrong = 0, unanswered = 0;
     for (const q of questions) {
       const st = getStatus(q.id);
-      if (st === "correct") correct++;
-      else if (st === "wrong") wrong++;
-      else unanswered++;
+      if (st === "correct") correct++; else if (st === "wrong") wrong++; else unanswered++;
     }
     const total = questions.length;
-    const rate = total > 0 ? Math.round((correct / total) * 100) : 0;
-    return { total, correct, wrong, unanswered, rate, remaining: total - correct };
+    return { total, correct, wrong, unanswered, rate: total > 0 ? Math.round((correct / total) * 100) : 0, remaining: total - correct };
   }
 
-  // ---------- 月の満ち欠けSVG（軽量1パス動的更新） ----------
   function updateMoonPhase(rate) {
     const p = Math.max(0, Math.min(100, rate)) / 100;
-    const r = 34;
-    const cx = 50, cy = 50;
+    const r = 34, cx = 50, cy = 50;
     let d = "";
-    if (p <= 0.02) {
-      // 新月に近い細いバラ色の三日月ライン
-      d = `M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} A ${r * 0.92} ${r} 0 0 0 ${cx} ${cy - r} Z`;
-    } else if (p >= 0.99) {
-      // 満月
-      d = `M ${cx} ${cy - r} A ${r} ${r} 0 1 1 ${cx} ${cy + r} A ${r} ${r} 0 1 1 ${cx} ${cy - r} Z`;
-    } else {
-      // 0〜100%で右から満ちていく楕円弧
+    if (p <= 0.02) d = `M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} A ${r * 0.92} ${r} 0 0 0 ${cx} ${cy - r} Z`;
+    else if (p >= 0.99) d = `M ${cx} ${cy - r} A ${r} ${r} 0 1 1 ${cx} ${cy + r} A ${r} ${r} 0 1 1 ${cx} ${cy - r} Z`;
+    else {
       const rx = Math.abs(1 - 2 * p) * r;
-      const sweepInner = p < 0.5 ? 0 : 1;
-      d = `M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} A ${rx.toFixed(2)} ${r} 0 0 ${sweepInner} ${cx} ${cy - r} Z`;
+      d = `M ${cx} ${cy - r} A ${r} ${r} 0 0 1 ${cx} ${cy + r} A ${rx.toFixed(2)} ${r} 0 0 ${p < 0.5 ? 0 : 1} ${cx} ${cy - r} Z`;
     }
     elMoonLightPath.setAttribute("d", d);
-    elMoonHalo.setAttribute("opacity", (0.18 + p * 0.45).toFixed(2));
+    elMoonHalo.setAttribute("opacity", (0.24 + p * 0.52).toFixed(2));
   }
 
   function showView(name) {
     Object.keys(views).forEach((k) => views[k].classList.toggle("active", k === name));
     window.scrollTo({ top: 0, behavior: "instant" });
-    if (name === "home") renderHome();
+    if (name === "home") renderHome(true);
     if (name === "list") renderList();
   }
 
-  // ---------- ホーム描画（Bento Grid） ----------
-  function renderHome() {
+  function renderHome(withBounce) {
     const vAll = calcStats(VOCAB_QS);
     const cAll = calcStats(CONTENT_QS);
     const allTotal = vAll.total + cAll.total;
@@ -3055,36 +3148,33 @@ window.CONTENT_QUESTIONS = [
     updateMoonPhase(allRate);
     elHeroPercent.textContent = `${allRate}%`;
     elHeroPercentSub.textContent = `${allCorrect} / ${allTotal}問`;
+    if (withBounce) {
+      bounceElement(elMoonStage);
+      bounceElement(elHeroPercent);
+    }
 
     const passTarget = Math.ceil(allTotal * 0.8);
-    if (allCorrect >= allTotal) {
-      elHeroGoalText.textContent = "満月完成！試験範囲90問を完全制覇しました";
-    } else if (allCorrect >= passTarget) {
-      elHeroGoalText.textContent = `合格圏クリア！満月まであと ${allTotal - allCorrect} 問`;
-    } else {
-      elHeroGoalText.textContent = `合格圏（80%）まであと ${passTarget - allCorrect} 問`;
-    }
+    if (allCorrect >= allTotal) elHeroGoalText.textContent = "満月完成！試験範囲90問を完全制覇しました";
+    else if (allCorrect >= passTarget) elHeroGoalText.textContent = `合格圏クリア！満月まであと ${allTotal - allCorrect} 問`;
+    else elHeroGoalText.textContent = `合格圏（80%）まであと ${passTarget - allCorrect} 問`;
 
     const todayCnt = store.dailyDate === todayKey() ? store.dailyCount : 0;
     elHeroCombo.textContent = `🔥 連続 ${store.streak || 0}（最高 ${store.maxStreak || 0}）`;
     elHeroToday.textContent = `✨ 今日 ${todayCnt}問`;
 
-    // 左タイル：語彙・漢字（リング進捗）
     elVocabBigNum.innerHTML = `${vAll.correct}<span>/ ${vAll.total}</span>`;
-    const circum = 2 * Math.PI * 18; // 113.1
+    const circum = 2 * Math.PI * 18;
     elVocabRingFill.style.strokeDasharray = circum.toFixed(1);
     elVocabRingFill.style.strokeDashoffset = (circum * (1 - vAll.rate / 100)).toFixed(1);
     elVocabRingPct.textContent = `${vAll.rate}%`;
     elVocabMiniPills.innerHTML = `<span class="tile-mini-chip">残${vAll.remaining}</span>` + (vAll.wrong > 0 ? `<span class="tile-mini-chip ng">復習${vAll.wrong}</span>` : "");
 
-    // 右タイル：内容・読解（光沢バー）
     elContentBigNum.innerHTML = `${cAll.correct}<span>/ ${cAll.total}</span>`;
     elContentBarFill.style.width = `${cAll.rate}%`;
     elContentMiniPills.innerHTML = `<span class="tile-mini-chip">${cAll.rate}%</span>` + (cAll.wrong > 0 ? `<span class="tile-mini-chip ng">復習${cAll.wrong}</span>` : "");
 
     elTileVocab.classList.toggle("is-selected", homeDeckPart === "vocab");
     elTileContent.classList.toggle("is-selected", homeDeckPart === "content");
-
     renderDeckPanel();
   }
 
@@ -3106,30 +3196,22 @@ window.CONTENT_QUESTIONS = [
 
   function renderDeckPanel() {
     elDeckIndicator.style.transform = homeDeckPart === "vocab" ? "translateX(0%)" : "translateX(100%)";
-    document.querySelectorAll("[data-deck-part]").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.deckPart === homeDeckPart);
-    });
+    document.querySelectorAll("[data-deck-part]").forEach((btn) => btn.classList.toggle("active", btn.dataset.deckPart === homeDeckPart));
 
     const curGroup = selectedGroup[homeDeckPart] || "all";
     elDeckCatChips.innerHTML = "";
     DECK_CATS[homeDeckPart].forEach((c) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "cat-chip tap-spring" + (c.val === curGroup ? " active" : "");
+      btn.className = "cat-chip jelly-btn" + (c.val === curGroup ? " active" : "");
       btn.textContent = c.label;
-      btn.addEventListener("click", () => {
-        playTone("tap");
-        selectedGroup[homeDeckPart] = c.val;
-        renderDeckPanel();
-      });
+      btn.addEventListener("click", () => { playTone("tap"); selectedGroup[homeDeckPart] = c.val; renderDeckPanel(); });
       elDeckCatChips.appendChild(btn);
     });
 
     const pool = getPool(homeDeckPart, curGroup);
     const st = calcStats(pool);
-    const quickN = Math.min(10, pool.length);
-
-    elBtnHeroQuick.textContent = `⚡ ${quickN}問サクッと始める`;
+    elBtnHeroQuick.textContent = `⚡ ${Math.min(10, pool.length)}問サクッと始める`;
     elBtnDeckOrder.textContent = `順番に解く（${pool.length}問）`;
     if (st.remaining === 0) {
       elBtnDeckWeak.textContent = "選択範囲クリア済み！";
@@ -3138,35 +3220,26 @@ window.CONTENT_QUESTIONS = [
       elBtnDeckWeak.textContent = `弱点だけ復習（残${st.remaining}）`;
       elBtnDeckWeak.disabled = false;
     }
-
     const hwStats = calcStats(getPool("vocab", "writing"));
     elBtnWriteDirect.textContent = `✍️ 机で手書き漢字（${hwStats.correct}/${hwStats.total}）`;
   }
 
-  // ---------- クイズ開始 ----------
   function startQuiz(part, mode, customQueue, forceGroup) {
     const group = forceGroup || selectedGroup[part] || "all";
     const pool = getPool(part, group);
     let queue = [];
-
-    if (Array.isArray(customQueue) && customQueue.length > 0) {
-      queue = customQueue.slice();
-    } else if (mode === "quick10") {
+    if (Array.isArray(customQueue) && customQueue.length > 0) queue = customQueue.slice();
+    else if (mode === "quick10") {
       const weak = shuffleArray(pool.filter((q) => getStatus(q.id) !== "correct"));
       const done = shuffleArray(pool.filter((q) => getStatus(q.id) === "correct"));
       queue = [...weak, ...done].slice(0, Math.min(10, pool.length));
-    } else if (mode === "order") {
-      queue = pool.slice();
-    } else if (mode === "weak") {
+    } else if (mode === "order") queue = pool.slice();
+    else if (mode === "weak") {
       queue = pool.filter((q) => getStatus(q.id) !== "correct");
       if (queue.length === 0) return;
     }
 
-    session = {
-      part, mode, group, queue, index: 0,
-      answered: false, compared: false, aiBusy: false,
-      currentChoices: [], correctCount: 0, wrongQueue: []
-    };
+    session = { part, mode, group, queue, index: 0, answered: false, compared: false, aiBusy: false, currentChoices: [], correctCount: 0, wrongQueue: [] };
     showView("quiz");
     renderCurrentQuestion();
   }
@@ -3177,16 +3250,17 @@ window.CONTENT_QUESTIONS = [
     return `${partText}・${modeMap[mode] || "演習"}`;
   }
 
-  // 軽量SVGパーティクル（6個以内・380ms・操作ロックなし）
   function triggerSuccessSparkles() {
     elSparkleLayer.innerHTML = "";
     const specs = [
-      { tx: "-74px", ty: "-58px", rot: "-35deg", color: "#f47ca8", shape: "petal" },
-      { tx: "72px", ty: "-62px", rot: "40deg", color: "#e5b869", shape: "star" },
-      { tx: "-88px", ty: "12px", rot: "-60deg", color: "#f8b4cd", shape: "petal" },
-      { tx: "86px", ty: "18px", rot: "52deg", color: "#f47ca8", shape: "petal" },
-      { tx: "-32px", ty: "-82px", rot: "25deg", color: "#e5b869", shape: "star" },
-      { tx: "36px", ty: "-78px", rot: "-22deg", color: "#f8b4cd", shape: "star" }
+      { tx: "-86px", ty: "-66px", rot: "-42deg", color: "#ff5c9e", shape: "petal" },
+      { tx: "84px", ty: "-70px", rot: "48deg", color: "#f0be6a", shape: "star" },
+      { tx: "-105px", ty: "16px", rot: "-65deg", color: "#ff9cc8", shape: "petal" },
+      { tx: "102px", ty: "22px", rot: "58deg", color: "#ff5c9e", shape: "petal" },
+      { tx: "-38px", ty: "-96px", rot: "28deg", color: "#f0be6a", shape: "star" },
+      { tx: "42px", ty: "-92px", rot: "-24deg", color: "#ffd6ea", shape: "star" },
+      { tx: "-62px", ty: "54px", rot: "-30deg", color: "#c884ff", shape: "star" },
+      { tx: "64px", ty: "56px", rot: "35deg", color: "#ff9cc8", shape: "petal" }
     ];
     specs.forEach((s) => {
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -3207,6 +3281,7 @@ window.CONTENT_QUESTIONS = [
     if (store.streak >= 2) {
       elComboPop.textContent = `🔥 ${store.streak}連続正解！`;
       elComboPop.classList.remove("hidden");
+      bounceElement(elComboPop);
     }
   }
 
@@ -3230,21 +3305,18 @@ window.CONTENT_QUESTIONS = [
     }
   }
 
-  // ---------- 1問単位DOM描画 ----------
   function renderCurrentQuestion() {
     const q = session.queue[session.index];
     if (!q) { renderResult(); return; }
 
-    session.answered = false;
-    session.compared = false;
-    session.aiBusy = false;
+    session.answered = false; session.compared = false; session.aiBusy = false;
     activeSceneId = q.sceneId || "scene1";
 
     elSparkleLayer.innerHTML = "";
     elComboPop.classList.add("hidden");
-    elQuizCard.classList.remove("slide-in", "micro-shake");
+    elQuizCard.classList.remove("jelly-enter", "micro-shake");
     void elQuizCard.offsetWidth;
-    elQuizCard.classList.add("slide-in");
+    elQuizCard.classList.add("jelly-enter");
 
     const remain = session.queue.length - session.index;
     elQuizPartLabel.textContent = getModeLabel(session.part, session.mode);
@@ -3267,14 +3339,12 @@ window.CONTENT_QUESTIONS = [
     elQuizNextBtn.disabled = true;
 
     if (q.type === "handwriting") {
-      elChoicesList.classList.add("hidden");
-      elChoicesList.innerHTML = "";
+      elChoicesList.classList.add("hidden"); elChoicesList.innerHTML = "";
       elHwArea.classList.remove("hidden");
       setupHandwriting(q);
       elQuizNextBtn.textContent = "書いて答え合わせをしよう";
     } else {
-      elHwArea.classList.add("hidden");
-      elHwGrid.innerHTML = "";
+      elHwArea.classList.add("hidden"); elHwGrid.innerHTML = "";
       elChoicesList.classList.remove("hidden");
       const indexedChoices = q.choices.map((text, idx) => ({ text, isCorrect: idx === q.answer }));
       session.currentChoices = shuffleArray(indexedChoices);
@@ -3283,7 +3353,7 @@ window.CONTENT_QUESTIONS = [
       session.currentChoices.forEach((choice, i) => {
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "choice-btn tap-spring";
+        btn.className = "choice-btn liquid-interactive jelly-btn";
         btn.innerHTML = `<span class="choice-num">${i + 1}</span><span>${escapeHtml(choice.text)}</span>`;
         btn.addEventListener("click", () => handleSelectChoice(i));
         elChoicesList.appendChild(btn);
@@ -3299,15 +3369,12 @@ window.CONTENT_QUESTIONS = [
 
     elHwOverlayToggle.checked = false;
     elHwComparePanel.classList.add("hidden");
-    elHwAiStatus.classList.add("hidden");
-    elHwAiStatus.textContent = "";
-    elSelfOkBtn.disabled = false;
-    elSelfNgBtn.disabled = false;
+    elHwAiStatus.classList.add("hidden"); elHwAiStatus.textContent = "";
+    elSelfOkBtn.disabled = false; elSelfNgBtn.disabled = false;
 
     const hasAi = Boolean(AI_PROXY_ENDPOINT && AI_PROXY_ENDPOINT.trim());
     elHwAiBtn.classList.toggle("hidden", !hasAi);
-    elHwAiBtn.disabled = false;
-    elHwAiBtn.textContent = "AIで自動判定する";
+    elHwAiBtn.disabled = false; elHwAiBtn.textContent = "AIで自動判定する";
     elHwCompareBtn.textContent = hasAi ? "自分で答えを見て判定する" : "お手本と比べる（答えを表示）";
     elHwCompareBtn.classList.remove("hidden");
 
@@ -3317,104 +3384,59 @@ window.CONTENT_QUESTIONS = [
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     chars.forEach((ch, idx) => {
-      const wrap = document.createElement("div");
-      wrap.className = "hw-cell-wrap";
-
-      const modelTop = document.createElement("div");
-      modelTop.className = "hw-model-top hidden";
-      modelTop.textContent = ch;
-
-      const box = document.createElement("div");
-      box.className = "hw-canvas-box";
-
-      const overlay = document.createElement("div");
-      overlay.className = "hw-overlay-char hidden";
-      overlay.textContent = ch;
-
-      const canvas = document.createElement("canvas");
-      canvas.className = "hw-canvas";
+      const wrap = document.createElement("div"); wrap.className = "hw-cell-wrap";
+      const modelTop = document.createElement("div"); modelTop.className = "hw-model-top hidden"; modelTop.textContent = ch;
+      const box = document.createElement("div"); box.className = "hw-canvas-box";
+      const overlay = document.createElement("div"); overlay.className = "hw-overlay-char hidden"; overlay.textContent = ch;
+      const canvas = document.createElement("canvas"); canvas.className = "hw-canvas";
       const logicalSize = chars.length === 1 ? 126 : 112;
-      canvas.width = Math.round(logicalSize * dpr);
-      canvas.height = Math.round(logicalSize * dpr);
+      canvas.width = Math.round(logicalSize * dpr); canvas.height = Math.round(logicalSize * dpr);
 
       const ctx = canvas.getContext("2d");
-      ctx.scale(dpr, dpr);
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.strokeStyle = "#231421";
-      ctx.lineWidth = 4.2;
+      ctx.scale(dpr, dpr); ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = "#1f0c1a"; ctx.lineWidth = 4.2;
 
-      box.appendChild(overlay);
-      box.appendChild(canvas);
-      wrap.appendChild(modelTop);
-      wrap.appendChild(box);
-      elHwGrid.appendChild(wrap);
-
+      box.appendChild(overlay); box.appendChild(canvas); wrap.appendChild(modelTop); wrap.appendChild(box); elHwGrid.appendChild(wrap);
       hwState.cells.push({ canvas, ctx, logicalSize, dpr, modelTopEl: modelTop, overlayEl: overlay, expectedChar: ch });
       bindCanvasPointer(canvas, idx);
     });
-
     updateHwButtons();
   }
 
   function getCanvasPoint(canvas, e, logicalSize) {
     const rect = canvas.getBoundingClientRect();
-    return {
-      x: ((e.clientX - rect.left) / rect.width) * logicalSize,
-      y: ((e.clientY - rect.top) / rect.height) * logicalSize
-    };
+    return { x: ((e.clientX - rect.left) / rect.width) * logicalSize, y: ((e.clientY - rect.top) / rect.height) * logicalSize };
   }
 
   function bindCanvasPointer(canvas, cellIdx) {
     canvas.addEventListener("pointerdown", (e) => {
       if (session.answered || session.aiBusy) return;
-      e.preventDefault();
-      canvas.setPointerCapture(e.pointerId);
+      e.preventDefault(); canvas.setPointerCapture(e.pointerId);
       const cell = hwState.cells[cellIdx];
       const pt = getCanvasPoint(canvas, e, cell.logicalSize);
-      hwState.drawing = true;
-      hwState.activeCell = cellIdx;
+      hwState.drawing = true; hwState.activeCell = cellIdx;
       hwState.activeStroke = { cellIndex: cellIdx, points: [pt] };
       hwState.strokeHistory.push(hwState.activeStroke);
-
-      const ctx = cell.ctx;
-      ctx.beginPath();
-      ctx.moveTo(pt.x, pt.y);
-      ctx.lineTo(pt.x + 0.1, pt.y + 0.1);
-      ctx.stroke();
+      const ctx = cell.ctx; ctx.beginPath(); ctx.moveTo(pt.x, pt.y); ctx.lineTo(pt.x + 0.1, pt.y + 0.1); ctx.stroke();
       updateHwButtons();
     });
-
     canvas.addEventListener("pointermove", (e) => {
       if (!hwState.drawing || hwState.activeCell !== cellIdx || !hwState.activeStroke) return;
       e.preventDefault();
       const cell = hwState.cells[cellIdx];
       const pt = getCanvasPoint(canvas, e, cell.logicalSize);
-      const pts = hwState.activeStroke.points;
-      const prev = pts[pts.length - 1];
-      pts.push(pt);
-
-      const ctx = cell.ctx;
-      ctx.beginPath();
-      ctx.moveTo(prev.x, prev.y);
-      ctx.lineTo(pt.x, pt.y);
-      ctx.stroke();
+      const pts = hwState.activeStroke.points; const prev = pts[pts.length - 1]; pts.push(pt);
+      const ctx = cell.ctx; ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(pt.x, pt.y); ctx.stroke();
     });
-
     const endDraw = () => { hwState.drawing = false; hwState.activeCell = -1; hwState.activeStroke = null; };
-    canvas.addEventListener("pointerup", endDraw);
-    canvas.addEventListener("pointercancel", endDraw);
+    canvas.addEventListener("pointerup", endDraw); canvas.addEventListener("pointercancel", endDraw);
   }
 
   function redrawCell(cellIdx) {
-    const cell = hwState.cells[cellIdx];
-    if (!cell) return;
-    const ctx = cell.ctx;
-    ctx.clearRect(0, 0, cell.logicalSize, cell.logicalSize);
+    const cell = hwState.cells[cellIdx]; if (!cell) return;
+    const ctx = cell.ctx; ctx.clearRect(0, 0, cell.logicalSize, cell.logicalSize);
     for (const stroke of hwState.strokeHistory) {
       if (stroke.cellIndex !== cellIdx || stroke.points.length === 0) continue;
-      ctx.beginPath();
-      ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+      ctx.beginPath(); ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
       if (stroke.points.length === 1) ctx.lineTo(stroke.points[0].x + 0.1, stroke.points[0].y + 0.1);
       else for (let i = 1; i < stroke.points.length; i++) ctx.lineTo(stroke.points[i].x, stroke.points[i].y);
       ctx.stroke();
@@ -3423,18 +3445,12 @@ window.CONTENT_QUESTIONS = [
 
   function undoLastStroke() {
     if (hwState.strokeHistory.length === 0 || session.answered || session.aiBusy) return;
-    const removed = hwState.strokeHistory.pop();
-    redrawCell(removed.cellIndex);
-    updateHwButtons();
+    const removed = hwState.strokeHistory.pop(); redrawCell(removed.cellIndex); updateHwButtons();
   }
-
   function clearAllCells() {
     if (session.answered || session.aiBusy) return;
-    hwState.strokeHistory = [];
-    hwState.cells.forEach((_, idx) => redrawCell(idx));
-    updateHwButtons();
+    hwState.strokeHistory = []; hwState.cells.forEach((_, idx) => redrawCell(idx)); updateHwButtons();
   }
-
   function updateHwButtons() {
     const hasStrokes = hwState.strokeHistory.length > 0;
     elHwUndoBtn.disabled = !hasStrokes || session.answered || session.aiBusy;
@@ -3442,91 +3458,42 @@ window.CONTENT_QUESTIONS = [
   }
 
   function openCompareMode(optionalNotice, isError) {
-    const q = session.queue[session.index];
-    if (!q || q.type !== "handwriting") return;
+    const q = session.queue[session.index]; if (!q || q.type !== "handwriting") return;
     session.compared = true;
-
-    hwState.cells.forEach((cell) => {
-      cell.modelTopEl.classList.remove("hidden");
-      cell.overlayEl.classList.toggle("hidden", !hwState.overlayOn);
-    });
-
+    hwState.cells.forEach((cell) => { cell.modelTopEl.classList.remove("hidden"); cell.overlayEl.classList.toggle("hidden", !hwState.overlayOn); });
     elHwCompareAns.innerHTML = `正解（${escapeHtml(q.answerReading)}）：<strong>${escapeHtml(q.answerText)}</strong>`;
-    elHwComparePanel.classList.remove("hidden");
-    elHwCompareBtn.classList.add("hidden");
-
-    if (optionalNotice) {
-      elHwAiStatus.textContent = optionalNotice;
-      elHwAiStatus.className = "hw-ai-status" + (isError ? " error" : "");
-      elHwAiStatus.classList.remove("hidden");
-    }
-    if (!session.answered) {
-      showFeedback(q, "neutral", "比", "お手本と見比べて「〇 書けた／✕ 要復習」を記録しよう");
-    }
+    elHwComparePanel.classList.remove("hidden"); elHwCompareBtn.classList.add("hidden");
+    if (optionalNotice) { elHwAiStatus.textContent = optionalNotice; elHwAiStatus.className = "hw-ai-status" + (isError ? " error" : ""); elHwAiStatus.classList.remove("hidden"); }
+    if (!session.answered) showFeedback(q, "neutral", "比", "お手本と見比べて「〇 書けた／✕ 要復習」を記録しよう");
   }
 
   function gradeHandwriting(isCorrect, customTitle) {
-    const q = session.queue[session.index];
-    if (!q || q.type !== "handwriting" || session.answered) return;
-    session.answered = true;
-    recordAnswer(q.id, isCorrect);
-    if (isCorrect) {
-      session.correctCount++;
-      playTone("ok");
-      triggerSuccessSparkles();
-    } else {
-      if (!session.wrongQueue.some((item) => item.id === q.id)) session.wrongQueue.push(q);
-      playTone("ng");
-      triggerMicroShake();
-    }
-
-    elSelfOkBtn.disabled = true;
-    elSelfNgBtn.disabled = true;
-    elHwAiBtn.disabled = true;
-    updateHwButtons();
-
+    const q = session.queue[session.index]; if (!q || q.type !== "handwriting" || session.answered) return;
+    session.answered = true; recordAnswer(q.id, isCorrect);
+    if (isCorrect) { session.correctCount++; playTone("ok"); triggerSuccessSparkles(); }
+    else { if (!session.wrongQueue.some((item) => item.id === q.id)) session.wrongQueue.push(q); playTone("ng"); triggerMicroShake(); }
+    elSelfOkBtn.disabled = true; elSelfNgBtn.disabled = true; elHwAiBtn.disabled = true; updateHwButtons();
     elQStatus.className = "status-pill " + (isCorrect ? "correct" : "wrong");
     elQStatus.textContent = isCorrect ? "正解済み" : "要復習";
-
-    showFeedback(
-      q,
-      isCorrect ? "ok" : "ng",
-      isCorrect ? "〇" : "✦",
-      customTitle || (isCorrect ? "ナイス！「書けた」に記録しました" : "ここだけ押さえよ！要復習に記録しました")
-    );
-
+    showFeedback(q, isCorrect ? "ok" : "ng", isCorrect ? "〇" : "✦", customTitle || (isCorrect ? "ナイス！「書けた」に記録しました" : "ここだけ押さえよ！要復習に記録しました"));
     elQuizSessionBar.style.width = `${Math.round(((session.index + 1) / session.queue.length) * 100)}%`;
     elQuizNextBtn.disabled = false;
     elQuizNextBtn.textContent = session.index === session.queue.length - 1 ? "結果を見る" : "次の問題へ →";
   }
 
   function buildOffscreenHandwritingBase64() {
-    const count = hwState.cells.length;
-    const cellPx = 160, pad = 16, gap = 14;
-    const cols = count === 1 ? 1 : 2;
-    const rows = Math.ceil(count / cols);
-    const width = pad * 2 + cols * cellPx + (cols - 1) * gap;
-    const height = pad * 2 + rows * cellPx + (rows - 1) * gap;
-
-    const off = document.createElement("canvas");
-    off.width = width; off.height = height;
-    const ctx = off.getContext("2d");
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, width, height);
-
+    const count = hwState.cells.length, cellPx = 160, pad = 16, gap = 14, cols = count === 1 ? 1 : 2, rows = Math.ceil(count / cols);
+    const width = pad * 2 + cols * cellPx + (cols - 1) * gap, height = pad * 2 + rows * cellPx + (rows - 1) * gap;
+    const off = document.createElement("canvas"); off.width = width; off.height = height;
+    const ctx = off.getContext("2d"); ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, width, height);
     for (let i = 0; i < count; i++) {
-      const col = i % cols, row = Math.floor(i / cols);
-      const ox = pad + col * (cellPx + gap), oy = pad + row * (cellPx + gap);
+      const ox = pad + (i % cols) * (cellPx + gap), oy = pad + Math.floor(i / cols) * (cellPx + gap);
       ctx.strokeStyle = "#dddddd"; ctx.lineWidth = 1; ctx.strokeRect(ox, oy, cellPx, cellPx);
-
-      const cell = hwState.cells[i];
-      const scale = cellPx / cell.logicalSize;
+      const cell = hwState.cells[i], scale = cellPx / cell.logicalSize;
       ctx.strokeStyle = "#000000"; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 5.5;
-
       for (const stroke of hwState.strokeHistory) {
         if (stroke.cellIndex !== i || stroke.points.length === 0) continue;
-        ctx.beginPath();
-        ctx.moveTo(ox + stroke.points[0].x * scale, oy + stroke.points[0].y * scale);
+        ctx.beginPath(); ctx.moveTo(ox + stroke.points[0].x * scale, oy + stroke.points[0].y * scale);
         if (stroke.points.length === 1) ctx.lineTo(ox + stroke.points[0].x * scale + 0.2, oy + stroke.points[0].y * scale + 0.2);
         else for (let p = 1; p < stroke.points.length; p++) ctx.lineTo(ox + stroke.points[p].x * scale, oy + stroke.points[p].y * scale);
         ctx.stroke();
@@ -3540,21 +3507,10 @@ window.CONTENT_QUESTIONS = [
     if (!q || q.type !== "handwriting" || session.aiBusy || session.answered) return;
     if (!AI_PROXY_ENDPOINT || !AI_PROXY_ENDPOINT.trim()) { openCompareMode(); return; }
     if (hwState.strokeHistory.length === 0) {
-      elHwAiStatus.textContent = "まずはマスに漢字を書いてから判定してね。";
-      elHwAiStatus.className = "hw-ai-status error";
-      elHwAiStatus.classList.remove("hidden");
-      return;
+      elHwAiStatus.textContent = "まずはマスに漢字を書いてから判定してね。"; elHwAiStatus.className = "hw-ai-status error"; elHwAiStatus.classList.remove("hidden"); return;
     }
-
-    session.aiBusy = true;
-    elHwAiBtn.disabled = true;
-    elHwAiBtn.textContent = "AIが文字を読み取り中…";
-    elHwAiStatus.classList.add("hidden");
-    updateHwButtons();
-
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
-
+    session.aiBusy = true; elHwAiBtn.disabled = true; elHwAiBtn.textContent = "AIが文字を読み取り中…"; elHwAiStatus.classList.add("hidden"); updateHwButtons();
+    const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
     try {
       const imageBase64 = buildOffscreenHandwritingBase64();
       const prompt = [
@@ -3562,18 +3518,13 @@ window.CONTENT_QUESTIONS = [
         "スマホの指書きのため線が歪みやすい点に配慮し、細かなとめ・はね・はらいではなく、漢字の骨格・パーツ・送り仮名が正しく書けていてその字として読めるかで寛容に正解判定してください。",
         '必ず次のJSON形式のみを返してください：{"recognized":"読み取った文字","isCorrect":trueまたはfalse,"feedback":"25字以内の簡潔な一言"}'
       ].join("\n");
-
       const res = await fetch(AI_PROXY_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: controller.signal,
+        method: "POST", headers: { "Content-Type": "application/json" }, signal: controller.signal,
         body: JSON.stringify({ model: AI_MODEL_NAME, mimeType: "image/jpeg", imageBase64, expected: q.answerText, prompt })
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const raw = await res.json();
-      const result = typeof raw === "string" ? JSON.parse(raw) : raw;
+      const raw = await res.json(); const result = typeof raw === "string" ? JSON.parse(raw) : raw;
       if (typeof result.isCorrect !== "boolean") throw new Error("Invalid JSON");
-
       const recText = result.recognized ? `（認識：「${result.recognized}」）` : "";
       const fbText = result.feedback ? ` ${result.feedback}` : "";
       openCompareMode(`AI判定${recText}${fbText}`, !result.isCorrect);
@@ -3581,34 +3532,20 @@ window.CONTENT_QUESTIONS = [
     } catch (err) {
       openCompareMode("AI判定に接続できなかったため、お手本比較モードに切り替えました。", true);
     } finally {
-      clearTimeout(timer);
-      session.aiBusy = false;
-      elHwAiBtn.textContent = "AIで自動判定する";
-      elHwAiBtn.disabled = session.answered;
-      updateHwButtons();
+      clearTimeout(timer); session.aiBusy = false; elHwAiBtn.textContent = "AIで自動判定する"; elHwAiBtn.disabled = session.answered; updateHwButtons();
     }
   }
 
-  // ---------- 4択判定（操作ロックなし・即次へ押せる） ----------
+  // ---------- 4択判定（操作ロックなし） ----------
   function handleSelectChoice(choiceIdx) {
     if (session.answered) return;
     const q = session.queue[session.index];
-    const chosen = session.currentChoices[choiceIdx];
-    if (!chosen) return;
-
+    const chosen = session.currentChoices[choiceIdx]; if (!chosen) return;
     session.answered = true;
     const isCorrect = chosen.isCorrect;
     recordAnswer(q.id, isCorrect);
-
-    if (isCorrect) {
-      session.correctCount++;
-      playTone("ok");
-      triggerSuccessSparkles();
-    } else {
-      if (!session.wrongQueue.some((item) => item.id === q.id)) session.wrongQueue.push(q);
-      playTone("ng");
-      triggerMicroShake();
-    }
+    if (isCorrect) { session.correctCount++; playTone("ok"); triggerSuccessSparkles(); }
+    else { if (!session.wrongQueue.some((item) => item.id === q.id)) session.wrongQueue.push(q); playTone("ng"); triggerMicroShake(); }
 
     elChoicesList.querySelectorAll(".choice-btn").forEach((btn, idx) => {
       btn.disabled = true;
@@ -3620,12 +3557,7 @@ window.CONTENT_QUESTIONS = [
 
     elQStatus.className = "status-pill " + (isCorrect ? "correct" : "wrong");
     elQStatus.textContent = isCorrect ? "正解済み" : "要復習";
-    showFeedback(
-      q,
-      isCorrect ? "ok" : "ng",
-      isCorrect ? "〇" : "✦",
-      isCorrect ? "正解！その調子！" : "ここだけ押さえよ！（要復習に記録）"
-    );
+    showFeedback(q, isCorrect ? "ok" : "ng", isCorrect ? "〇" : "✦", isCorrect ? "正解！その調子！" : "ここだけ押さえよ！（要復習に記録）");
 
     elQuizSessionBar.style.width = `${Math.round(((session.index + 1) / session.queue.length) * 100)}%`;
     elQuizNextBtn.disabled = false;
@@ -3635,52 +3567,30 @@ window.CONTENT_QUESTIONS = [
   function goNextQuestion() {
     if (!session.answered) return;
     playTone("tap");
-    if (session.index < session.queue.length - 1) {
-      session.index++;
-      renderCurrentQuestion();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      renderResult();
-    }
+    if (session.index < session.queue.length - 1) { session.index++; renderCurrentQuestion(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    else renderResult();
   }
-
   function goPrevQuestion() {
-    if (session.index > 0) {
-      playTone("tap");
-      session.index--;
-      renderCurrentQuestion();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    if (session.index > 0) { playTone("tap"); session.index--; renderCurrentQuestion(); window.scrollTo({ top: 0, behavior: "smooth" }); }
   }
 
-  // ---------- 結果画面 ----------
   function renderResult() {
     showView("result");
     const total = session.queue.length;
     const rate = total > 0 ? Math.round((session.correctCount / total) * 100) : 0;
-
     elResultModeLabel.textContent = getModeLabel(session.part, session.mode);
     elResultScoreNum.textContent = `${session.correctCount} / ${total}`;
     elResultScoreRate.textContent = `正答率 ${rate}%`;
-
     if (rate === 100) elResultMessage.textContent = "パーフェクト！この範囲はバッチリ仕上がっています！";
     else if (rate >= 80) elResultMessage.textContent = "すごくいい感じ！あと数問だけ復習すれば満点圏です。";
     else elResultMessage.textContent = "おつかれさま！間違えた問題だけもう一度押さえておこう。";
-
     if (session.wrongQueue.length > 0) {
       elResultRetryWrongBtn.classList.remove("hidden");
       elResultRetryWrongBtn.textContent = `今回間違えた問題だけ解き直す（${session.wrongQueue.length}問）`;
-    } else {
-      elResultRetryWrongBtn.classList.add("hidden");
-    }
+    } else elResultRetryWrongBtn.classList.add("hidden");
   }
 
-  // ---------- 一覧画面 ----------
-  function openList(part) {
-    listState.part = part || homeDeckPart;
-    listState.filter = "all";
-    showView("list");
-  }
+  function openList(part) { listState.part = part || homeDeckPart; listState.filter = "all"; showView("list"); }
 
   function renderList() {
     elListIndicator.style.transform = listState.part === "vocab" ? "translateX(0%)" : "translateX(100%)";
@@ -3689,90 +3599,58 @@ window.CONTENT_QUESTIONS = [
 
     const pool = listState.part === "vocab" ? VOCAB_QS : CONTENT_QS;
     const filtered = pool.filter((q) => listState.filter === "all" || getStatus(q.id) === listState.filter);
-
     elListCountBadge.textContent = `${filtered.length} / ${pool.length}問`;
     elQuestionList.innerHTML = "";
-
-    if (filtered.length === 0) {
-      elQuestionList.innerHTML = '<p class="empty-list">該当する問題はありません。</p>';
-      return;
-    }
+    if (filtered.length === 0) { elQuestionList.innerHTML = '<p class="empty-list">該当する問題はありません。</p>'; return; }
 
     filtered.forEach((q) => {
       const origIndex = pool.findIndex((item) => item.id === q.id);
       const st = getStatus(q.id);
       const stLabel = st === "correct" ? "正解済み" : st === "wrong" ? "要復習" : "未解答";
       const stClass = st === "correct" ? "correct" : st === "wrong" ? "wrong" : "";
-
       const itemBtn = document.createElement("button");
       itemBtn.type = "button";
-      itemBtn.className = "list-item tap-spring";
+      itemBtn.className = "list-item liquid-glass liquid-interactive jelly-btn";
       itemBtn.innerHTML = `
-        <div class="list-item-top">
-          <span class="list-item-num">Q${origIndex + 1}・${escapeHtml(q.category)}</span>
-          <span class="status-pill ${stClass}">${stLabel}</span>
-        </div>
-        <p class="list-item-text">${escapeHtml(q.excerpt || q.prompt)}</p>
+        <div class="list-item-top"><span class="list-item-num">Q${origIndex + 1}・${escapeHtml(q.category)}</span><span class="status-pill ${stClass}">${stLabel}</span></div>
+        <p class="list-item-text crisp-ink">${escapeHtml(q.excerpt || q.prompt)}</p>
       `;
       itemBtn.addEventListener("click", () => startQuiz(listState.part, "single", pool.slice(origIndex)));
       elQuestionList.appendChild(itemBtn);
     });
   }
 
-  // ---------- 本文参照モーダル ----------
-  function openPassageModal(sceneId) {
-    if (sceneId) activeSceneId = sceneId;
-    renderPassageModal();
-    elPassageModal.classList.remove("hidden");
-  }
+  function openPassageModal(sceneId) { if (sceneId) activeSceneId = sceneId; renderPassageModal(); elPassageModal.classList.remove("hidden"); }
   function closePassageModal() { elPassageModal.classList.add("hidden"); }
 
   function renderPassageModal() {
     elSceneTabs.innerHTML = "";
     PASSAGES.forEach((p) => {
       const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "scene-tab tap-spring" + (p.id === activeSceneId ? " active" : "");
+      btn.type = "button"; btn.className = "scene-tab jelly-btn" + (p.id === activeSceneId ? " active" : "");
       btn.textContent = p.title;
       btn.addEventListener("click", () => { activeSceneId = p.id; renderPassageModal(); });
       elSceneTabs.appendChild(btn);
     });
-
-    const summaryHtml = `
-      <div class="pre-summary-box">
-        <p class="pre-summary-title">試験範囲前のあらすじ（3行まとめ）</p>
-        <ul class="pre-summary-list">${PRE_SUMMARY.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>
-      </div>
-    `;
+    const summaryHtml = `<div class="pre-summary-box"><p class="pre-summary-title">試験範囲前のあらすじ（3行まとめ）</p><ul class="pre-summary-list">${PRE_SUMMARY.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul></div>`;
     const scene = PASSAGES.find((p) => p.id === activeSceneId) || PASSAGES[0];
     let html = summaryHtml + scene.paragraphs.map((para) => `<p>${para}</p>`).join("");
-
     if (scene.poem) {
-      const lines = scene.poem
-        .map((line) => `<div class="poem-line"><span class="poem-kanbun">${escapeHtml(line.kanbun)}</span><span class="poem-yomi">${escapeHtml(line.kakikudashi)}</span></div>`)
-        .join("");
-      html += `<div class="poem-block">${lines}</div>`;
+      html += `<div class="poem-block">${scene.poem.map((line) => `<div class="poem-line"><span class="poem-kanbun">${escapeHtml(line.kanbun)}</span><span class="poem-yomi">${escapeHtml(line.kakikudashi)}</span></div>`).join("")}</div>`;
     }
-    elPassageBody.innerHTML = html;
-    elPassageBody.classList.toggle("no-ruby", !elRubyToggle.checked);
-    elPassageBody.scrollTop = 0;
+    elPassageBody.innerHTML = html; elPassageBody.classList.toggle("no-ruby", !elRubyToggle.checked); elPassageBody.scrollTop = 0;
   }
 
-  // ---------- 記録管理モーダル ----------
   function openSettingsModal() { elImportStatus.textContent = ""; elSettingsModal.classList.remove("hidden"); }
   function closeSettingsModal() { elSettingsModal.classList.add("hidden"); }
 
   function exportJson() {
-    const payload = { app: "sangetsuki-exam-app-v3", version: 3, exportedAt: new Date().toISOString(), data: store };
+    const payload = { app: "sangetsuki-exam-app-v4", version: 4, exportedAt: new Date().toISOString(), data: store };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `sangetsuki-progress-${todayKey()}.json`;
-    document.body.appendChild(a); a.click(); a.remove();
-    URL.revokeObjectURL(url);
-    elImportStatus.style.color = "var(--ok-text)";
-    elImportStatus.textContent = "学習記録（JSON）を書き出しました。";
+    const a = document.createElement("a"); a.href = url; a.download = `sangetsuki-progress-${todayKey()}.json`;
+    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    elImportStatus.style.color = "var(--ok-text)"; elImportStatus.textContent = "学習記録（JSON）を書き出しました。";
   }
 
   function importJson(file) {
@@ -3793,22 +3671,10 @@ window.CONTENT_QUESTIONS = [
             }
           }
         });
-        store = {
-          records: cleanRecords,
-          updatedAt: incoming.updatedAt || new Date().toISOString(),
-          streak: Number(incoming.streak) || 0,
-          maxStreak: Number(incoming.maxStreak) || 0,
-          dailyDate: incoming.dailyDate || todayKey(),
-          dailyCount: Number(incoming.dailyCount) || 0
-        };
-        saveStore();
-        renderHome();
-        elImportStatus.style.color = "var(--ok-text)";
-        elImportStatus.textContent = `学習記録を読み込みました（${Object.keys(cleanRecords).length}問分）。`;
-      } catch (e) {
-        elImportStatus.style.color = "var(--ng-text)";
-        elImportStatus.textContent = "読み込みに失敗しました。正しいJSONファイルか確認してください。";
-      }
+        store = { records: cleanRecords, updatedAt: incoming.updatedAt || new Date().toISOString(), streak: Number(incoming.streak) || 0, maxStreak: Number(incoming.maxStreak) || 0, dailyDate: incoming.dailyDate || todayKey(), dailyCount: Number(incoming.dailyCount) || 0 };
+        saveStore(); renderHome(true);
+        elImportStatus.style.color = "var(--ok-text)"; elImportStatus.textContent = `学習記録を読み込みました（${Object.keys(cleanRecords).length}問分）。`;
+      } catch (e) { elImportStatus.style.color = "var(--ng-text)"; elImportStatus.textContent = "読み込みに失敗しました。正しいJSONファイルか確認してください。"; }
     };
     reader.readAsText(file, "utf-8");
   }
@@ -3816,20 +3682,13 @@ window.CONTENT_QUESTIONS = [
   function resetPart(target) {
     const labelMap = { vocab: "語彙・漢字（60問）", content: "内容・読解（30問）", all: "すべて" };
     if (!confirm(`${labelMap[target]}の学習記録をリセットします。よろしいですか？`)) return;
-    if (target === "all") {
-      store = { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0 };
-      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-    } else {
-      (target === "vocab" ? VOCAB_QS : CONTENT_QS).forEach((q) => { delete store.records[q.id]; });
-      saveStore();
-    }
-    renderHome();
+    if (target === "all") { store = { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0 }; try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} }
+    else { (target === "vocab" ? VOCAB_QS : CONTENT_QS).forEach((q) => { delete store.records[q.id]; }); saveStore(); }
+    renderHome(true);
     if (views.list.classList.contains("active")) renderList();
-    elImportStatus.style.color = "var(--ok-text)";
-    elImportStatus.textContent = `${labelMap[target]}の学習記録をリセットしました。`;
+    elImportStatus.style.color = "var(--ok-text)"; elImportStatus.textContent = `${labelMap[target]}の学習記録をリセットしました。`;
   }
 
-  // ---------- イベント登録 ----------
   function bindEvents() {
     const brandBtn = document.getElementById("brand-home-btn");
     brandBtn.addEventListener("click", () => showView("home"));
@@ -3842,17 +3701,9 @@ window.CONTENT_QUESTIONS = [
       if (soundEnabled) playTone("tap");
     });
 
-    // Bentoタイルタップで下部デッキを連動切替
-    elTileVocab.addEventListener("click", () => { playTone("tap"); homeDeckPart = "vocab"; renderHome(); });
-    elTileContent.addEventListener("click", () => { playTone("tap"); homeDeckPart = "content"; renderHome(); });
-
-    document.querySelectorAll("[data-deck-part]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        playTone("tap");
-        homeDeckPart = btn.dataset.deckPart;
-        renderHome();
-      });
-    });
+    elTileVocab.addEventListener("click", () => { playTone("tap"); homeDeckPart = "vocab"; renderHome(false); });
+    elTileContent.addEventListener("click", () => { playTone("tap"); homeDeckPart = "content"; renderHome(false); });
+    document.querySelectorAll("[data-deck-part]").forEach((btn) => btn.addEventListener("click", () => { playTone("tap"); homeDeckPart = btn.dataset.deckPart; renderHome(false); }));
 
     elBtnHeroQuick.addEventListener("click", () => { playTone("tap"); startQuiz(homeDeckPart, "quick10"); });
     elBtnWriteDirect.addEventListener("click", () => { playTone("tap"); startQuiz("vocab", "order", null, "writing"); });
@@ -3896,11 +3747,7 @@ window.CONTENT_QUESTIONS = [
     document.getElementById("close-settings-btn").addEventListener("click", closeSettingsModal);
     elSettingsModal.addEventListener("click", (e) => { if (e.target === elSettingsModal) closeSettingsModal(); });
     document.getElementById("export-json-btn").addEventListener("click", exportJson);
-    document.getElementById("import-json-input").addEventListener("change", (e) => {
-      const file = e.target.files && e.target.files[0];
-      importJson(file);
-      e.target.value = "";
-    });
+    document.getElementById("import-json-input").addEventListener("change", (e) => { const file = e.target.files && e.target.files[0]; importJson(file); e.target.value = ""; });
     document.getElementById("reset-vocab-btn").addEventListener("click", () => resetPart("vocab"));
     document.getElementById("reset-content-btn").addEventListener("click", () => resetPart("content"));
     document.getElementById("reset-all-btn").addEventListener("click", () => resetPart("all"));
@@ -3912,44 +3759,29 @@ window.CONTENT_QUESTIONS = [
         return;
       }
       if (!elSettingsModal.classList.contains("hidden")) return;
-
       if (e.key === "t" || e.key === "T") {
-        if (elPassageModal.classList.contains("hidden")) openPassageModal(activeSceneId);
-        else closePassageModal();
+        if (elPassageModal.classList.contains("hidden")) openPassageModal(activeSceneId); else closePassageModal();
         return;
       }
-
-      if (!elPassageModal.classList.contains("hidden")) return;
-      if (!views.quiz.classList.contains("active")) return;
-
-      const q = session.queue[session.index];
-      if (!q) return;
-
+      if (!elPassageModal.classList.contains("hidden") || !views.quiz.classList.contains("active")) return;
+      const q = session.queue[session.index]; if (!q) return;
       if (q.type === "handwriting") {
         if (session.compared && !session.answered) {
           if (e.key === "1") { e.preventDefault(); gradeHandwriting(true); }
           else if (e.key === "2") { e.preventDefault(); gradeHandwriting(false); }
-        } else if (session.answered && (e.key === "Enter" || e.key === " ")) {
-          e.preventDefault();
-          goNextQuestion();
-        }
+        } else if (session.answered && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); goNextQuestion(); }
       } else {
         if (["1", "2", "3", "4"].includes(e.key) && !session.answered) {
           const idx = Number(e.key) - 1;
-          if (idx < session.currentChoices.length) {
-            e.preventDefault();
-            handleSelectChoice(idx);
-          }
-        } else if ((e.key === "Enter" || e.key === " ") && session.answered) {
-          e.preventDefault();
-          goNextQuestion();
-        }
+          if (idx < session.currentChoices.length) { e.preventDefault(); handleSelectChoice(idx); }
+        } else if ((e.key === "Enter" || e.key === " ") && session.answered) { e.preventDefault(); goNextQuestion(); }
       }
     });
   }
 
+  setupGlobalLiquidInteractions();
   bindEvents();
-  renderHome();
+  renderHome(true);
 })();
   </script>
 </body>
