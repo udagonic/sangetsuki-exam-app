@@ -1084,12 +1084,14 @@ button, input { font-family: inherit; font-size: inherit; }
           </div>
           <div class="hero-stats-strip">
             <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <span class="hero-chip gold-chip" id="hero-lap">🔄 第1周目</span>
               <span class="hero-chip gold-chip" id="hero-combo">🔥 連続 0（最高 0）</span>
               <span class="hero-chip" id="hero-today">✨ 今日 0問</span>
             </div>
             <button type="button" class="hero-scope-link" id="hero-scope-btn">試験範囲：袁傪はじめ〜末尾 ▸</button>
           </div>
           <button type="button" class="cert-launch-btn jelly-btn is-locked" id="cert-launch-btn">🎓 100%達成で修了証を発行（PDF保存）</button>
+          <button type="button" class="user-name-pill jelly-btn hidden" id="next-lap-btn" style="width:100%; margin-top:8px; padding:8px 12px;">🔄 100%達成！第2周目を始める</button>
         </section>
           </div><!-- /.home-col-left -->
 
@@ -1375,7 +1377,7 @@ button, input { font-family: inherit; font-size: inherit; }
           <h3 class="cert-title">『山月記』二学期末試験対策 修了証</h3>
           <p class="cert-name" id="cert-display-name">氏名未設定 殿</p>
           <p class="cert-body-text">
-            あなたは『山月記』（試験範囲：袁傪はじめ一行は〜末尾）の全演習問題を100%完答・習得したことを証します。
+            あなたは『山月記』（試験範囲：袁傪はじめ一行は〜末尾）の全演習問題を<strong><span id="cert-lap-badge">第1周目</span> 100%完答・習得</strong>したことを証します。
           </p>
           <div class="cert-metrics">
             <div>第1部：語彙・漢字<br><span id="cert-vocab-score">60 / 60 問（100%）</span></div>
@@ -1389,6 +1391,7 @@ button, input { font-family: inherit; font-size: inherit; }
         </div>
         <div class="cert-modal-controls" style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
           <button type="button" class="btn btn-primary jelly-btn" id="print-cert-btn">📄 PDFで保存 / 印刷する</button>
+          <button type="button" class="btn btn-glass jelly-btn" id="cert-next-lap-btn">🔄 第2周目をスタートする</button>
           <button type="button" class="btn btn-glass jelly-btn" id="cert-edit-name-btn">👤 名前を修正する</button>
         </div>
         <p class="print-hint">※ iPhoneは「共有↑」またはプレビューを2本指でピンチアウト→「PDFを保存」／ Android・PCは送信先で「PDFとして保存」を選んでね。</p>
@@ -3157,16 +3160,20 @@ window.CONTENT_QUESTIONS = [
   const elRubyToggle = document.getElementById("ruby-toggle");
 
   const elHeroUserBtn = document.getElementById("hero-user-btn");
+  const elHeroLap = document.getElementById("hero-lap");
   const elCertLaunchBtn = document.getElementById("cert-launch-btn");
+  const elNextLapBtn = document.getElementById("next-lap-btn");
   const elNameModal = document.getElementById("name-modal");
   const elUserNameInput = document.getElementById("user-name-input");
   const elNameErrorMsg = document.getElementById("name-error-msg");
   const elCertModal = document.getElementById("cert-modal");
   const elCertDisplayName = document.getElementById("cert-display-name");
+  const elCertLapBadge = document.getElementById("cert-lap-badge");
   const elCertVocabScore = document.getElementById("cert-vocab-score");
   const elCertContentScore = document.getElementById("cert-content-score");
   const elCertCompletedAt = document.getElementById("cert-completed-at");
   const elCertSerial = document.getElementById("cert-serial");
+  const elCertNextLapBtn = document.getElementById("cert-next-lap-btn");
 
   const elSettingsModal = document.getElementById("settings-modal");
   const elImportStatus = document.getElementById("import-status");
@@ -3256,12 +3263,14 @@ window.CONTENT_QUESTIONS = [
             userName: typeof parsed.userName === "string" ? parsed.userName : "",
             namePrompted: Boolean(parsed.namePrompted),
             completedAt: parsed.completedAt || null,
-            certId: parsed.certId || null
+            certId: parsed.certId || null,
+            lap: Math.max(1, Number(parsed.lap) || 1),
+            completedLaps: Math.max(0, Number(parsed.completedLaps) || 0)
           };
         }
       }
     } catch (e) {}
-    return { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0, userName: "", namePrompted: false, completedAt: null, certId: null };
+    return { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0, userName: "", namePrompted: false, completedAt: null, certId: null, lap: 1, completedLaps: 0 };
   }
 
   function saveStore() {
@@ -3356,18 +3365,23 @@ window.CONTENT_QUESTIONS = [
     else if (allCorrect >= passTarget) elHeroGoalText.textContent = `合格圏クリア！満月まであと ${allTotal - allCorrect} 問`;
     else elHeroGoalText.textContent = `合格圏（80%）まであと ${passTarget - allCorrect} 問`;
 
+    const curLap = Math.max(1, Number(store.lap) || 1);
+    elHeroLap.textContent = `🔄 第${curLap}周目`;
     elHeroUserBtn.textContent = store.userName ? `👤 ${store.userName}` : "👤 名前を設定";
     if (allCorrect >= allTotal) {
       if (!store.completedAt) {
         store.completedAt = new Date().toISOString();
-        store.certId = makeCertSerial(store.userName || "LIBERTE", store.completedAt);
+        store.certId = makeCertSerial(store.userName || "LIBERTE", store.completedAt, curLap);
         saveStore();
       }
       elCertLaunchBtn.classList.remove("is-locked");
-      elCertLaunchBtn.textContent = "🎓 100%達成！修了証を発行（PDF保存）";
+      elCertLaunchBtn.textContent = `🎓 第${curLap}周目 100%達成！修了証を発行（PDF保存）`;
+      elNextLapBtn.classList.remove("hidden");
+      elNextLapBtn.textContent = `🔄 進捗をリセットして第${curLap + 1}周目を始める`;
     } else {
       elCertLaunchBtn.classList.add("is-locked");
       elCertLaunchBtn.textContent = `🎓 100%達成で修了証を発行（あと ${allTotal - allCorrect} 問）`;
+      elNextLapBtn.classList.add("hidden");
     }
 
     const todayCnt = store.dailyDate === todayKey() ? store.dailyCount : 0;
@@ -3916,15 +3930,29 @@ window.CONTENT_QUESTIONS = [
   function resetPart(target) {
     const labelMap = { vocab: "語彙・漢字（60問）", content: "内容・読解（30問）", all: "すべて" };
     if (!confirm(`${labelMap[target]}の学習記録をリセットします。よろしいですか？`)) return;
-    if (target === "all") { store = { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0, userName: store.userName || "", namePrompted: true, completedAt: null, certId: null }; saveStore(); }
+    if (target === "all") { store = { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0, userName: store.userName || "", namePrompted: true, completedAt: null, certId: null, lap: 1, completedLaps: 0 }; saveStore(); }
     else { (target === "vocab" ? VOCAB_QS : CONTENT_QS).forEach((q) => { delete store.records[q.id]; }); store.completedAt = null; store.certId = null; saveStore(); }
     renderHome(true);
     if (views.list.classList.contains("active")) renderList();
     elImportStatus.style.color = "var(--ok-text)"; elImportStatus.textContent = `${labelMap[target]}の学習記録をリセットしました。`;
   }
 
-  function makeCertSerial(name, isoDate) {
-    const src = `${name}|${isoDate}|90`;
+  function startNextLap() {
+    const curLap = Math.max(1, Number(store.lap) || 1);
+    const nextLap = curLap + 1;
+    if (!confirm(`第${curLap}周目 100%達成おめでとう！\n進捗をリセットして「第${nextLap}周目」をスタートしますか？\n（※名前・連続記録・周回数はそのまま引き継がれます）`)) return;
+    store.completedLaps = (Number(store.completedLaps) || 0) + 1;
+    store.lap = nextLap;
+    store.records = {};
+    store.completedAt = null;
+    store.certId = null;
+    saveStore();
+    closeCertModal();
+    renderHome(true);
+  }
+
+  function makeCertSerial(name, isoDate, lap) {
+    const src = `${name}|${isoDate}|L${lap || 1}|90`;
     let h = 2166136261;
     for (let i = 0; i < src.length; i++) { h ^= src.charCodeAt(i); h = Math.imul(h, 16777619); }
     return `LIB-${(h >>> 0).toString(36).toUpperCase().padStart(7, "0")}`;
@@ -3964,13 +3992,16 @@ window.CONTENT_QUESTIONS = [
     const cAll = calcStats(CONTENT_QS);
     if (vAll.correct + cAll.correct < ALL_QS.length) return;
     if (!store.userName) { openNameModal(true); return; }
+    const curLap = Math.max(1, Number(store.lap) || 1);
     if (!store.completedAt) { store.completedAt = new Date().toISOString(); }
-    if (!store.certId) { store.certId = makeCertSerial(store.userName, store.completedAt); saveStore(); }
+    if (!store.certId) { store.certId = makeCertSerial(store.userName, store.completedAt, curLap); saveStore(); }
     elCertDisplayName.textContent = `${store.userName} 殿`;
+    elCertLapBadge.textContent = `第${curLap}周目`;
     elCertVocabScore.textContent = `${vAll.correct} / ${vAll.total} 問（100%）`;
     elCertContentScore.textContent = `${cAll.correct} / ${cAll.total} 問（100%）`;
     elCertCompletedAt.textContent = formatCertDate(store.completedAt);
     elCertSerial.textContent = store.certId;
+    elCertNextLapBtn.textContent = `🔄 第${curLap + 1}周目をスタートする`;
     elCertModal.classList.remove("hidden");
   }
   function closeCertModal() { elCertModal.classList.add("hidden"); }
@@ -4018,6 +4049,8 @@ window.CONTENT_QUESTIONS = [
     document.getElementById("close-cert-btn").addEventListener("click", closeCertModal);
     elCertModal.addEventListener("click", (e) => { if (e.target === elCertModal) closeCertModal(); });
     document.getElementById("print-cert-btn").addEventListener("click", printCertificate);
+    elNextLapBtn.addEventListener("click", () => { playTone("tap"); startNextLap(); });
+    elCertNextLapBtn.addEventListener("click", () => { playTone("tap"); startNextLap(); });
     document.getElementById("cert-edit-name-btn").addEventListener("click", () => { closeCertModal(); openNameModal(true); });
     document.getElementById("open-list-link").addEventListener("click", () => openList(homeDeckPart));
     document.getElementById("open-settings-link").addEventListener("click", openSettingsModal);
