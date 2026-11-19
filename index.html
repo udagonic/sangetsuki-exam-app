@@ -135,24 +135,20 @@ button, input { font-family: inherit; font-size: inherit; }
 
 /* ==================== 本物のぷるぷる Squash & Stretch 弾性物理 ==================== */
 @keyframes jellyPop {
-  0%   { transform: scale(1, 1); }
-  20%  { transform: scale(0.985, 0.975); }
-  48%  { transform: scale(1.012, 0.99); }
-  74%  { transform: scale(0.996, 1.005); }
-  100% { transform: scale(1, 1); }
+  0%   { transform: scale(1); }
+  35%  { transform: scale(0.975); }
+  100% { transform: scale(1); }
 }
 
 @keyframes jellyLand {
-  0%   { opacity: 0; transform: translateY(12px) scale(0.985, 1.015); }
-  55%  { opacity: 1; transform: translateY(-1px) scale(1.006, 0.994); }
-  100% { opacity: 1; transform: translateY(0) scale(1, 1); }
+  0%   { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes moonBounce {
-  0%   { transform: scale(1, 1); }
-  35%  { transform: scale(1.03, 0.97); }
-  68%  { transform: scale(0.985, 1.015); }
-  100% { transform: scale(1, 1); }
+  0%   { transform: scale(1); }
+  40%  { transform: scale(0.97); }
+  100% { transform: scale(1); }
 }
 
 @keyframes microShake {
@@ -221,7 +217,7 @@ button, input { font-family: inherit; font-size: inherit; }
 
 @media (hover: hover) {
   .liquid-hover-lift:hover:not(:disabled) {
-    transform: translateY(-4px) scale(1.015);
+    transform: translateY(-3px);
     border-color: rgba(255, 210, 232, 0.95);
     box-shadow: var(--glass-shadow-hover);
   }
@@ -515,7 +511,7 @@ button, input { font-family: inherit; font-size: inherit; }
     inset 0 -3px 10px rgba(122, 10, 56, 0.35),
     0 12px 28px rgba(224, 45, 115, 0.36);
 }
-.btn-hero:hover:not(:disabled) { transform: translateY(-3px) scale(1.015); box-shadow: inset 0 2px 3px rgba(255, 240, 248, 0.8), 0 16px 36px rgba(224, 45, 115, 0.46); }
+.btn-hero:hover:not(:disabled) { transform: translateY(-2px); box-shadow: inset 0 2px 3px rgba(255, 240, 248, 0.8), 0 16px 36px rgba(224, 45, 115, 0.46); }
 
 .btn-glass {
   background: var(--glass-bg-strong);
@@ -523,7 +519,7 @@ button, input { font-family: inherit; font-size: inherit; }
   text-shadow: 0 1px 8px rgba(255, 255, 255, 0.88);
   box-shadow: var(--glass-shadow);
 }
-.btn-glass:hover:not(:disabled) { transform: translateY(-3px) scale(1.012); border-color: #f6a4c8; box-shadow: var(--glass-shadow-hover); }
+.btn-glass:hover:not(:disabled) { transform: translateY(-2px); border-color: #f6a4c8; box-shadow: var(--glass-shadow-hover); }
 
 .secondary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
 .btn-soft { min-height: 46px; border-radius: 18px; font-size: 0.86rem; }
@@ -644,7 +640,7 @@ button, input { font-family: inherit; font-size: inherit; }
 .choice-btn > * { position: relative; z-index: 3; }
 @media (hover: hover) {
   .choice-btn:hover:not(:disabled) {
-    transform: translateY(-3px) scale(1.012);
+    transform: translateY(-2px);
     border-color: #f6a0c6;
     box-shadow: inset 0 1.5px 1px #ffffff, 0 12px 26px rgba(224, 45, 115, 0.22);
   }
