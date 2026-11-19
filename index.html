@@ -887,6 +887,115 @@ button, input { font-family: inherit; font-size: inherit; }
   .hw-grid.cols-1 .hw-canvas-box { width: 120px; height: 120px; }
   .settings-btn-row { grid-template-columns: 1fr; }
 }
+
+/* ユーザー名バッジ・修了証（PDF印刷対応） */
+.hero-user-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.user-name-pill {
+  border: 1px solid rgba(255, 224, 240, 0.35);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff6fa;
+  border-radius: 999px;
+  padding: 4px 11px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s;
+}
+.user-name-pill:hover { background: rgba(255, 255, 255, 0.24); }
+.cert-launch-btn {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid rgba(255, 232, 180, 0.72);
+  background: linear-gradient(135deg, rgba(246, 204, 122, 0.92), rgba(232, 146, 178, 0.92));
+  color: #2c1020;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(240, 190, 106, 0.32);
+}
+.cert-launch-btn.is-locked {
+  border-color: rgba(255, 224, 240, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 240, 248, 0.82);
+  box-shadow: none;
+  font-weight: 600;
+  cursor: default;
+}
+.text-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(214, 51, 108, 0.35);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  outline: none;
+}
+.text-input:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(224, 45, 115, 0.16);
+}
+.cert-sheet {
+  position: relative;
+  background: linear-gradient(160deg, #fffdfd 0%, #fff6fa 52%, #fef9ef 100%);
+  border: 2px solid #d7a65c;
+  border-radius: 16px;
+  padding: 24px 20px;
+  color: #231421;
+  text-align: center;
+  box-shadow: inset 0 0 0 4px rgba(240, 190, 106, 0.2), 0 8px 24px rgba(35, 20, 33, 0.08);
+}
+.cert-school { margin: 0 0 4px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; color: #7a4b63; }
+.cert-title { margin: 0 0 14px; font-family: var(--font-serif); font-size: 1.38rem; font-weight: 800; color: #231421; letter-spacing: 0.08em; }
+.cert-name { margin: 0 0 14px; font-family: var(--font-serif); font-size: 1.45rem; font-weight: 800; color: #b81d5c; border-bottom: 1.5px solid rgba(184, 29, 92, 0.35); display: inline-block; padding: 0 18px 4px; }
+.cert-body-text { margin: 0 0 16px; font-size: 0.9rem; line-height: 1.75; color: #3d2134; }
+.cert-metrics {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;
+  background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(215, 166, 92, 0.45);
+  border-radius: 12px; padding: 10px 12px; font-size: 0.82rem; font-weight: 700;
+}
+.cert-meta-row { font-size: 0.76rem; color: #693b59; line-height: 1.6; }
+.cert-seal {
+  width: 54px; height: 54px; margin: 12px auto 0; border-radius: 50%;
+  border: 2px solid #c94074; color: #c94074; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-weight: 800; font-size: 0.78rem; line-height: 1.15;
+  transform: rotate(-8deg); background: rgba(255, 240, 246, 0.6);
+}
+.print-hint { margin: 10px 0 0; font-size: 0.78rem; color: var(--ink-secondary); line-height: 1.55; text-align: center; }
+
+@media print {
+  @page { size: A4 portrait; margin: 16mm; }
+  body.printing-cert { background: #ffffff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body.printing-cert .orb-stage,
+  body.printing-cert .app-shell,
+  body.printing-cert #passage-modal,
+  body.printing-cert #settings-modal,
+  body.printing-cert #name-modal,
+  body.printing-cert .cert-modal-controls,
+  body.printing-cert .modal-header,
+  body.printing-cert .print-hint { display: none !important; }
+  body.printing-cert #cert-modal {
+    position: static !important; inset: auto !important; background: none !important;
+    padding: 0 !important; display: block !important;
+  }
+  body.printing-cert #cert-modal .modal-dialog {
+    max-width: none !important; max-height: none !important; border: none !important;
+    box-shadow: none !important; background: transparent !important; overflow: visible !important;
+  }
+  body.printing-cert #cert-modal .modal-body { padding: 0 !important; overflow: visible !important; }
+  body.printing-cert .cert-sheet {
+    padding: 36px 32px !important; border-width: 3px !important; box-shadow: none !important;
+  }
+  body.printing-cert .cert-title { font-size: 24pt !important; }
+  body.printing-cert .cert-name { font-size: 22pt !important; }
+  body.printing-cert .cert-body-text { font-size: 12pt !important; }
+}
   </style>
 </head>
 <body>
@@ -922,7 +1031,10 @@ button, input { font-family: inherit; font-size: inherit; }
         <section class="hero-bento liquid-interactive" aria-label="試験仕上がり度">
           <div class="hero-top-row">
             <div class="hero-left">
-              <span class="hero-eyebrow">MOONLIGHT ROSE · 二学期末</span>
+              <div class="hero-user-row">
+                <span class="hero-eyebrow">MOONLIGHT ROSE · 二学期末</span>
+                <button type="button" class="user-name-pill jelly-btn" id="hero-user-btn" title="氏名を登録・変更">👤 名前を設定</button>
+              </div>
               <div class="hero-percent-wrap">
                 <span class="hero-percent" id="hero-percent">0%</span>
                 <span class="hero-percent-sub" id="hero-percent-sub">0 / 90問</span>
@@ -959,6 +1071,7 @@ button, input { font-family: inherit; font-size: inherit; }
             </div>
             <button type="button" class="hero-scope-link" id="hero-scope-btn">試験範囲：袁傪はじめ〜末尾 ▸</button>
           </div>
+          <button type="button" class="cert-launch-btn jelly-btn is-locked" id="cert-launch-btn">🎓 100%達成で修了証を発行（PDF保存）</button>
         </section>
 
         <!-- ブロック②：非対称2タイル（本物の透ける Liquid Glass） -->
@@ -1190,6 +1303,12 @@ button, input { font-family: inherit; font-size: inherit; }
         </div>
         <hr class="divider">
         <div class="settings-block">
+          <h3>受講者名の変更</h3>
+          <p class="settings-note">修了証（PDF）に印字するクラス・番号・氏名を設定します。</p>
+          <button type="button" class="btn btn-glass jelly-btn" id="settings-edit-name-btn" style="width:100%;">👤 名前を登録・変更する</button>
+        </div>
+        <hr class="divider">
+        <div class="settings-block">
           <h3>進捗のリセット</h3>
           <p class="settings-note">やり直したい部の記録だけを消去できます（確認ダイアログが出ます）。</p>
           <div class="settings-btn-col">
@@ -1198,6 +1317,59 @@ button, input { font-family: inherit; font-size: inherit; }
             <button type="button" class="btn btn-danger jelly-btn" id="reset-all-btn">すべての学習記録をリセット</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ユーザー名登録モーダル -->
+  <div class="modal-backdrop hidden" id="name-modal" role="dialog" aria-modal="true" aria-labelledby="name-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="name-modal-title">まずはお名前を登録しよう</h2>
+        <button type="button" class="close-btn jelly-btn" id="close-name-btn" aria-label="閉じる">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="settings-note" style="margin-bottom:12px;">100%達成で発行される<strong>成績算入用の修了証（PDF）</strong>に印字されます。クラス・出席番号・氏名を入力してね。</p>
+        <input type="text" class="text-input" id="user-name-input" maxlength="32" placeholder="例：3年2組 15番 山田 花子" autocomplete="name">
+        <p class="import-status" id="name-error-msg" style="color:var(--ng-text);"></p>
+        <div class="settings-btn-row" style="margin-top:8px;">
+          <button type="button" class="btn btn-primary jelly-btn" id="save-name-btn">この名前で始める</button>
+          <button type="button" class="btn btn-glass jelly-btn" id="skip-name-btn">あとで設定する</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 修了証モーダル（PDF保存対応） -->
+  <div class="modal-backdrop hidden" id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="cert-modal-title">修了証（成績算入用）</h2>
+        <button type="button" class="close-btn jelly-btn" id="close-cert-btn" aria-label="閉じる">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="cert-sheet" id="cert-sheet">
+          <p class="cert-school">香ヶ丘リベルテ高等学校 文学国語</p>
+          <h3 class="cert-title">『山月記』二学期末試験対策 修了証</h3>
+          <p class="cert-name" id="cert-display-name">氏名未設定 殿</p>
+          <p class="cert-body-text">
+            あなたは『山月記』（試験範囲：袁傪はじめ一行は〜末尾）の全演習問題を100%完答・習得したことを証します。
+          </p>
+          <div class="cert-metrics">
+            <div>第1部：語彙・漢字<br><span id="cert-vocab-score">60 / 60 問（100%）</span></div>
+            <div>第2部：内容・読解<br><span id="cert-content-score">30 / 30 問（100%）</span></div>
+          </div>
+          <div class="cert-meta-row">
+            達成日時：<span id="cert-completed-at">-</span><br>
+            認証コード：<span id="cert-serial">-</span>
+          </div>
+          <div class="cert-seal" aria-hidden="true">リベルテ<br>国語科<br>修了印</div>
+        </div>
+        <div class="cert-modal-controls" style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+          <button type="button" class="btn btn-primary jelly-btn" id="print-cert-btn">📄 PDFで保存 / 印刷する</button>
+          <button type="button" class="btn btn-glass jelly-btn" id="cert-edit-name-btn">👤 名前を修正する</button>
+        </div>
+        <p class="print-hint">※ iPhoneは「共有↑」またはプレビューを2本指でピンチアウト→「PDFを保存」／ Android・PCは送信先で「PDFとして保存」を選んでね。</p>
       </div>
     </div>
   </div>
@@ -2962,6 +3134,18 @@ window.CONTENT_QUESTIONS = [
   const elPassageBody = document.getElementById("passage-body");
   const elRubyToggle = document.getElementById("ruby-toggle");
 
+  const elHeroUserBtn = document.getElementById("hero-user-btn");
+  const elCertLaunchBtn = document.getElementById("cert-launch-btn");
+  const elNameModal = document.getElementById("name-modal");
+  const elUserNameInput = document.getElementById("user-name-input");
+  const elNameErrorMsg = document.getElementById("name-error-msg");
+  const elCertModal = document.getElementById("cert-modal");
+  const elCertDisplayName = document.getElementById("cert-display-name");
+  const elCertVocabScore = document.getElementById("cert-vocab-score");
+  const elCertContentScore = document.getElementById("cert-content-score");
+  const elCertCompletedAt = document.getElementById("cert-completed-at");
+  const elCertSerial = document.getElementById("cert-serial");
+
   const elSettingsModal = document.getElementById("settings-modal");
   const elImportStatus = document.getElementById("import-status");
 
@@ -3058,12 +3242,16 @@ window.CONTENT_QUESTIONS = [
           return {
             records: parsed.records, updatedAt: parsed.updatedAt || null,
             streak: Number(parsed.streak) || 0, maxStreak: Number(parsed.maxStreak) || 0,
-            dailyDate: parsed.dailyDate || todayKey(), dailyCount: Number(parsed.dailyCount) || 0
+            dailyDate: parsed.dailyDate || todayKey(), dailyCount: Number(parsed.dailyCount) || 0,
+            userName: typeof parsed.userName === "string" ? parsed.userName : "",
+            namePrompted: Boolean(parsed.namePrompted),
+            completedAt: parsed.completedAt || null,
+            certId: parsed.certId || null
           };
         }
       }
     } catch (e) {}
-    return { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0 };
+    return { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0, userName: "", namePrompted: false, completedAt: null, certId: null };
   }
 
   function saveStore() {
@@ -3157,6 +3345,20 @@ window.CONTENT_QUESTIONS = [
     if (allCorrect >= allTotal) elHeroGoalText.textContent = "満月完成！試験範囲90問を完全制覇しました";
     else if (allCorrect >= passTarget) elHeroGoalText.textContent = `合格圏クリア！満月まであと ${allTotal - allCorrect} 問`;
     else elHeroGoalText.textContent = `合格圏（80%）まであと ${passTarget - allCorrect} 問`;
+
+    elHeroUserBtn.textContent = store.userName ? `👤 ${store.userName}` : "👤 名前を設定";
+    if (allCorrect >= allTotal) {
+      if (!store.completedAt) {
+        store.completedAt = new Date().toISOString();
+        store.certId = makeCertSerial(store.userName || "LIBERTE", store.completedAt);
+        saveStore();
+      }
+      elCertLaunchBtn.classList.remove("is-locked");
+      elCertLaunchBtn.textContent = "🎓 100%達成！修了証を発行（PDF保存）";
+    } else {
+      elCertLaunchBtn.classList.add("is-locked");
+      elCertLaunchBtn.textContent = `🎓 100%達成で修了証を発行（あと ${allTotal - allCorrect} 問）`;
+    }
 
     const todayCnt = store.dailyDate === todayKey() ? store.dailyCount : 0;
     elHeroCombo.textContent = `🔥 連続 ${store.streak || 0}（最高 ${store.maxStreak || 0}）`;
@@ -3671,7 +3873,15 @@ window.CONTENT_QUESTIONS = [
             }
           }
         });
-        store = { records: cleanRecords, updatedAt: incoming.updatedAt || new Date().toISOString(), streak: Number(incoming.streak) || 0, maxStreak: Number(incoming.maxStreak) || 0, dailyDate: incoming.dailyDate || todayKey(), dailyCount: Number(incoming.dailyCount) || 0 };
+        store = {
+          records: cleanRecords, updatedAt: incoming.updatedAt || new Date().toISOString(),
+          streak: Number(incoming.streak) || 0, maxStreak: Number(incoming.maxStreak) || 0,
+          dailyDate: incoming.dailyDate || todayKey(), dailyCount: Number(incoming.dailyCount) || 0,
+          userName: typeof incoming.userName === "string" ? incoming.userName : (store.userName || ""),
+          namePrompted: true,
+          completedAt: incoming.completedAt || null,
+          certId: incoming.certId || null
+        };
         saveStore(); renderHome(true);
         elImportStatus.style.color = "var(--ok-text)"; elImportStatus.textContent = `学習記録を読み込みました（${Object.keys(cleanRecords).length}問分）。`;
       } catch (e) { elImportStatus.style.color = "var(--ng-text)"; elImportStatus.textContent = "読み込みに失敗しました。正しいJSONファイルか確認してください。"; }
@@ -3682,11 +3892,70 @@ window.CONTENT_QUESTIONS = [
   function resetPart(target) {
     const labelMap = { vocab: "語彙・漢字（60問）", content: "内容・読解（30問）", all: "すべて" };
     if (!confirm(`${labelMap[target]}の学習記録をリセットします。よろしいですか？`)) return;
-    if (target === "all") { store = { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0 }; try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} }
-    else { (target === "vocab" ? VOCAB_QS : CONTENT_QS).forEach((q) => { delete store.records[q.id]; }); saveStore(); }
+    if (target === "all") { store = { records: {}, updatedAt: null, streak: 0, maxStreak: 0, dailyDate: todayKey(), dailyCount: 0, userName: store.userName || "", namePrompted: true, completedAt: null, certId: null }; saveStore(); }
+    else { (target === "vocab" ? VOCAB_QS : CONTENT_QS).forEach((q) => { delete store.records[q.id]; }); store.completedAt = null; store.certId = null; saveStore(); }
     renderHome(true);
     if (views.list.classList.contains("active")) renderList();
     elImportStatus.style.color = "var(--ok-text)"; elImportStatus.textContent = `${labelMap[target]}の学習記録をリセットしました。`;
+  }
+
+  function makeCertSerial(name, isoDate) {
+    const src = `${name}|${isoDate}|90`;
+    let h = 2166136261;
+    for (let i = 0; i < src.length; i++) { h ^= src.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return `LIB-${(h >>> 0).toString(36).toUpperCase().padStart(7, "0")}`;
+  }
+
+  function formatCertDate(iso) {
+    const d = iso ? new Date(iso) : new Date();
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}年${pad(d.getMonth() + 1)}月${pad(d.getDate())}日 ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  let pendingCertAfterName = false;
+  function openNameModal(fromCert) {
+    pendingCertAfterName = Boolean(fromCert);
+    elNameErrorMsg.textContent = "";
+    elUserNameInput.value = store.userName || "";
+    elNameModal.classList.remove("hidden");
+    setTimeout(() => elUserNameInput.focus(), 60);
+  }
+  function closeNameModal() {
+    store.namePrompted = true; saveStore();
+    elNameModal.classList.add("hidden");
+    pendingCertAfterName = false;
+  }
+  function saveUserName() {
+    const val = elUserNameInput.value.trim();
+    if (!val) { elNameErrorMsg.textContent = "クラス・番号・氏名を入力してね。"; return; }
+    store.userName = val; store.namePrompted = true;
+    if (store.completedAt) store.certId = makeCertSerial(val, store.completedAt);
+    saveStore(); renderHome(false);
+    elNameModal.classList.add("hidden");
+    if (pendingCertAfterName) { pendingCertAfterName = false; openCertModal(); }
+  }
+
+  function openCertModal() {
+    const vAll = calcStats(VOCAB_QS);
+    const cAll = calcStats(CONTENT_QS);
+    if (vAll.correct + cAll.correct < ALL_QS.length) return;
+    if (!store.userName) { openNameModal(true); return; }
+    if (!store.completedAt) { store.completedAt = new Date().toISOString(); }
+    if (!store.certId) { store.certId = makeCertSerial(store.userName, store.completedAt); saveStore(); }
+    elCertDisplayName.textContent = `${store.userName} 殿`;
+    elCertVocabScore.textContent = `${vAll.correct} / ${vAll.total} 問（100%）`;
+    elCertContentScore.textContent = `${cAll.correct} / ${cAll.total} 問（100%）`;
+    elCertCompletedAt.textContent = formatCertDate(store.completedAt);
+    elCertSerial.textContent = store.certId;
+    elCertModal.classList.remove("hidden");
+  }
+  function closeCertModal() { elCertModal.classList.add("hidden"); }
+  function printCertificate() {
+    document.body.classList.add("printing-cert");
+    const cleanup = () => document.body.classList.remove("printing-cert");
+    window.addEventListener("afterprint", cleanup, { once: true });
+    window.print();
+    setTimeout(cleanup, 1200);
   }
 
   function bindEvents() {
@@ -3711,6 +3980,21 @@ window.CONTENT_QUESTIONS = [
     elBtnDeckWeak.addEventListener("click", () => { playTone("tap"); startQuiz(homeDeckPart, "weak"); });
 
     document.getElementById("hero-scope-btn").addEventListener("click", () => openPassageModal("scene1"));
+    elHeroUserBtn.addEventListener("click", () => { playTone("tap"); openNameModal(false); });
+    elCertLaunchBtn.addEventListener("click", () => {
+      if (elCertLaunchBtn.classList.contains("is-locked")) return;
+      playTone("tap"); openCertModal();
+    });
+    document.getElementById("settings-edit-name-btn").addEventListener("click", () => { closeSettingsModal(); openNameModal(false); });
+    document.getElementById("close-name-btn").addEventListener("click", closeNameModal);
+    document.getElementById("skip-name-btn").addEventListener("click", closeNameModal);
+    document.getElementById("save-name-btn").addEventListener("click", saveUserName);
+    elUserNameInput.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); saveUserName(); } });
+    elNameModal.addEventListener("click", (e) => { if (e.target === elNameModal) closeNameModal(); });
+    document.getElementById("close-cert-btn").addEventListener("click", closeCertModal);
+    elCertModal.addEventListener("click", (e) => { if (e.target === elCertModal) closeCertModal(); });
+    document.getElementById("print-cert-btn").addEventListener("click", printCertificate);
+    document.getElementById("cert-edit-name-btn").addEventListener("click", () => { closeCertModal(); openNameModal(true); });
     document.getElementById("open-list-link").addEventListener("click", () => openList(homeDeckPart));
     document.getElementById("open-settings-link").addEventListener("click", openSettingsModal);
 
@@ -3782,6 +4066,7 @@ window.CONTENT_QUESTIONS = [
   setupGlobalLiquidInteractions();
   bindEvents();
   renderHome(true);
+  if (!store.userName && !store.namePrompted) { openNameModal(false); }
 })();
   </script>
 </body>
