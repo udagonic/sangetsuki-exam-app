@@ -574,7 +574,7 @@ button, input { font-family: inherit; font-size: inherit; }
   color: #ffe8b8; font-size: 0.8rem; font-weight: 900; padding: 5px 12px; border-radius: 999px;
   border: 1px solid rgba(255, 224, 168, 0.6);
   box-shadow: 0 6px 16px rgba(122, 18, 64, 0.34);
-  animation: moonBounce 0.48s var(--ease-expo);
+  animation: jellyLand 0.18s ease-out;
 }
 
 .question-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
@@ -3159,13 +3159,7 @@ window.CONTENT_QUESTIONS = [
       target.style.setProperty("--my", `${e.clientY - rect.top}px`);
     }, { passive: true });
 
-    // タップ・クリック時の Liquid Ripple ＋ ぷるぷる Squash & Stretch
-    document.addEventListener("pointerdown", (e) => {
-      const el = e.target && e.target.closest ? e.target.closest(".jelly-btn") : null;
-      if (!el || el.disabled) return;
-      spawnRipple(el, e.clientX, e.clientY);
-      triggerJelly(el);
-    }, { passive: true });
+    // タップ・クリック時のぼよん・波紋演出は無効化（すっと次へ進む）
   }
 
   function bounceElement(el) {
@@ -3593,7 +3587,7 @@ window.CONTENT_QUESTIONS = [
       if (session.answered || session.aiBusy) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
       e.preventDefault();
-      try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
+      // setPointerCapture を使わず、高速連打時の iOS Safari ロックを防ぐ
       const cell = hwState.cells[cellIdx];
       const pt = getCanvasPoint(canvas, e, cell.logicalSize);
       hwState.drawing = true;
@@ -3602,7 +3596,6 @@ window.CONTENT_QUESTIONS = [
       hwState.activeStroke = { cellIndex: cellIdx, points: [pt] };
       hwState.strokeHistory.push(hwState.activeStroke);
       const ctx = cell.ctx; ctx.beginPath(); ctx.moveTo(pt.x, pt.y); ctx.lineTo(pt.x + 0.1, pt.y + 0.1); ctx.stroke();
-      updateHwButtons();
     });
     canvas.addEventListener("pointermove", (e) => {
       if (!hwState.drawing || hwState.activeCell !== cellIdx || !hwState.activeStroke) return;
@@ -3614,13 +3607,13 @@ window.CONTENT_QUESTIONS = [
       const ctx = cell.ctx; ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(pt.x, pt.y); ctx.stroke();
     });
     const endDraw = (e) => {
+      if (!hwState.drawing || hwState.activeCell !== cellIdx) return;
       if (e && hwState.activePointerId !== undefined && hwState.activePointerId !== null && e.pointerId !== hwState.activePointerId) return;
-      if (e) { try { if (canvas.hasPointerCapture && canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId); } catch (_) {} }
       hwState.drawing = false; hwState.activeCell = -1; hwState.activePointerId = null; hwState.activeStroke = null;
+      updateHwButtons();
     };
-    canvas.addEventListener("pointerup", endDraw);
-    canvas.addEventListener("pointercancel", endDraw);
-    canvas.addEventListener("lostpointercapture", endDraw);
+    window.addEventListener("pointerup", endDraw);
+    window.addEventListener("pointercancel", endDraw);
   }
 
   function redrawCell(cellIdx) {
