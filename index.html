@@ -6,53 +6,79 @@
   <meta name="robots" content="noindex, nofollow">
   <title>『山月記』二学期末試験対策｜香ヶ丘リベルテ高等学校 文学国語</title>
   <style>
+/* ==========================================================================
+   ピンク × エレガント × iPhone Liquid Glass（軽量GPU設計）
+   backdrop-filter は同時表示3要素（ヘッダー／メインカード／下部バー）のみ限定
+   ========================================================================== */
 :root {
-  --bg-washi: #f6f3ea;
-  --bg-card: #fdfcf8;
-  --bg-subtle: #efebe0;
-  --ink-primary: #1d2229;
-  --ink-secondary: #4a535f;
-  --ink-muted: #6c7480;
-  --border-soft: #dfd9c9;
-  --border-strong: #c9c0ab;
+  --bg-base: #fdf7fa;
+  --glass-surface: rgba(255, 250, 252, 0.85);
+  --glass-light: rgba(255, 255, 255, 0.84);
+  --glass-subtle: rgba(248, 236, 242, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --border-rose: rgba(196, 146, 168, 0.34);
+  --border-rose-strong: rgba(180, 118, 146, 0.48);
 
-  --indigo: #243e5c;
-  --indigo-hover: #1b3048;
-  --indigo-soft: #e8eef5;
-  --gold: #a57d34;
-  --gold-soft: #f7f0df;
+  --ink-primary: #2a1f28;
+  --ink-secondary: #564352;
+  --ink-muted: #786273;
 
-  --ok-text: #1f6142;
-  --ok-bg: #e7f4ed;
-  --ok-border: #8ec5a8;
-  --ng-text: #9e2f2f;
-  --ng-bg: #faeaea;
-  --ng-border: #dfa0a0;
+  --rose: #b84a72;
+  --rose-hover: #9a375b;
+  --rose-soft: rgba(184, 74, 114, 0.11);
+  --gold: #a97b42;
+  --gold-soft: rgba(245, 232, 210, 0.82);
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --shadow-card: 0 2px 10px rgba(29, 34, 41, 0.05);
+  --ok-text: #1c6546;
+  --ok-bg: rgba(231, 246, 238, 0.92);
+  --ok-border: rgba(114, 184, 148, 0.65);
+  --ng-text: #a52b44;
+  --ng-bg: rgba(252, 234, 239, 0.92);
+  --ng-border: rgba(218, 134, 152, 0.65);
+
+  --radius-sm: 10px;
+  --radius-md: 15px;
+  --radius-lg: 22px;
+  --shadow-glass: 0 8px 28px rgba(122, 62, 88, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --shadow-soft: 0 3px 12px rgba(122, 62, 88, 0.06);
 
   --font-sans: "Yu Gothic UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", system-ui, -apple-system, sans-serif;
   --font-serif: "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", Georgia, serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-
-html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-}
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
   min-height: 100dvh;
-  background-color: var(--bg-washi);
+  background-color: var(--bg-base);
   color: var(--ink-primary);
   font-family: var(--font-sans);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* 背面固定グラデーションオーブ（軽量・GPU負荷抑制） */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(250, 204, 222, 0.62) 0%, transparent 46%),
+    radial-gradient(circle at 88% 18%, rgba(232, 214, 248, 0.52) 0%, transparent 44%),
+    radial-gradient(circle at 76% 84%, rgba(249, 228, 202, 0.50) 0%, transparent 46%),
+    radial-gradient(circle at 18% 82%, rgba(246, 210, 226, 0.45) 0%, transparent 44%),
+    linear-gradient(160deg, #fdf6f9 0%, #f9f2f7 52%, #fdf7f2 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 button, input { font-family: inherit; font-size: inherit; }
@@ -60,25 +86,27 @@ button, input { font-family: inherit; font-size: inherit; }
 
 .app-shell { min-height: 100dvh; display: flex; flex-direction: column; }
 
+/* Liquid Glass 要素①：ヘッダー */
 .app-header {
   position: sticky; top: 0; z-index: 30;
-  background: rgba(253, 252, 248, 0.94);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border-soft);
+  background: rgba(255, 250, 252, 0.78);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 2px 14px rgba(122, 62, 88, 0.05);
 }
 
 .header-inner {
   max-width: 760px; margin: 0 auto; padding: 10px 16px;
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
 }
 
 .brand-group { display: flex; align-items: center; gap: 11px; cursor: pointer; min-width: 0; }
 
 .moon-mark {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--indigo) 0%, #37577c 100%);
-  flex-shrink: 0;
-  box-shadow: inset -6px -2px 0 0 #e6cc8c;
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, #c65d84 0%, #8c4870 100%);
+  box-shadow: inset -6px -2px 0 0 #f6dfb8, 0 3px 10px rgba(184, 74, 114, 0.25);
 }
 
 .school-label {
@@ -87,18 +115,19 @@ button, input { font-family: inherit; font-size: inherit; }
 }
 
 .app-title {
-  margin: 0; font-family: var(--font-serif); font-size: 1.08rem; font-weight: 700;
+  margin: 0; font-family: var(--font-serif); font-size: 1.06rem; font-weight: 700;
   color: var(--ink-primary); letter-spacing: 0.03em; line-height: 1.25;
 }
 
 .header-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
 .icon-btn {
-  border: 1px solid var(--border-strong); background: var(--bg-card); color: var(--indigo);
-  border-radius: var(--radius-sm); padding: 7px 11px; font-size: 0.82rem; font-weight: 600;
-  cursor: pointer; min-height: 38px; transition: background-color 0.15s, border-color 0.15s;
+  border: 1px solid var(--border-rose-strong); background: var(--glass-light); color: var(--rose);
+  border-radius: 999px; padding: 7px 13px; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; min-height: 38px; box-shadow: var(--shadow-soft);
+  transition: background-color 0.15s, border-color 0.15s;
 }
-.icon-btn:hover { background: var(--indigo-soft); border-color: var(--indigo); }
+.icon-btn:hover { background: #ffffff; border-color: var(--rose); }
 
 .app-main {
   flex: 1; width: 100%; max-width: 760px; margin: 0 auto;
@@ -108,202 +137,339 @@ button, input { font-family: inherit; font-size: inherit; }
 .view { display: none; }
 .view.active { display: block; }
 
+/* 試験範囲バナー */
 .scope-banner {
   display: flex; align-items: baseline; gap: 10px;
-  padding: 10px 14px; background: var(--gold-soft); border: 1px solid #e1cfa6;
-  border-radius: var(--radius-md); margin-bottom: 16px;
+  padding: 11px 15px; background: var(--glass-light);
+  border: 1px solid var(--glass-border); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft); margin-bottom: 16px;
 }
 .scope-badge {
-  flex-shrink: 0; font-size: 0.75rem; font-weight: 700; color: #6f5017;
-  background: #ebd8ad; padding: 2px 8px; border-radius: 999px;
+  flex-shrink: 0; font-size: 0.74rem; font-weight: 700; color: #7e3652;
+  background: rgba(238, 198, 214, 0.65); padding: 2px 9px; border-radius: 999px;
 }
-.scope-text { margin: 0; font-size: 0.86rem; color: #4f3a12; font-family: var(--font-serif); }
+.scope-text { margin: 0; font-size: 0.86rem; color: var(--ink-secondary); font-family: var(--font-serif); }
 
+/* カード共通（通常は軽量半透明、メインカードのみ Liquid Glass blur） */
 .card {
-  background: var(--bg-card); border: 1px solid var(--border-soft);
-  border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-card); margin-bottom: 16px;
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-glass);
+  margin-bottom: 16px;
 }
 
+/* Liquid Glass 要素②：メインガラスカード */
+.glass-focus {
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+}
+
+/* 進捗サマリー */
 .overview-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .section-heading { margin: 0; font-size: 0.95rem; font-weight: 700; color: var(--ink-secondary); }
 .last-studied { margin: 2px 0 0; font-size: 0.78rem; color: var(--ink-muted); }
-.total-percent { font-size: 2rem; font-weight: 800; line-height: 1; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.total-percent { font-size: 2.05rem; font-weight: 800; line-height: 1; color: var(--rose); font-variant-numeric: tabular-nums; }
 
-.progress-track { width: 100%; height: 10px; background: var(--bg-subtle); border-radius: 999px; overflow: hidden; }
+.progress-track { width: 100%; height: 10px; background: rgba(184, 74, 114, 0.12); border-radius: 999px; overflow: hidden; }
 .progress-track.large { height: 13px; }
-.progress-track.thin { height: 6px; margin-bottom: 14px; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), #456b96); border-radius: 999px; transition: width 0.3s ease; }
-.progress-fill.vocab-fill { background: linear-gradient(90deg, #2d557d, #4f7ca6); }
-.progress-fill.content-fill { background: linear-gradient(90deg, #8e6b29, #bd9547); }
-.progress-detail { margin: 8px 0 16px; font-size: 0.9rem; font-weight: 600; color: var(--ink-primary); }
+.progress-track.thin { height: 7px; margin-bottom: 14px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #c75b83, #d883a2); border-radius: 999px; transition: width 0.3s ease; }
+.progress-fill.vocab-fill { background: linear-gradient(90deg, #b84a72, #da7fa0); }
+.progress-fill.content-fill { background: linear-gradient(90deg, #a97b42, #d4a66a); }
+.progress-detail { margin: 8px 0 16px; font-size: 0.9rem; font-weight: 700; color: var(--ink-primary); }
 
-.sub-progress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-top: 14px; border-top: 1px solid var(--border-soft); }
+.sub-progress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-top: 14px; border-top: 1px solid var(--border-rose); }
 .sub-progress-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; margin-bottom: 6px; }
 .sub-title { font-size: 0.85rem; font-weight: 700; color: var(--ink-primary); }
 .sub-stat { font-size: 0.8rem; font-weight: 600; color: var(--ink-secondary); font-variant-numeric: tabular-nums; }
 
+/* 部カード */
 .part-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
-.part-tag { display: inline-block; font-size: 0.74rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; margin-bottom: 6px; }
-.vocab-tag { background: var(--indigo-soft); color: var(--indigo); }
-.content-tag { background: var(--gold-soft); color: #7c5918; }
-.part-title { margin: 0; font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-.part-sub { font-family: var(--font-sans); font-size: 0.84rem; font-weight: 500; color: var(--ink-muted); }
+.part-tag { display: inline-block; font-size: 0.74rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; margin-bottom: 6px; }
+.vocab-tag { background: var(--rose-soft); color: var(--rose); }
+.content-tag { background: var(--gold-soft); color: #7e5724; }
+.part-title { margin: 0; font-family: var(--font-serif); font-size: 1.24rem; font-weight: 700; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.part-sub { font-family: var(--font-sans); font-size: 0.83rem; font-weight: 500; color: var(--ink-muted); }
 .part-counts { display: flex; gap: 6px; flex-wrap: wrap; }
 
-.mini-badge { font-size: 0.76rem; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: var(--bg-subtle); color: var(--ink-secondary); }
+.mini-badge { font-size: 0.75rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--glass-subtle); color: var(--ink-secondary); }
 .mini-badge.ok { background: var(--ok-bg); color: var(--ok-text); }
 .mini-badge.ng { background: var(--ng-bg); color: var(--ng-text); }
 
-.part-desc { margin: 10px 0 16px; font-size: 0.92rem; color: var(--ink-secondary); }
+.part-desc { margin: 10px 0 12px; font-size: 0.9rem; color: var(--ink-secondary); }
+
+/* カテゴリ切替チップ */
+.cat-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+.cat-pill {
+  border: 1px solid var(--border-rose-strong); background: var(--glass-light);
+  color: var(--ink-secondary); border-radius: 999px; padding: 6px 12px;
+  font-size: 0.82rem; font-weight: 700; min-height: 36px; cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.cat-pill.active {
+  background: var(--rose); border-color: var(--rose); color: #ffffff;
+  box-shadow: 0 3px 10px rgba(184, 74, 114, 0.24);
+}
+
 .mode-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 
+/* ボタン */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   min-height: 48px; padding: 10px 14px; border-radius: var(--radius-md);
-  border: 1px solid transparent; font-size: 0.94rem; font-weight: 700; cursor: pointer;
-  transition: background-color 0.15s, border-color 0.15s, transform 0.05s, opacity 0.15s; text-align: center;
+  border: 1px solid transparent; font-size: 0.93rem; font-weight: 700; cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.05s, opacity 0.15s;
+  text-align: center;
 }
 .btn:active:not(:disabled) { transform: translateY(1px); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-.btn-primary { background: var(--indigo); color: #ffffff; }
-.btn-primary:hover:not(:disabled) { background: var(--indigo-hover); }
-.btn-accent { background: var(--gold-soft); border-color: #d6bc84; color: #6b4c14; }
-.btn-accent:hover:not(:disabled) { background: #efe3c4; }
-.btn-secondary { background: var(--bg-card); border-color: var(--border-strong); color: var(--ink-primary); }
-.btn-secondary:hover:not(:disabled) { background: var(--bg-subtle); }
-.btn-ghost { background: var(--bg-subtle); color: var(--ink-secondary); }
-.btn-ghost:hover:not(:disabled) { background: #e5dfd0; color: var(--ink-primary); }
+.btn-primary {
+  background: linear-gradient(135deg, #c2517a 0%, #a53d64 100%);
+  color: #ffffff; box-shadow: 0 4px 14px rgba(184, 74, 114, 0.25);
+}
+.btn-primary:hover:not(:disabled) { background: linear-gradient(135deg, #b3426b 0%, #923256 100%); }
+.btn-quick {
+  background: linear-gradient(135deg, #b88446 0%, #9c6b31 100%);
+  color: #ffffff; box-shadow: 0 4px 14px rgba(169, 123, 66, 0.22);
+}
+.btn-quick:hover:not(:disabled) { background: linear-gradient(135deg, #a67438 0%, #895c27 100%); }
+.btn-accent { background: rgba(252, 236, 243, 0.9); border-color: var(--border-rose-strong); color: #8c3053; }
+.btn-accent:hover:not(:disabled) { background: rgba(248, 224, 235, 0.95); }
+.btn-secondary { background: var(--glass-light); border-color: var(--border-rose-strong); color: var(--ink-primary); }
+.btn-secondary:hover:not(:disabled) { background: #ffffff; }
+.btn-ghost { background: var(--glass-subtle); border-color: var(--glass-border); color: var(--ink-secondary); }
+.btn-ghost:hover:not(:disabled) { background: rgba(244, 226, 234, 0.9); color: var(--ink-primary); }
 .btn-ok { background: var(--ok-text); color: #ffffff; }
-.btn-ok:hover:not(:disabled) { background: #174c33; }
+.btn-ok:hover:not(:disabled) { background: #155238; }
 .btn-ng { background: var(--ng-bg); border-color: var(--ng-border); color: var(--ng-text); }
-.btn-ng:hover:not(:disabled) { background: #f3d6d6; }
-.btn-danger-outline { background: var(--bg-card); border-color: var(--ng-border); color: var(--ng-text); }
+.btn-ng:hover:not(:disabled) { background: #f8d4dd; }
+.btn-danger-outline { background: var(--glass-light); border-color: var(--ng-border); color: var(--ng-text); }
 .btn-danger-outline:hover:not(:disabled) { background: var(--ng-bg); }
 .btn-danger { background: var(--ng-text); color: #ffffff; }
-.btn-danger:hover:not(:disabled) { background: #802323; }
+.btn-danger:hover:not(:disabled) { background: #852035; }
 .grow { flex: 1; }
 
-.shortcut-hint { margin: 8px 4px 0; font-size: 0.8rem; color: var(--ink-muted); text-align: center; }
-.shortcut-hint code { background: var(--bg-subtle); border: 1px solid var(--border-soft); border-radius: 4px; padding: 1px 5px; font-size: 0.78rem; }
+.shortcut-hint { margin: 8px 4px 0; font-size: 0.79rem; color: var(--ink-muted); text-align: center; }
+.shortcut-hint code { background: var(--glass-light); border: 1px solid var(--border-rose); border-radius: 5px; padding: 1px 5px; font-size: 0.77rem; }
 
+/* クイズ上部 */
 .quiz-topbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
 .back-btn, .text-btn {
-  border: 1px solid var(--border-strong); background: var(--bg-card); color: var(--ink-primary);
-  border-radius: var(--radius-sm); padding: 7px 12px; font-size: 0.86rem; font-weight: 600; min-height: 40px; cursor: pointer;
+  border: 1px solid var(--border-rose-strong); background: var(--glass-light); color: var(--ink-primary);
+  border-radius: 999px; padding: 7px 13px; font-size: 0.84rem; font-weight: 700; min-height: 40px; cursor: pointer;
 }
-.back-btn:hover, .text-btn:hover { background: var(--bg-subtle); }
-.text-btn { color: var(--indigo); border-color: #b5c6da; background: var(--indigo-soft); }
+.back-btn:hover, .text-btn:hover { background: #ffffff; }
+.text-btn { color: var(--rose); border-color: rgba(184, 74, 114, 0.42); background: var(--rose-soft); }
 
 .quiz-meta { display: flex; flex-direction: column; align-items: center; line-height: 1.25; }
-.quiz-part-label { font-size: 0.78rem; color: var(--ink-muted); font-weight: 600; }
-.quiz-counter { font-size: 0.96rem; font-weight: 700; color: var(--ink-primary); font-variant-numeric: tabular-nums; }
+.quiz-part-label { font-size: 0.76rem; color: var(--ink-muted); font-weight: 700; }
+.quiz-counter { font-size: 0.94rem; font-weight: 800; color: var(--ink-primary); font-variant-numeric: tabular-nums; }
 
 .quiz-card { padding: 20px 18px; }
 .question-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
-.category-chip { font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--indigo-soft); color: var(--indigo); }
-.category-chip.flash-chip { background: var(--gold-soft); color: #7c5918; }
-.status-pill { font-size: 0.75rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--bg-subtle); color: var(--ink-muted); }
+.category-chip { font-size: 0.77rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--rose-soft); color: var(--rose); }
+.category-chip.hw-chip { background: var(--gold-soft); color: #7e5724; }
+.status-pill { font-size: 0.74rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--glass-subtle); color: var(--ink-muted); }
 .status-pill.correct { background: var(--ok-bg); color: var(--ok-text); }
 .status-pill.wrong { background: var(--ng-bg); color: var(--ng-text); }
 
-.question-prompt { margin: 0 0 14px; font-size: 1.04rem; font-weight: 700; line-height: 1.6; color: var(--ink-primary); }
+.question-prompt { margin: 0 0 14px; font-size: 1.03rem; font-weight: 700; line-height: 1.6; color: var(--ink-primary); }
 
 .excerpt-box {
-  margin: 0 0 18px; padding: 13px 15px; background: var(--bg-washi);
-  border-left: 4px solid var(--gold); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-family: var(--font-serif); font-size: 1.02rem; line-height: 1.8; color: var(--ink-primary);
+  margin: 0 0 18px; padding: 13px 15px; background: rgba(255, 255, 255, 0.78);
+  border-left: 4px solid var(--rose); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-family: var(--font-serif); font-size: 1.03rem; line-height: 1.8; color: var(--ink-primary);
 }
-.excerpt-highlight { font-weight: 700; color: var(--indigo); background: #e5ecf4; padding: 0 4px; border-radius: 3px; }
+.excerpt-highlight { font-weight: 700; color: #8c264c; background: rgba(242, 200, 218, 0.55); padding: 0 4px; border-radius: 4px; }
 
 /* 4択選択肢 */
 .choices-list { display: flex; flex-direction: column; gap: 10px; }
 .choice-btn {
   width: 100%; min-height: 52px; padding: 12px 14px;
-  border: 1.5px solid var(--border-strong); border-radius: var(--radius-md);
-  background: var(--bg-card); color: var(--ink-primary); text-align: left;
+  border: 1.5px solid var(--border-rose-strong); border-radius: var(--radius-md);
+  background: var(--glass-light); color: var(--ink-primary); text-align: left;
   display: flex; align-items: flex-start; gap: 11px; cursor: pointer;
-  font-size: 0.97rem; line-height: 1.55; transition: background-color 0.14s, border-color 0.14s;
+  font-size: 0.96rem; line-height: 1.55; transition: background-color 0.14s, border-color 0.14s;
 }
-.choice-btn:hover:not(:disabled) { background: var(--indigo-soft); border-color: var(--indigo); }
+.choice-btn:hover:not(:disabled) { background: #ffffff; border-color: var(--rose); }
 .choice-btn:disabled { cursor: default; }
 .choice-num {
   flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
-  background: var(--bg-subtle); color: var(--ink-secondary); font-size: 0.84rem; font-weight: 700;
+  background: var(--glass-subtle); color: var(--ink-secondary); font-size: 0.83rem; font-weight: 700;
   display: inline-flex; align-items: center; justify-content: center; margin-top: 1px;
 }
 .choice-btn.is-correct { background: var(--ok-bg); border-color: var(--ok-border); color: var(--ok-text); font-weight: 700; }
 .choice-btn.is-correct .choice-num { background: var(--ok-text); color: #ffffff; }
 .choice-btn.is-wrong { background: var(--ng-bg); border-color: var(--ng-border); color: var(--ng-text); }
 .choice-btn.is-wrong .choice-num { background: var(--ng-text); color: #ffffff; }
-.choice-btn.is-dimmed { opacity: 0.62; }
+.choice-btn.is-dimmed { opacity: 0.58; }
 
-/* フラッシュカード（漢字の書き） */
-.flashcard-area { display: flex; flex-direction: column; gap: 12px; }
-.flashcard-answer-box {
-  text-align: center; padding: 20px 16px;
-  background: var(--bg-washi); border: 1.5px solid #d9cba8; border-radius: var(--radius-md);
+/* ==================== 手書きキャンバス領域 ==================== */
+.hw-area { display: flex; flex-direction: column; gap: 12px; }
+
+.hw-toolbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
 }
-.flashcard-reading { margin: 0 0 4px; font-size: 0.88rem; color: var(--ink-muted); font-weight: 600; }
-.flashcard-kanji {
-  margin: 0; font-family: var(--font-serif); font-size: 2.35rem; font-weight: 700;
-  letter-spacing: 0.12em; color: var(--indigo); line-height: 1.3;
+.hw-guide-hint { font-size: 0.8rem; color: var(--ink-muted); font-weight: 600; }
+.hw-tool-btns { display: flex; gap: 8px; }
+.hw-mini-btn {
+  border: 1px solid var(--border-rose-strong); background: var(--glass-light); color: var(--ink-primary);
+  border-radius: 999px; padding: 6px 12px; font-size: 0.82rem; font-weight: 700; min-height: 36px; cursor: pointer;
 }
+.hw-mini-btn:hover:not(:disabled) { background: #ffffff; border-color: var(--rose); }
+.hw-mini-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* 可変マスグリッド：1〜2文字は横並び、3〜4文字は2×2グリッド */
+.hw-grid {
+  display: grid;
+  justify-content: center;
+  gap: 12px;
+  padding: 6px 0;
+}
+.hw-grid.cols-1 { grid-template-columns: auto; }
+.hw-grid.cols-2 { grid-template-columns: repeat(2, auto); }
+
+.hw-cell-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+
+/* マス直上のお手本（比較モード時に表示） */
+.hw-model-top {
+  min-height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-size: 1.85rem; font-weight: 700;
+  color: var(--rose); line-height: 1;
+}
+
+/* 不透明白背景のキャンバス枠（iOS Safari描画遅延防止：backdrop-filterなし） */
+.hw-canvas-box {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  background: #ffffff;
+  border: 2px solid rgba(184, 74, 114, 0.42);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 4px rgba(42, 31, 40, 0.06);
+}
+.hw-grid.cols-1 .hw-canvas-box { width: 126px; height: 126px; }
+
+/* 十字の薄いリーダー線 */
+.hw-canvas-box::before,
+.hw-canvas-box::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.hw-canvas-box::before {
+  left: 50%; top: 0; bottom: 0; width: 1px;
+  border-left: 1px dashed rgba(184, 74, 114, 0.22);
+}
+.hw-canvas-box::after {
+  top: 50%; left: 0; right: 0; height: 1px;
+  border-top: 1px dashed rgba(184, 74, 114, 0.22);
+}
+
+/* マス内オーバーレイお手本（トグル切替） */
+.hw-overlay-char {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-serif); font-size: 4.5rem; font-weight: 700;
+  color: rgba(184, 74, 114, 0.26); line-height: 1;
+}
+.hw-grid.cols-1 .hw-overlay-char { font-size: 5.2rem; }
+
+.hw-canvas {
+  position: relative; z-index: 3;
+  display: block; width: 100%; height: 100%;
+  background: transparent;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+}
+
+.hw-action-row { display: flex; flex-direction: column; gap: 9px; }
+
+.hw-compare-panel {
+  padding: 13px 14px; border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.82); border: 1px solid var(--border-rose);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.hw-compare-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+}
+.hw-compare-ans { font-size: 0.92rem; font-weight: 700; color: var(--ink-primary); }
+.hw-compare-ans strong { font-family: var(--font-serif); font-size: 1.2rem; color: var(--rose); margin-left: 6px; letter-spacing: 0.08em; }
+.hw-ai-status {
+  margin: 0; padding: 9px 12px; border-radius: var(--radius-sm);
+  font-size: 0.86rem; font-weight: 600; background: var(--rose-soft); color: var(--ink-primary);
+}
+.hw-ai-status.error { background: var(--ng-bg); color: var(--ng-text); }
+
 .self-grade-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 /* 解説ボックス（初期1〜2行＋詳細折りたたみ） */
 .feedback-box {
   margin-top: 16px; padding: 14px 16px; border-radius: var(--radius-md);
-  border: 1px solid var(--border-soft); background: var(--bg-washi);
+  border: 1px solid var(--border-rose); background: var(--glass-light);
 }
 .feedback-box.ok { background: var(--ok-bg); border-color: var(--ok-border); }
 .feedback-box.ng { background: var(--ng-bg); border-color: var(--ng-border); }
-.feedback-box.neutral { background: var(--bg-washi); border-color: var(--border-strong); }
+.feedback-box.neutral { background: var(--glass-light); border-color: var(--border-rose-strong); }
 
 .feedback-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .feedback-mark { font-size: 1.15rem; font-weight: 800; }
-.feedback-title { font-size: 0.98rem; font-weight: 800; }
+.feedback-title { font-size: 0.97rem; font-weight: 800; }
 .feedback-box.ok .feedback-header { color: var(--ok-text); }
 .feedback-box.ng .feedback-header { color: var(--ng-text); }
-.feedback-box.neutral .feedback-header { color: var(--indigo); }
+.feedback-box.neutral .feedback-header { color: var(--rose); }
 
-.feedback-summary { margin: 0; font-size: 0.94rem; line-height: 1.65; color: var(--ink-primary); font-weight: 500; }
+.feedback-summary { margin: 0; font-size: 0.93rem; line-height: 1.65; color: var(--ink-primary); font-weight: 500; }
 
-.detail-fold { margin-top: 10px; border-top: 1px dashed rgba(29, 34, 41, 0.15); padding-top: 8px; }
+.detail-fold { margin-top: 10px; border-top: 1px dashed rgba(42, 31, 40, 0.16); padding-top: 8px; }
 .detail-fold summary {
-  cursor: pointer; font-size: 0.86rem; font-weight: 700; color: var(--indigo);
+  cursor: pointer; font-size: 0.85rem; font-weight: 700; color: var(--rose);
   user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px;
 }
 .detail-fold summary::-webkit-details-marker { display: none; }
-.detail-fold summary::before { content: "▸"; font-size: 0.82rem; transition: transform 0.15s; }
+.detail-fold summary::before { content: "▸"; font-size: 0.82rem; }
 .detail-fold[open] summary::before { content: "▾"; }
-.detail-text { margin: 8px 0 0; font-size: 0.9rem; line-height: 1.68; color: var(--ink-secondary); }
+.detail-text { margin: 8px 0 0; font-size: 0.89rem; line-height: 1.68; color: var(--ink-secondary); }
 
 .feedback-footer { margin-top: 10px; }
 .link-btn {
-  border: none; background: none; padding: 4px 0; color: var(--indigo);
+  border: none; background: none; padding: 4px 0; color: var(--rose);
   font-size: 0.85rem; font-weight: 700; cursor: pointer; text-decoration: underline;
 }
 
+/* Liquid Glass 要素③：下部固定操作バー */
 .quiz-bottom-bar {
-  position: sticky; bottom: 0;
+  position: sticky; bottom: 0; z-index: 20;
   margin: 14px -16px calc(-28px - env(safe-area-inset-bottom));
   padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  background: rgba(246, 243, 234, 0.95); backdrop-filter: blur(8px);
-  border-top: 1px solid var(--border-soft); display: flex; gap: 10px;
+  background: rgba(255, 248, 251, 0.80);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-top: 1px solid var(--glass-border);
+  display: flex; gap: 10px;
 }
 
 /* 結果画面 */
 .result-card { text-align: center; padding: 30px 22px; }
-.result-sub { margin: 0 0 6px; font-size: 0.88rem; font-weight: 700; color: var(--ink-muted); }
+.result-sub { margin: 0 0 6px; font-size: 0.86rem; font-weight: 700; color: var(--ink-muted); }
 .result-heading { margin: 0 0 18px; font-family: var(--font-serif); font-size: 1.4rem; }
 .result-score-box {
   display: inline-flex; flex-direction: column; align-items: center;
-  padding: 16px 32px; background: var(--bg-washi); border: 1px solid var(--border-soft);
+  padding: 16px 32px; background: var(--glass-light); border: 1px solid var(--border-rose);
   border-radius: var(--radius-lg); margin-bottom: 16px;
 }
-.result-score-num { font-size: 2rem; font-weight: 800; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.result-score-num { font-size: 2rem; font-weight: 800; color: var(--rose); font-variant-numeric: tabular-nums; }
 .result-score-rate { font-size: 0.92rem; font-weight: 700; color: var(--gold); }
-.result-message { margin: 0 0 22px; font-size: 0.95rem; color: var(--ink-secondary); }
+.result-message { margin: 0 0 22px; font-size: 0.94rem; color: var(--ink-secondary); }
 .result-actions { display: flex; flex-direction: column; gap: 10px; max-width: 380px; margin: 0 auto; }
 
 /* 一覧画面 */
@@ -311,87 +477,84 @@ button, input { font-family: inherit; font-size: inherit; }
 .list-count-badge { font-size: 0.82rem; font-weight: 700; color: var(--ink-muted); }
 .tab-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
 .tab-btn {
-  min-height: 44px; border: 1px solid var(--border-strong); background: var(--bg-card);
+  min-height: 44px; border: 1px solid var(--border-rose-strong); background: var(--glass-light);
   color: var(--ink-secondary); border-radius: var(--radius-md); font-weight: 700; cursor: pointer;
 }
-.tab-btn.active { background: var(--indigo); border-color: var(--indigo); color: #ffffff; }
+.tab-btn.active { background: var(--rose); border-color: var(--rose); color: #ffffff; }
 .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .filter-chip {
-  border: 1px solid var(--border-strong); background: var(--bg-card); color: var(--ink-secondary);
-  border-radius: 999px; padding: 6px 13px; font-size: 0.84rem; font-weight: 600; min-height: 36px; cursor: pointer;
+  border: 1px solid var(--border-rose-strong); background: var(--glass-light); color: var(--ink-secondary);
+  border-radius: 999px; padding: 6px 13px; font-size: 0.83rem; font-weight: 700; min-height: 36px; cursor: pointer;
 }
-.filter-chip.active { background: var(--gold-soft); border-color: var(--gold); color: #6b4c14; }
+.filter-chip.active { background: var(--rose-soft); border-color: var(--rose); color: var(--rose); }
 .question-list { display: flex; flex-direction: column; gap: 8px; }
 .list-item {
-  width: 100%; text-align: left; background: var(--bg-card); border: 1px solid var(--border-soft);
-  border-radius: var(--radius-md); padding: 13px 15px; cursor: pointer;
+  width: 100%; text-align: left; background: var(--glass-light); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md); padding: 13px 15px; cursor: pointer; box-shadow: var(--shadow-soft);
   display: flex; flex-direction: column; gap: 5px; transition: border-color 0.15s, background-color 0.15s;
 }
-.list-item:hover { border-color: var(--indigo); background: #faf9f4; }
+.list-item:hover { border-color: var(--rose); background: #ffffff; }
 .list-item-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.list-item-num { font-size: 0.8rem; font-weight: 700; color: var(--ink-muted); }
+.list-item-num { font-size: 0.79rem; font-weight: 700; color: var(--ink-muted); }
 .list-item-text {
-  margin: 0; font-size: 0.94rem; font-weight: 600; color: var(--ink-primary);
+  margin: 0; font-size: 0.93rem; font-weight: 600; color: var(--ink-primary);
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .empty-list { text-align: center; padding: 32px 16px; color: var(--ink-muted); font-size: 0.92rem; }
 
 /* モーダル */
 .modal-backdrop {
-  position: fixed; inset: 0; z-index: 50; background: rgba(20, 26, 34, 0.56);
+  position: fixed; inset: 0; z-index: 50; background: rgba(42, 24, 36, 0.48);
   display: flex; align-items: center; justify-content: center; padding: 14px;
 }
 .modal-dialog {
-  width: 100%; max-width: 540px; max-height: 88dvh; background: var(--bg-card);
-  border-radius: var(--radius-lg); border: 1px solid var(--border-soft);
-  display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  width: 100%; max-width: 540px; max-height: 88dvh; background: rgba(255, 251, 253, 0.96);
+  border-radius: var(--radius-lg); border: 1px solid var(--glass-border);
+  display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 14px 36px rgba(58, 26, 44, 0.22);
 }
 .modal-dialog.large { max-width: 720px; }
 .modal-header {
-  padding: 14px 18px; border-bottom: 1px solid var(--border-soft);
+  padding: 14px 18px; border-bottom: 1px solid var(--border-rose);
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
 }
-.modal-header h2 { margin: 0; font-family: var(--font-serif); font-size: 1.08rem; }
+.modal-header h2 { margin: 0; font-family: var(--font-serif); font-size: 1.06rem; }
 .modal-header-controls { display: flex; align-items: center; gap: 12px; }
-.toggle-label { display: inline-flex; align-items: center; gap: 5px; font-size: 0.84rem; font-weight: 600; color: var(--ink-secondary); cursor: pointer; }
+.toggle-label { display: inline-flex; align-items: center; gap: 5px; font-size: 0.83rem; font-weight: 700; color: var(--ink-secondary); cursor: pointer; }
 .close-btn {
-  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-strong);
-  background: var(--bg-card); color: var(--ink-primary); font-size: 1rem; cursor: pointer;
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-rose-strong);
+  background: var(--glass-light); color: var(--ink-primary); font-size: 1rem; cursor: pointer;
 }
-.close-btn:hover { background: var(--bg-subtle); }
+.close-btn:hover { background: #ffffff; }
 
 .scene-tabs {
-  display: flex; gap: 6px; padding: 10px 16px; background: var(--bg-washi);
-  border-bottom: 1px solid var(--border-soft); overflow-x: auto;
+  display: flex; gap: 6px; padding: 10px 16px; background: rgba(249, 240, 244, 0.85);
+  border-bottom: 1px solid var(--border-rose); overflow-x: auto;
 }
 .scene-tab {
-  flex-shrink: 0; border: 1px solid var(--border-strong); background: var(--bg-card);
+  flex-shrink: 0; border: 1px solid var(--border-rose-strong); background: #ffffff;
   color: var(--ink-secondary); border-radius: 999px; padding: 6px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
 }
-.scene-tab.active { background: var(--indigo); border-color: var(--indigo); color: #ffffff; }
+.scene-tab.active { background: var(--rose); border-color: var(--rose); color: #ffffff; }
 
 .modal-body { padding: 18px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
-/* 試験範囲前のあらすじ（3行） */
 .pre-summary-box {
   margin-bottom: 16px; padding: 12px 14px;
-  background: var(--gold-soft); border: 1px solid #e1cfa6; border-radius: var(--radius-md);
+  background: rgba(252, 239, 245, 0.85); border: 1px solid var(--border-rose); border-radius: var(--radius-md);
   font-family: var(--font-sans);
 }
-.pre-summary-title {
-  margin: 0 0 6px; font-size: 0.82rem; font-weight: 700; color: #6f5017; letter-spacing: 0.03em;
-}
+.pre-summary-title { margin: 0 0 6px; font-size: 0.82rem; font-weight: 700; color: var(--rose); }
 .pre-summary-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.pre-summary-list li { font-size: 0.84rem; line-height: 1.55; color: #4a3714; }
+.pre-summary-list li { font-size: 0.84rem; line-height: 1.55; color: var(--ink-secondary); }
 
 .passage-body { font-family: var(--font-serif); font-size: 1rem; line-height: 2.05; color: var(--ink-primary); }
 .passage-body p { margin: 0 0 14px; }
 .passage-body.no-ruby rt { display: none; }
 
-.poem-block { margin: 14px 0; padding: 14px 16px; background: var(--bg-washi); border: 1px solid var(--border-soft); border-radius: var(--radius-md); }
-.poem-line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 4px 0; border-bottom: 1px dashed var(--border-soft); }
+.poem-block { margin: 14px 0; padding: 14px 16px; background: rgba(252, 244, 248, 0.9); border: 1px solid var(--border-rose); border-radius: var(--radius-md); }
+.poem-line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 4px 0; border-bottom: 1px dashed var(--border-rose); }
 .poem-line:last-child { border-bottom: none; }
-.poem-kanbun { font-weight: 700; letter-spacing: 0.15em; color: var(--indigo); }
+.poem-kanbun { font-weight: 700; letter-spacing: 0.15em; color: var(--rose); }
 .poem-yomi { font-size: 0.9rem; color: var(--ink-secondary); }
 
 .settings-block h3 { margin: 0 0 6px; font-size: 0.96rem; }
@@ -399,22 +562,25 @@ button, input { font-family: inherit; font-size: inherit; }
 .settings-btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .settings-btn-col { display: flex; flex-direction: column; gap: 10px; }
 .file-label { cursor: pointer; }
-.import-status { margin: 8px 0 0; font-size: 0.84rem; font-weight: 600; color: var(--ok-text); min-height: 1.2em; }
-.divider { border: none; border-top: 1px solid var(--border-soft); margin: 18px 0; }
+.import-status { margin: 8px 0 0; font-size: 0.84rem; font-weight: 700; color: var(--ok-text); min-height: 1.2em; }
+.divider { border: none; border-top: 1px solid var(--border-rose); margin: 18px 0; }
 
 @media (max-width: 600px) {
   .header-inner { padding: 9px 12px; }
-  .app-title { font-size: 0.98rem; }
-  .icon-btn { padding: 6px 9px; font-size: 0.78rem; }
+  .app-title { font-size: 0.96rem; }
+  .icon-btn { padding: 6px 10px; font-size: 0.77rem; }
   .app-main { padding: 12px 12px calc(24px + env(safe-area-inset-bottom)); }
   .card { padding: 16px 14px; }
   .sub-progress-grid, .mode-actions, .settings-btn-row { grid-template-columns: 1fr; }
   .quiz-bottom-bar { margin-left: -12px; margin-right: -12px; padding-left: 12px; padding-right: 12px; }
+  .hw-canvas-box { width: 106px; height: 106px; }
+  .hw-grid.cols-1 .hw-canvas-box { width: 120px; height: 120px; }
   .shortcut-hint { display: none; }
 }
   </style>
 </head>
 <body>
+  <div class="ambient-bg" aria-hidden="true"></div>
   <div class="app-shell">
     <header class="app-header">
       <div class="header-inner">
@@ -433,14 +599,14 @@ button, input { font-family: inherit; font-size: inherit; }
     </header>
 
     <main class="app-main">
-      <!-- ホーム画面 -->
+      <!-- ==================== ホーム画面 ==================== -->
       <section id="view-home" class="view active" aria-label="ホームダッシュボード">
         <div class="scope-banner">
           <span class="scope-badge">試験範囲</span>
           <p class="scope-text">「袁傪はじめ一行は、息をのんで、叢中の声の語る不思議に聞き入っていた。」〜 物語末尾</p>
         </div>
 
-        <section class="card progress-overview" aria-label="学習進捗サマリー">
+        <section class="card glass-focus progress-overview" aria-label="学習進捗サマリー">
           <div class="overview-top">
             <div>
               <h2 class="section-heading">総合進捗率</h2>
@@ -451,13 +617,13 @@ button, input { font-family: inherit; font-size: inherit; }
           <div class="progress-track large" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="total-bar-wrap">
             <div class="progress-fill" id="total-bar" style="width: 0%;"></div>
           </div>
-          <p class="progress-detail" id="total-detail">0 / 66 問 正解（0%）</p>
+          <p class="progress-detail" id="total-detail">0 / 90 問 正解（0%）</p>
 
           <div class="sub-progress-grid">
             <div class="sub-progress-item">
               <div class="sub-progress-head">
                 <span class="sub-title">第1部：語彙編</span>
-                <span class="sub-stat" id="vocab-stat">0 / 36 問（0%）</span>
+                <span class="sub-stat" id="vocab-stat">0 / 60 問（0%）</span>
               </div>
               <div class="progress-track">
                 <div class="progress-fill vocab-fill" id="vocab-bar" style="width: 0%;"></div>
@@ -475,56 +641,70 @@ button, input { font-family: inherit; font-size: inherit; }
           </div>
         </section>
 
+        <!-- 第1部：語彙編 -->
         <section class="card part-card" aria-label="第1部 語彙編">
           <div class="part-header">
             <div>
-              <span class="part-tag vocab-tag">第1部</span>
-              <h2 class="part-title">語彙編<span class="part-sub">読み・書き(カード)・意味・対義語</span></h2>
+              <span class="part-tag vocab-tag">第1部・全60問</span>
+              <h2 class="part-title">語彙編<span class="part-sub">読み・手書き漢字・意味・対義語</span></h2>
             </div>
             <div class="part-counts" id="vocab-counts"></div>
           </div>
           <p class="part-desc">
-            試験範囲内の重要漢字（読み4択・書きフラッシュカード自己採点）、難語・慣用句（記誦・伝録・格調高雅・切磋琢磨・瓦に伍する・慟哭・咆哮など）、対義語を網羅。
+            試験範囲内の重要語義32問・対義語4問・漢字の読み12問・手書き漢字12問を精鋭網羅。カテゴリを選んで10問からサクッと始められます。
           </p>
+          <div class="cat-pills" role="group" aria-label="語彙カテゴリ選択">
+            <button type="button" class="cat-pill active" data-group-part="vocab" data-group-val="all">すべて（60）</button>
+            <button type="button" class="cat-pill" data-group-part="vocab" data-group-val="reading">漢字の読み（12）</button>
+            <button type="button" class="cat-pill" data-group-part="vocab" data-group-val="writing">漢字の書き・手書き（12）</button>
+            <button type="button" class="cat-pill" data-group-part="vocab" data-group-val="meaning">意味・対義語（36）</button>
+          </div>
           <div class="mode-actions">
-            <button type="button" class="btn btn-primary" data-start="vocab" data-mode="order">順番に解く（全問）</button>
+            <button type="button" class="btn btn-quick" data-start="vocab" data-mode="quick10">10問だけサクッと解く</button>
+            <button type="button" class="btn btn-primary" data-start="vocab" data-mode="order">順番に解く</button>
             <button type="button" class="btn btn-accent" data-start="vocab" data-mode="weak" id="vocab-weak-btn">未正解・誤答だけ復習</button>
-            <button type="button" class="btn btn-secondary" data-start="vocab" data-mode="shuffle">シャッフル出題</button>
             <button type="button" class="btn btn-ghost" data-list="vocab">一覧・確認</button>
           </div>
         </section>
 
+        <!-- 第2部：内容編 -->
         <section class="card part-card" aria-label="第2部 内容編">
           <div class="part-header">
             <div>
-              <span class="part-tag content-tag">第2部</span>
+              <span class="part-tag content-tag">第2部・全30問</span>
               <h2 class="part-title">内容編<span class="part-sub">読解・心情・漢詩・主題</span></h2>
             </div>
             <div class="part-counts" id="content-counts"></div>
           </div>
           <p class="part-desc">
-            ①旧詩伝録と袁傪の評・七言律詩、②臆病な自尊心と尊大な羞恥心・夜露の涙、③妻子への依頼・丘の上の別れと白い月を場面別に徹底演習。
+            ①旧詩伝録と七言律詩、②臆病な自尊心と尊大な羞恥心・夜露の涙、③妻子への依頼と丘の上の別れを場面別に演習。
           </p>
+          <div class="cat-pills" role="group" aria-label="内容場面選択">
+            <button type="button" class="cat-pill active" data-group-part="content" data-group-val="all">すべて（30）</button>
+            <button type="button" class="cat-pill" data-group-part="content" data-group-val="scene1">場面① 旧詩・漢詩（10）</button>
+            <button type="button" class="cat-pill" data-group-part="content" data-group-val="scene2">場面② 自尊心・羞恥心（11）</button>
+            <button type="button" class="cat-pill" data-group-part="content" data-group-val="scene3">場面③ 妻子・別れ（9）</button>
+          </div>
           <div class="mode-actions">
-            <button type="button" class="btn btn-primary" data-start="content" data-mode="order">順番に解く（全問）</button>
+            <button type="button" class="btn btn-quick" data-start="content" data-mode="quick10">10問だけサクッと解く</button>
+            <button type="button" class="btn btn-primary" data-start="content" data-mode="order">順番に解く</button>
             <button type="button" class="btn btn-accent" data-start="content" data-mode="weak" id="content-weak-btn">未正解・誤答だけ復習</button>
-            <button type="button" class="btn btn-secondary" data-start="content" data-mode="shuffle">シャッフル出題</button>
             <button type="button" class="btn btn-ghost" data-list="content">一覧・確認</button>
           </div>
         </section>
 
         <p class="shortcut-hint">
-          PC操作ヒント：4択は <code>1</code>〜<code>4</code>、書きカードは <code>Space</code> で答え表示→<code>1</code>(書けた)/<code>2</code>(要復習)、<code>Enter</code> で次へ、<code>T</code> で本文参照。
+          PC操作：4択は <code>1</code>〜<code>4</code>、比較後の自己判定は <code>1</code>(書けた)/<code>2</code>(要復習)、<code>Enter</code> で次へ、<code>T</code> で本文参照。
         </p>
       </section>
 
-      <!-- 学習（クイズ）画面 -->
+      <!-- ==================== 学習（クイズ）画面 ==================== -->
       <section id="view-quiz" class="view" aria-label="問題演習">
         <div class="quiz-topbar">
           <button type="button" class="back-btn" id="quiz-back-btn">← ホーム</button>
           <div class="quiz-meta">
             <span class="quiz-part-label" id="quiz-part-label">語彙編</span>
-            <span class="quiz-counter" id="quiz-counter">1 / 36</span>
+            <span class="quiz-counter" id="quiz-counter">1 / 10</span>
           </div>
           <button type="button" class="text-btn" id="quiz-passage-btn">該当本文</button>
         </div>
@@ -533,7 +713,7 @@ button, input { font-family: inherit; font-size: inherit; }
           <div class="progress-fill" id="quiz-session-bar" style="width: 0%;"></div>
         </div>
 
-        <article class="card quiz-card" id="quiz-card">
+        <article class="card glass-focus quiz-card" id="quiz-card">
           <div class="question-head">
             <span class="category-chip" id="q-category">漢字の読み</span>
             <span class="status-pill" id="q-status">未解答</span>
@@ -545,16 +725,37 @@ button, input { font-family: inherit; font-size: inherit; }
           <!-- 4択エリア -->
           <div class="choices-list" id="choices-list" role="radiogroup" aria-label="選択肢"></div>
 
-          <!-- フラッシュカードエリア（漢字の書き） -->
-          <div class="flashcard-area hidden" id="flashcard-area">
-            <button type="button" class="btn btn-primary" id="flash-reveal-btn">答えの漢字を確認する</button>
-            <div class="flashcard-answer-box hidden" id="flash-answer-box">
-              <p class="flashcard-reading" id="flash-reading"></p>
-              <p class="flashcard-kanji" id="flash-kanji"></p>
+          <!-- 手書きキャンバスエリア（漢字の書き） -->
+          <div class="hw-area hidden" id="hw-area">
+            <div class="hw-toolbar">
+              <span class="hw-guide-hint">指やマウスでマスに書いてください</span>
+              <div class="hw-tool-btns">
+                <button type="button" class="hw-mini-btn" id="hw-undo-btn" disabled>1画戻す</button>
+                <button type="button" class="hw-mini-btn" id="hw-clear-btn" disabled>全消去</button>
+              </div>
             </div>
-            <div class="self-grade-row hidden" id="self-grade-row">
-              <button type="button" class="btn btn-ok" id="self-ok-btn">〇 書けた</button>
-              <button type="button" class="btn btn-ng" id="self-ng-btn">✕ 要復習</button>
+
+            <div class="hw-grid" id="hw-grid"></div>
+
+            <div class="hw-action-row">
+              <button type="button" class="btn btn-primary hidden" id="hw-ai-btn">AIで自動判定する</button>
+              <button type="button" class="btn btn-primary" id="hw-compare-btn">お手本と比べる（答えを表示）</button>
+            </div>
+
+            <p class="hw-ai-status hidden" id="hw-ai-status" aria-live="polite"></p>
+
+            <div class="hw-compare-panel hidden" id="hw-compare-panel">
+              <div class="hw-compare-head">
+                <span class="hw-compare-ans" id="hw-compare-ans"></span>
+                <label class="toggle-label">
+                  <input type="checkbox" id="hw-overlay-toggle">
+                  <span>マス内に薄く重ねる</span>
+                </label>
+              </div>
+              <div class="self-grade-row">
+                <button type="button" class="btn btn-ok" id="self-ok-btn">〇 書けた</button>
+                <button type="button" class="btn btn-ng" id="self-ng-btn">✕ 要復習</button>
+              </div>
             </div>
           </div>
 
@@ -581,9 +782,9 @@ button, input { font-family: inherit; font-size: inherit; }
         </div>
       </section>
 
-      <!-- セッション結果画面 -->
+      <!-- ==================== セッション結果画面 ==================== -->
       <section id="view-result" class="view" aria-label="演習結果">
-        <div class="card result-card">
+        <div class="card glass-focus result-card">
           <p class="result-sub" id="result-mode-label">第1部：語彙編</p>
           <h2 class="result-heading">演習おつかれさまでした</h2>
           <div class="result-score-box">
@@ -598,7 +799,7 @@ button, input { font-family: inherit; font-size: inherit; }
         </div>
       </section>
 
-      <!-- 一覧・確認画面 -->
+      <!-- ==================== 一覧・確認画面 ==================== -->
       <section id="view-list" class="view" aria-label="問題一覧と進捗確認">
         <div class="quiz-topbar">
           <button type="button" class="back-btn" id="list-back-btn">← ホーム</button>
@@ -607,8 +808,8 @@ button, input { font-family: inherit; font-size: inherit; }
         </div>
 
         <div class="tab-bar" role="tablist">
-          <button type="button" class="tab-btn active" data-list-part="vocab" role="tab">第1部：語彙編</button>
-          <button type="button" class="tab-btn" data-list-part="content" role="tab">第2部：内容編</button>
+          <button type="button" class="tab-btn active" data-list-part="vocab" role="tab">第1部：語彙編（60）</button>
+          <button type="button" class="tab-btn" data-list-part="content" role="tab">第2部：内容編（30）</button>
         </div>
 
         <div class="filter-bar" role="group" aria-label="ステータス絞り込み">
@@ -677,1196 +878,1699 @@ button, input { font-family: inherit; font-size: inherit; }
     </div>
   </div>
 
+  <!-- 純粋な問題・本文データ配列（ロジックから分離） -->
   <script>
-window.SANGETSUKI_DATA = {
-  "meta": {
-    "school": "香ヶ丘リベルテ高等学校",
-    "subject": "文学国語",
-    "workTitle": "『山月記』中島敦",
-    "examTitle": "二学期末試験対策",
-    "scopeNote": "「袁傪はじめ一行は、息をのんで、叢中の声の語る不思議に聞き入っていた。」〜 物語末尾"
+window.PRE_SCOPE_SUMMARY = [
+  "① 隴西の秀才・李徴は若くして進士に合格したが、自尊心の強さから官を辞して詩作に専念。しかし文名は揚がらず、生活苦から地方官吏に復職するも、かつて軽蔑した同輩の下命を受ける屈辱に耐えられず発狂し行方不明となる。",
+  "② 翌年、監察御史となった旧友・袁傪が嶺南へ向かう道中、商於の林で一匹の猛虎に襲われかけるが、虎は草むらへ隠れ、人間の声で李徴だと名乗る。",
+  "③ 草むらの声は、一年前に虎となった経緯と、一日に数時間だけ還る「人間の心」が日ごとに短くなってゆく恐怖を語り、すっかり人間でなくなる前に一つ頼みがあると切り出す――（ここから試験範囲）。"
+];
+window.PASSAGES_DATA = [
+  {
+    "id": "scene1",
+    "title": "場面① 旧詩の伝録と袁傪の評・即席の漢詩",
+    "paragraphs": [
+      "　<ruby>袁傪<rt>えんさん<\/rt><\/ruby>はじめ一行は、息をのんで、<ruby>叢中<rt>そうちゅう<\/rt><\/ruby>の声の語る不思議に聞き入っていた。声は続けて言う。",
+      "　ほかでもない。自分は元来詩人として名を成すつもりでいた。しかも、<ruby>業<rt>ぎょう<\/rt><\/ruby>いまだ成らざるに、この運命に立ち至った。かつて作るところの詩数百編、もとより、まだ世に行われておらぬ。遺稿の所在ももはやわからなくなっていよう。ところで、そのうち、今もなお<ruby>記誦<rt>きしょう<\/rt><\/ruby>せるものが数十ある。これを我がために<ruby>伝録<rt>でんろく<\/rt><\/ruby>していただきたいのだ。なにも、これによって一人前の詩人面をしたいのではない。作の<ruby>巧拙<rt>こうせつ<\/rt><\/ruby>は知らず、とにかく、産を破り心を狂わせてまで自分が生涯それに<ruby>執着<rt>しゅうちゃく<\/rt><\/ruby>したところのものを、一部なりとも後代に伝えないでは、死んでも死にきれないのだ。",
+      "　袁傪は部下に命じ、筆を<ruby>執<rt>と<\/rt><\/ruby>って叢中の声に従って書き取らせた。李徴の声は草むらの中から<ruby>朗々<rt>ろうろう<\/rt><\/ruby>と響いた。長短およそ三十編、<ruby>格調高雅<rt>かくちょうこうが<\/rt><\/ruby>、<ruby>意趣卓逸<rt>いしゅたくいつ<\/rt><\/ruby>、一読して作者の才の<ruby>非凡<rt>ひぼん<\/rt><\/ruby>を思わせるものばかりである。しかし、袁傪は<ruby>感嘆<rt>かんたん<\/rt><\/ruby>しながらも<ruby>漠然<rt>ばくぜん<\/rt><\/ruby>と次のように感じていた。なるほど、作者の<ruby>素質<rt>そしつ<\/rt><\/ruby>が第一流に属するものであることは疑いない。しかし、このままでは、第一流の作品となるのには、どこか（非常に<ruby>微妙<rt>びみょう<\/rt><\/ruby>な点において）欠けるところがあるのではないか、と。",
+      "　旧詩を吐き終わった李徴の声は、突然調子を変え、自らを<ruby>嘲<rt>あざけ<\/rt><\/ruby>るがごとくに言った。",
+      "　恥ずかしいことだが、今でも、こんなあさましい身となり果てた今でも、おれは、おれの詩集が長安風流人士の机の上に置かれているさまを、夢に見ることがあるのだ。<ruby>岩窟<rt>がんくつ<\/rt><\/ruby>の中に横たわって見る夢にだよ。<ruby>嗤<rt>わら<\/rt><\/ruby>ってくれ。詩人になりそこなって虎になった<ruby>哀<rt>あわ<\/rt><\/ruby>れな男を。（袁傪は昔の青年李徴の<ruby>自嘲癖<rt>じちょうへき<\/rt><\/ruby>を思い出しながら、哀しく聞いていた。）そうだ。お笑い草ついでに、今の思いを即席の詩に述べてみようか。この虎の中に、まだ、かつての李徴が生きているしるしに。",
+      "　袁傪はまた下吏に命じてこれを書き取らせた。その詩に言う。"
+    ],
+    "poem": [
+      {
+        "kanbun": "偶因狂疾成殊類",
+        "kakikudashi": "偶（たまたま）狂疾に因って殊類と成る"
+      },
+      {
+        "kanbun": "災患相仍不可逃",
+        "kakikudashi": "災患相仍（よ）って逃るべからず"
+      },
+      {
+        "kanbun": "今日爪牙誰敢敵",
+        "kakikudashi": "今日は爪牙（そうが）誰か敢へて敵せんや"
+      },
+      {
+        "kanbun": "当時声跡共相高",
+        "kakikudashi": "当時は声跡（せいせき）共に相高かりき"
+      },
+      {
+        "kanbun": "我為異物蓬茅下",
+        "kakikudashi": "我は異物と為りて蓬茅（ほうぼう）の下（もと）にあれども"
+      },
+      {
+        "kanbun": "君已乗軺気勢豪",
+        "kakikudashi": "君は已（すで）に軺（よう）に乗りて気勢豪なり"
+      },
+      {
+        "kanbun": "此夕渓山対明月",
+        "kakikudashi": "此（こ）の夕（ゆうべ）渓山（けいざん）明月に対し"
+      },
+      {
+        "kanbun": "不成長嘯但成嘷",
+        "kakikudashi": "長嘯（ちょうしょう）を成さずして但（ただ）嘷（こう）を成すのみ"
+      }
+    ]
   },
-  "preScopeSummary": [
-    "① 隴西の秀才・李徴は若くして進士に合格したが、自尊心の強さから官を辞して詩作に専念。しかし文名は揚がらず、生活苦から地方官吏に復職するも、かつて軽蔑した同輩の下命を受ける屈辱に耐えられず発狂し行方不明となる。",
-    "② 翌年、監察御史となった旧友・袁傪が嶺南へ向かう道中、商於の林で一匹の猛虎に襲われかけるが、虎は草むらへ隠れ、人間の声で李徴だと名乗る。",
-    "③ 草むらの声は、一年前に虎となった経緯と、一日に数時間だけ還る「人間の心」が日ごとに短くなってゆく恐怖を語り、すっかり人間でなくなる前に一つ頼みがあると切り出す――（ここから試験範囲）。"
-  ],
-  "passages": [
-    {
-      "id": "scene1",
-      "title": "場面① 旧詩の伝録と袁傪の評・即席の漢詩",
-      "paragraphs": [
-        "　<ruby>袁傪<rt>えんさん<\/rt><\/ruby>はじめ一行は、息をのんで、<ruby>叢中<rt>そうちゅう<\/rt><\/ruby>の声の語る不思議に聞き入っていた。声は続けて言う。",
-        "　ほかでもない。自分は元来詩人として名を成すつもりでいた。しかも、<ruby>業<rt>ぎょう<\/rt><\/ruby>いまだ成らざるに、この運命に立ち至った。かつて作るところの詩数百編、もとより、まだ世に行われておらぬ。遺稿の所在ももはやわからなくなっていよう。ところで、そのうち、今もなお<ruby>記誦<rt>きしょう<\/rt><\/ruby>せるものが数十ある。これを我がために<ruby>伝録<rt>でんろく<\/rt><\/ruby>していただきたいのだ。なにも、これによって一人前の詩人面をしたいのではない。作の<ruby>巧拙<rt>こうせつ<\/rt><\/ruby>は知らず、とにかく、産を破り心を狂わせてまで自分が生涯それに<ruby>執着<rt>しゅうちゃく<\/rt><\/ruby>したところのものを、一部なりとも後代に伝えないでは、死んでも死にきれないのだ。",
-        "　袁傪は部下に命じ、筆を<ruby>執<rt>と<\/rt><\/ruby>って叢中の声に従って書き取らせた。李徴の声は草むらの中から<ruby>朗々<rt>ろうろう<\/rt><\/ruby>と響いた。長短およそ三十編、<ruby>格調高雅<rt>かくちょうこうが<\/rt><\/ruby>、<ruby>意趣卓逸<rt>いしゅたくいつ<\/rt><\/ruby>、一読して作者の才の<ruby>非凡<rt>ひぼん<\/rt><\/ruby>を思わせるものばかりである。しかし、袁傪は<ruby>感嘆<rt>かんたん<\/rt><\/ruby>しながらも<ruby>漠然<rt>ばくぜん<\/rt><\/ruby>と次のように感じていた。なるほど、作者の<ruby>素質<rt>そしつ<\/rt><\/ruby>が第一流に属するものであることは疑いない。しかし、このままでは、第一流の作品となるのには、どこか（非常に<ruby>微妙<rt>びみょう<\/rt><\/ruby>な点において）欠けるところがあるのではないか、と。",
-        "　旧詩を吐き終わった李徴の声は、突然調子を変え、自らを<ruby>嘲<rt>あざけ<\/rt><\/ruby>るがごとくに言った。",
-        "　恥ずかしいことだが、今でも、こんなあさましい身となり果てた今でも、おれは、おれの詩集が長安風流人士の机の上に置かれているさまを、夢に見ることがあるのだ。<ruby>岩窟<rt>がんくつ<\/rt><\/ruby>の中に横たわって見る夢にだよ。<ruby>嗤<rt>わら<\/rt><\/ruby>ってくれ。詩人になりそこなって虎になった<ruby>哀<rt>あわ<\/rt><\/ruby>れな男を。（袁傪は昔の青年李徴の<ruby>自嘲癖<rt>じちょうへき<\/rt><\/ruby>を思い出しながら、哀しく聞いていた。）そうだ。お笑い草ついでに、今の思いを即席の詩に述べてみようか。この虎の中に、まだ、かつての李徴が生きているしるしに。",
-        "　袁傪はまた下吏に命じてこれを書き取らせた。その詩に言う。"
-      ],
-      "poem": [
-        {
-          "kanbun": "偶因狂疾成殊類",
-          "kakikudashi": "偶（たまたま）狂疾に因って殊類と成る"
-        },
-        {
-          "kanbun": "災患相仍不可逃",
-          "kakikudashi": "災患相仍（よ）って逃るべからず"
-        },
-        {
-          "kanbun": "今日爪牙誰敢敵",
-          "kakikudashi": "今日は爪牙（そうが）誰か敢へて敵せんや"
-        },
-        {
-          "kanbun": "当時声跡共相高",
-          "kakikudashi": "当時は声跡（せいせき）共に相高かりき"
-        },
-        {
-          "kanbun": "我為異物蓬茅下",
-          "kakikudashi": "我は異物と為りて蓬茅（ほうぼう）の下（もと）にあれども"
-        },
-        {
-          "kanbun": "君已乗軺気勢豪",
-          "kakikudashi": "君は已（すで）に軺（よう）に乗りて気勢豪なり"
-        },
-        {
-          "kanbun": "此夕渓山対明月",
-          "kakikudashi": "此（こ）の夕（ゆうべ）渓山（けいざん）明月に対し"
-        },
-        {
-          "kanbun": "不成長嘯但成嘷",
-          "kakikudashi": "長嘯（ちょうしょう）を成さずして但（ただ）嘷（こう）を成すのみ"
-        }
-      ]
-    },
-    {
-      "id": "scene2",
-      "title": "場面② 臆病な自尊心と尊大な羞恥心・夜露の涙",
-      "paragraphs": [
-        "　時に、<ruby>残月<rt>ざんげつ<\/rt><\/ruby>、光冷ややかに、<ruby>白露<rt>はくろ<\/rt><\/ruby>は地にしげく、樹間を渡る冷風はすでに<ruby>暁<rt>あかつき<\/rt><\/ruby>の近きを告げていた。人々はもはや、事の<ruby>奇異<rt>きい<\/rt><\/ruby>を忘れ、<ruby>粛然<rt>しゅくぜん<\/rt><\/ruby>として、この詩人の<ruby>薄幸<rt>はっこう<\/rt><\/ruby>を嘆じた。李徴の声は再び続ける。",
-        "　なぜこんな運命になったかわからぬと、先刻は言ったが、しかし、考えようによれば、思い当たることが全然ないでもない。人間であったとき、おれは<ruby>努<rt>つと<\/rt><\/ruby>めて人との交わりを避けた。人々はおれを<ruby>倨傲<rt>きょごう<\/rt><\/ruby>だ、<ruby>尊大<rt>そんだい<\/rt><\/ruby>だと言った。実は、それがほとんど<ruby>羞恥心<rt>しゅうちしん<\/rt><\/ruby>に近いものであることを、人々は知らなかった。もちろん、かつての<ruby>郷党<rt>きょうとう<\/rt><\/ruby>の<ruby>鬼才<rt>きさい<\/rt><\/ruby>と言われた自分に、自尊心がなかったとは言わない。しかし、それは<ruby>臆病<rt>おくびょう<\/rt><\/ruby>な自尊心とでも言うべきものであった。おれは詩によって名を成そうと思いながら、進んで師に<ruby>就<rt>つ<\/rt><\/ruby>いたり、求めて詩友と交わって<ruby>切磋琢磨<rt>せっさたくま<\/rt><\/ruby>に努めたりすることをしなかった。かといって、また、おれは俗物の間に<ruby>伍<rt>ご<\/rt><\/ruby>することも<ruby>潔<rt>いさぎよ<\/rt><\/ruby>しとしなかった。ともに、我が臆病な自尊心と、尊大な羞恥心とのせいである。己の<ruby>珠<rt>たま<\/rt><\/ruby>にあらざることを<ruby>惧<rt>おそ<\/rt><\/ruby>れるがゆえに、あえて<ruby>刻苦<rt>こっく<\/rt><\/ruby>して磨こうともせず、また、己の珠なるべきを半ば信ずるがゆえに、<ruby>碌々<rt>ろくろく<\/rt><\/ruby>として<ruby>瓦<rt>かわら<\/rt><\/ruby>に伍することもできなかった。おれはしだいに世と離れ、人と遠ざかり、<ruby>憤悶<rt>ふんもん<\/rt><\/ruby>と<ruby>慙恚<rt>ざんい<\/rt><\/ruby>とによってますます己の内なる臆病な自尊心を飼いふとらせる結果になった。人間は誰でも猛獣使いであり、その猛獣に当たるのが、各人の<ruby>性情<rt>せいじょう<\/rt><\/ruby>だという。おれの場合、この尊大な羞恥心が猛獣だった。虎だったのだ。これがおれを<ruby>損<rt>そこ<\/rt><\/ruby>ない、妻子を苦しめ、友人を傷つけ、果ては、おれの外形をかくのごとく、内心にふさわしいものに変えてしまったのだ。今思えば、全く、おれは、おれの持っていたわずかばかりの才能を<ruby>空費<rt>くうひ<\/rt><\/ruby>してしまったわけだ。人生は何事をもなさぬにはあまりに長いが、何事かをなすにはあまりに短いなどと口先ばかりの<ruby>警句<rt>けいく<\/rt><\/ruby>を<ruby>弄<rt>ろう<\/rt><\/ruby>しながら、事実は、才能の不足を<ruby>暴露<rt>ばくろ<\/rt><\/ruby>するかもしれないとの<ruby>卑怯<rt>ひきょう<\/rt><\/ruby>な<ruby>危惧<rt>きぐ<\/rt><\/ruby>と、刻苦をいとう<ruby>怠惰<rt>たいだ<\/rt><\/ruby>とがおれのすべてだったのだ。おれよりもはるかに<ruby>乏<rt>とぼ<\/rt><\/ruby>しい才能でありながら、それを<ruby>専一<rt>せんいつ<\/rt><\/ruby>に磨いたがために、堂々たる詩家となった者がいくらでもいるのだ。虎となり果てた今、おれはようやくそれに気がついた。それを思うと、おれは今も胸を<ruby>灼<rt>や<\/rt><\/ruby>かれるような<ruby>悔<rt>く<\/rt><\/ruby>いを感じる。おれにはもはや人間としての生活はできない。たとえ、今、おれが頭の中で、どんな<ruby>優<rt>すぐ<\/rt><\/ruby>れた詩を作ったにしたところで、どういう手段で発表できよう。まして、おれの頭は日ごとに虎に近づいてゆく。どうすればいいのだ。おれの空費された過去は？　おれはたまらなくなる。そういうとき、おれは、向こうの山の<ruby>頂<rt>いただき<\/rt><\/ruby>の<ruby>巌<rt>いわお<\/rt><\/ruby>に上り、<ruby>空谷<rt>くうこく<\/rt><\/ruby>に向かって<ruby>吼<rt>ほ<\/rt><\/ruby>える。この胸を灼く悲しみを誰かに訴えたいのだ。おれは昨夕も、あそこで月に向かって<ruby>咆<rt>ほ<\/rt><\/ruby>えた。誰かにこの苦しみがわかってもらえないかと。しかし、獣どもはおれの声を聞いて、ただ、懼れ、ひれ伏すばかり。山も木も月も露も、一匹の虎が怒り狂って、<ruby>哮<rt>たけ<\/rt><\/ruby>っているとしか考えない。天に躍り地に伏して<ruby>嘆<rt>なげ<\/rt><\/ruby>いても、誰一人おれの気持ちをわかってくれる者はない。ちょうど、人間だったころ、おれの傷つきやすい内心を誰も理解してくれなかったように。おれの毛皮のぬれたのは、<ruby>夜露<rt>よつゆ<\/rt><\/ruby>のためばかりではない。"
-      ]
-    },
-    {
-      "id": "scene3",
-      "title": "場面③ 妻子への依頼と自己嫌悪・丘の上の別れ",
-      "paragraphs": [
-        "　ようやくあたりの暗さが薄らいできた。木の間を伝って、いずこからか、<ruby>暁角<rt>ぎょうかく<\/rt><\/ruby>が哀しげに響き始めた。",
-        "　もはや、別れを告げねばならぬ。<ruby>酔<rt>よ<\/rt><\/ruby>わねばならぬときが、（虎に還らねばならぬときが）近づいたから、と、李徴の声が言った。だが、お別れする前にもう一つ頼みがある。それは我が妻子のことだ。彼らはいまだ<ruby>虢略<rt>かくりゃく<\/rt><\/ruby>にいる。もとより、おれの運命については知るはずがない。君が南から帰ったら、おれはすでに死んだと彼らに告げてもらえないだろうか。決して今日のことだけは明かさないでほしい。厚かましいお願いだが、彼らの<ruby>孤弱<rt>こじゃく<\/rt><\/ruby>を哀れんで、今後とも<ruby>道塗<rt>どうと<\/rt><\/ruby>に<ruby>飢凍<rt>きとう<\/rt><\/ruby>することのないように計らっていただけるならば、自分にとって、<ruby>恩幸<rt>おんこう<\/rt><\/ruby>、これに過ぎたるはない。",
-        "　言い終わって、叢中から<ruby>慟哭<rt>どうこく<\/rt><\/ruby>の声が聞こえた。袁もまた涙を浮かべ、喜んで李徴の意に<ruby>添<rt>そ<\/rt><\/ruby>いたい<ruby>旨<rt>むね<\/rt><\/ruby>を答えた。李徴の声はしかしたちまちまた先刻の自嘲的な調子に戻って、言った。",
-        "　本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。飢え<ruby>凍<rt>こご<\/rt><\/ruby>えようとする妻子のことよりも、己の乏しい詩業のほうを気にかけているような男だから、こんな獣に身を<ruby>堕<rt>おと<\/rt><\/ruby>すのだ。",
-        "　そうして、つけ加えて言うことに、袁傪が嶺南からの帰途には決してこの道を通らないでほしい、そのときには自分が酔っていて<ruby>故人<rt>とも<\/rt><\/ruby>を認めずに襲いかかるかもしれないから。また、今別れてから、前方百歩の所にある、あの丘に上ったら、こちらを振り返って見てもらいたい。自分は今の姿をもう一度お目にかけよう。勇に<ruby>誇<rt>ほこ<\/rt><\/ruby>ろうとしてではない。我が<ruby>醜悪<rt>しゅうあく<\/rt><\/ruby>な姿を示して、もって、再びここを過ぎて自分に会おうとの気持ちを君に起こさせないためであると。",
-        "　袁傪は草むらに向かって、<ruby>懇<rt>ねんご<\/rt><\/ruby>ろに別れの言葉を述べ、馬に上った。草むらの中からは、また、堪え得ざるがごとき<ruby>悲泣<rt>ひきゅう<\/rt><\/ruby>の声が<ruby>漏<rt>も<\/rt><\/ruby>れた。袁傪も幾度か草むらを振り返りながら、涙のうちに出発した。",
-        "　一行が丘の上に着いたとき、彼らは、言われたとおりに振り返って、先ほどの林間の草地を眺めた。たちまち、一匹の虎が草の茂みから道の上に躍り出たのを彼らは見た。虎は、すでに白く光を失った月を仰いで、二声三声<ruby>咆哮<rt>ほうこう<\/rt><\/ruby>したかと思うと、また、もとの草むらに躍り入って、再びその姿を見なかった。"
-      ]
-    }
-  ],
-  "vocabQuestions": [
-    {
-      "id": "v01",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "袁傪は部下に命じ、筆を【執】って叢中の声に従って書き取らせた。",
-      "choices": [
-        "と",
-        "も",
-        "にぎ",
-        "ふる"
-      ],
-      "answer": 0,
-      "summary": "正解は「執（と）る」。手にもつ・仕事を行うという意味です。",
-      "detail": "部下に筆をもたせて李徴の詩を書き取らせた場面です。同字の「執着（しゅうちゃく）」も試験範囲内の頻出語です。"
-    },
-    {
-      "id": "v02",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "人々はもはや、事の奇異を忘れ、粛然として、この詩人の【薄幸】を嘆じた。",
-      "choices": [
-        "はっこう",
-        "はくこう",
-        "うすさち",
-        "ばっこう"
-      ],
-      "answer": 0,
-      "summary": "正解は「薄幸（はっこう）」。幸せが薄いこと、不運であることを指します。",
-      "detail": "「はくこう」ではなく促音化して「はっこう」と読みます。直前の「粛然（しゅくぜん）」「奇異（きい）」の書き取りもあわせて確認しておきましょう。"
-    },
-    {
-      "id": "v03",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "進んで師に【就】いたり、求めて詩友と交わって切磋琢磨に努めたりすることをしなかった。",
-      "choices": [
-        "つ",
-        "なら",
-        "したが",
-        "むか"
-      ],
-      "answer": 0,
-      "summary": "正解は「就（つ）く」。師のもとに弟子入りする・職に就くという意味です。",
-      "detail": "「付く」「着く」ではなく「就く」を使う点に注意。小テスト・学習課題の両方で頻出の重要語です。"
-    },
-    {
-      "id": "v04",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "事実は、才能の不足を【暴露】するかもしれないとの卑怯な危惧と、刻苦をいとう怠惰とがおれのすべてだったのだ。",
-      "choices": [
-        "ばくろ",
-        "ぼうろ",
-        "ばくろう",
-        "はくろ"
-      ],
-      "answer": 0,
-      "summary": "正解は「暴露（ばくろ）」。隠していた欠点や秘密をさらけ出すことです。",
-      "detail": "「ぼうろ」と読み間違えやすいので要注意。漢字の書き取り問題（バクロ→暴露）でもよく出題されます。"
-    },
-    {
-      "id": "v05",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "そういうとき、おれは、向こうの山の【頂】の巌に上り、空谷に向かって吼える。",
-      "choices": [
-        "いただき",
-        "ちょう",
-        "てっぺん",
-        "みね"
-      ],
-      "answer": 0,
-      "summary": "正解は「頂（いただき）」。山のいちばん高いところを指します。",
-      "detail": "同じ一文にある「巌（いわお）」「空谷（くうこく）」「吼（ほ）える」もあわせて読めるようにしておくと万全です。"
-    },
-    {
-      "id": "v06",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "おれの毛皮のぬれたのは、【夜露】のためばかりではない。",
-      "choices": [
-        "よつゆ",
-        "やろ",
-        "よづゆ",
-        "よるつゆ"
-      ],
-      "answer": 0,
-      "summary": "正解は「夜露（よつゆ）」。夜に降りる露のことです。",
-      "detail": "「よづゆ」と濁らない点に注意。毛皮がぬれたのは夜露だけでなく、悲しみと後悔から流した涙のためでもあるという名台詞です。"
-    },
-    {
-      "id": "v07",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene3",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "彼らの孤弱を哀れんで、今後とも道塗に【飢凍】することのないように計らっていただけるならば",
-      "choices": [
-        "きとう",
-        "ぎとう",
-        "うごこ",
-        "きどう"
-      ],
-      "answer": 0,
-      "summary": "正解は「飢凍（きとう）」。食べ物に飢え、寒さに凍えることです。",
-      "detail": "「道塗（どうと＝道ばた）」で飢え凍えることのないように、と袁傪に妻子の生活保護を頼む場面の語句です。"
-    },
-    {
-      "id": "v08",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene3",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "袁もまた涙を浮かべ、喜んで李徴の意に添いたい【旨】を答えた。",
-      "choices": [
-        "むね",
-        "し",
-        "こころ",
-        "ねがい"
-      ],
-      "answer": 0,
-      "summary": "正解は「旨（むね）」。意向・趣旨・話の要点という意味です。",
-      "detail": "ここでは「喜んで依頼を引き受けるという意向」を表します。直前の「添（そ）いたい」の読みも頻出です。"
-    },
-    {
-      "id": "v09",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene3",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "草むらの中からは、また、堪え得ざるがごとき【悲泣】の声が漏れた。",
-      "choices": [
-        "ひきゅう",
-        "ひきょく",
-        "かななき",
-        "ひりゅう"
-      ],
-      "answer": 0,
-      "summary": "正解は「悲泣（ひきゅう）」。悲しんで泣くことを意味します。",
-      "detail": "別れを告げる袁傪の言葉を聞いて、草むらの中の李徴がこらえきれず泣く場面です。「漏（も）れた」の漢字も確認しておきましょう。"
-    },
-    {
-      "id": "v10",
-      "type": "choice",
-      "category": "漢字の読み",
-      "sceneId": "scene3",
-      "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
-      "excerpt": "袁傪は草むらに向かって、【懇】ろに別れの言葉を述べ、馬に上った。",
-      "choices": [
-        "ねんご",
-        "こころ",
-        "ていねい",
-        "おもむ"
-      ],
-      "answer": 0,
-      "summary": "正解は「懇（ねんご）ろ」。心をこめて親切・丁寧に扱うようすです。",
-      "detail": "小テスト・評問標準・学習課題・授プリのすべてに登場する最重要語。読み・意味ともに必ず押さえましょう。"
-    },
-    {
-      "id": "v11",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene1",
-      "prompt": "次の文の【カタカナ】を漢字で書き（頭の中やノートに書いて）、答えを確認しましょう。",
-      "excerpt": "遺稿の【ショザイ】ももはやわからなくなっていよう。",
-      "answerText": "所在",
-      "answerReading": "しょざい",
-      "summary": "物や人のある場所・ありかのこと。「所」＋「在」です。",
-      "detail": "「処在」「所材」と書き間違えやすいので注意。李徴が過去に作った数百編の詩の行方がわからなくなっている場面です。"
-    },
-    {
-      "id": "v12",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene1",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "産を破り心を狂わせてまで自分が【ショウガイ】それに執着したところのものを",
-      "answerText": "生涯",
-      "answerReading": "しょうがい",
-      "summary": "生きている間・一生のこと。「涯」はさんずいに「崖」の下の部分です。",
-      "detail": "「障害」「生害」との混同に注意。「涯」のつくりは「厂」の中に「土」を二つ重ねます。"
-    },
-    {
-      "id": "v13",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene1",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "自分が生涯それに【シュウチャク】したところのものを、一部なりとも後代に伝えないでは",
-      "answerText": "執着",
-      "answerReading": "しゅうちゃく",
-      "summary": "一つの物事に強く心がとらわれて離れられないことです。",
-      "detail": "「執」は「筆を執る」の「執」と同じ字。つくりを「丸」の右下に点（丶）を忘れないよう確認しましょう。"
-    },
-    {
-      "id": "v14",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene1",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "なるほど、作者の【ソシツ】が第一流に属するものであることは疑いない。",
-      "answerText": "素質",
-      "answerReading": "そしつ",
-      "summary": "生まれつき備わっている性質や才能のことです。",
-      "detail": "「素」は糸へんの下の部分、「質」は「斤」が二つに「貝」。袁傪が李徴の旧詩を評する重要箇所の語句です。"
-    },
-    {
-      "id": "v15",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene1",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "しかし、袁傪は【カンタン】しながらも漠然と次のように感じていた。",
-      "answerText": "感嘆",
-      "answerReading": "かんたん",
-      "summary": "深く感心してため息をつくこと。教科書表記は「感嘆」です。",
-      "detail": "「嘆」は口へんに「漢」のつくり。同じ箇所の「漠然（ばくぜん）」「微妙（びみょう）」も書けるようにしておきましょう。"
-    },
-    {
-      "id": "v16",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene2",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "人々はおれを倨傲だ、【ソンダイ】だと言った。",
-      "answerText": "尊大",
-      "answerReading": "そんだい",
-      "summary": "思いあがって偉そうに人を見下す態度のことです。",
-      "detail": "「尊大な羞恥心」という作品の最重要キーワードにも使われます。「尊」の横棒の抜けに注意しましょう。"
-    },
-    {
-      "id": "v17",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene2",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "しかし、それは【オクビョウ】な自尊心とでも言うべきものであった。",
-      "answerText": "臆病",
-      "answerReading": "おくびょう",
-      "summary": "気が弱く怖がりなこと。「臆」はにくづき（月）です。",
-      "detail": "「記憶」の「憶（りっしんべん）」と書き間違えやすい頻出漢字。「臆病な自尊心」は丸ごと書けるようにしましょう。"
-    },
-    {
-      "id": "v18",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene2",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "才能の不足を暴露するかもしれないとの卑怯な危惧と、刻苦をいとう【タイダ】とがおれのすべてだったのだ。",
-      "answerText": "怠惰",
-      "answerReading": "たいだ",
-      "summary": "なまけて物事をしないこと。「惰」はりっしんべん（忄）です。",
-      "detail": "「堕落」の「堕（土）」と混同しないよう注意。対義語の「勤勉」とセットで覚えておくと確実です。"
-    },
-    {
-      "id": "v19",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene2",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "おれよりもはるかに乏しい才能でありながら、それを【センイツ】に磨いたがために",
-      "answerText": "専一",
-      "answerReading": "せんいつ",
-      "summary": "心をほかへ向けず、ただ一つのことに集中するようすです。",
-      "detail": "「専」の上に点が要らない点に注意（旧字の「專」と混同しないこと）。評問標準【五】・学習課題の出題語です。"
-    },
-    {
-      "id": "v20",
-      "type": "flashcard",
-      "category": "漢字の書き（自己採点）",
-      "sceneId": "scene3",
-      "prompt": "次の文の【カタカナ】を漢字で書いて、答えを確認しましょう。",
-      "excerpt": "自分は今の姿をもう一度お目にかけよう。勇に【ホコ】ろうとしてではない。",
-      "answerText": "誇",
-      "answerReading": "ほこ（ろう）",
-      "summary": "得意になって自慢すること。ごんべん（言）に「夸」です。",
-      "detail": "送り仮名は「ろう」が文中に付いているため漢字部分は「誇」の一字。虎としての勇猛さを自慢するためではないと述べています。"
-    },
-    {
-      "id": "v21",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "ところで、そのうち、今もなお【記誦】せるものが数十ある。",
-      "choices": [
-        "暗記していて、口に出してとなえること",
-        "書き留めて大切に保管しておくこと",
-        "他人の作品から引用して記録すること",
-        "声に出さずに心の中で黙読すること"
-      ],
-      "answer": 0,
-      "summary": "「記誦（きしょう）」は、覚えていてそらんじることです。",
-      "detail": "遺稿の所在はわからなくなったものの、かつて作った数百編のうち数十編を今でも暗記しているため、書き留めてほしいと頼んでいます。"
-    },
-    {
-      "id": "v22",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "これを我がために【伝録】していただきたいのだ。",
-      "choices": [
-        "書き記して後世に伝えること",
-        "うわさ話として世間に広めること",
-        "詩の優劣を評価して採点すること",
-        "遺稿を探し出して持ち帰ること"
-      ],
-      "answer": 0,
-      "summary": "「伝録（でんろく）」は、書き記して後世に伝えることです。",
-      "detail": "「録」は書き記す、「伝」は後代に伝えるという意味。袁傪は部下に命じて李徴の声を書き取らせます。"
-    },
-    {
-      "id": "v23",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "長短およそ三十編、【格調高雅、意趣卓逸】、一読して作者の才の非凡を思わせるものばかりである。",
-      "choices": [
-        "表現の風格が気高く上品で、内容・着想もひときわ優れていること",
-        "形式は整っているが、内容が難解すぎて理解しにくいこと",
-        "言葉づかいが平易で、誰にでも親しみやすいこと",
-        "詩の雰囲気は上品だが、作者の感情がまったく表れていないこと"
-      ],
-      "answer": 0,
-      "summary": "表現の風格（格調）も内容・着想（意趣）もともに優れていることです。",
-      "detail": "「格調高雅」＝表現の調子・風格が気高く上品なこと、「意趣卓逸」＝詩の趣や着想が並外れて優れていること（評問標準【四】）。"
-    },
-    {
-      "id": "v24",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "李徴の声は草むらの中から【朗々】と響いた。",
-      "choices": [
-        "声が大きく、澄んではっきりと響くようす",
-        "低くくぐもって聞き取りにくいようす",
-        "悲しげにふるえながら途切れがちなようす",
-        "怒りに満ちて荒々しく叫ぶようす"
-      ],
-      "answer": 0,
-      "summary": "「朗々（ろうろう）」は、声が大きく澄んでよく響くようすです。",
-      "detail": "詩を詠じる李徴の誇りと情熱が表れている描写です（授プリ語彙）。"
-    },
-    {
-      "id": "v25",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "求めて詩友と交わって【切磋琢磨】に努めたりすることをしなかった。",
-      "choices": [
-        "学問や芸道を励み合い、互いに磨き向上させること",
-        "他人と競い合って相手を打ち負かすこと",
-        "一人で山にこもって静かに思索すること",
-        "師の教えをそのまま暗記して受け継ぐこと"
-      ],
-      "answer": 0,
-      "summary": "「切磋琢磨（せっさたくま）」は、仲間と励み合い互いに磨き向上させることです。",
-      "detail": "玉や石を切って磨くことに由来する四字熟語。評問標準【五】・学習課題では空欄補充（切磋琢磨）としても出題されます。"
-    },
-    {
-      "id": "v26",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "かといって、また、おれは【俗物の間に伍する】ことも潔しとしなかった。",
-      "choices": [
-        "平凡でつまらない人々の仲間に加わること",
-        "優れた詩人たちと議論を交わすこと",
-        "世俗の評判を気にして行動すること",
-        "高い官位に就いて人々を支配すること"
-      ],
-      "answer": 0,
-      "summary": "「伍（ご）する」は仲間に入る・肩を並べるという意味です。",
-      "detail": "直後の「碌々として瓦に伍する」と同じ意味で、「俗物」と「瓦」が対応しています。"
-    },
-    {
-      "id": "v27",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "おれは俗物の間に伍することも【潔しとしなかった】。",
-      "choices": [
-        "自らの信念や誇りに照らして受け入れられないと思った",
-        "自分の実力ではとうてい無理だとあきらめた",
-        "周囲の目が気になって恥ずかしいと感じた",
-        "汚れを嫌って身ぎれいに保とうとした"
-      ],
-      "answer": 0,
-      "summary": "「潔（いさぎよ）しとしない」は、自らの信念に照らして受け入れられないことです。",
-      "detail": "語彙養成・評問標準【五】ともに頻出の重要表現。「潔」の読み・書きもあわせて押さえましょう。"
-    },
-    {
-      "id": "v28",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "己の珠なるべきを半ば信ずるがゆえに、【碌々】として瓦に伍することもできなかった。",
-      "choices": [
-        "これといった才能や功績もなく、平凡でつまらないさま",
-        "不平不満ばかり口にして怒っているさま",
-        "あわただしく落ち着きがないさま",
-        "礼儀正しく慎み深いさま"
-      ],
-      "answer": 0,
-      "summary": "「碌々（ろくろく）」は、平凡で役に立たない・つまらないさまです。",
-      "detail": "自分の才能（珠）を半ば信じていたため、平凡な人々（瓦）に混じって無為に過ごすこともできなかった、という文脈です。"
-    },
-    {
-      "id": "v29",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の語句の言い換えとして最も適切なものを選びなさい。",
-      "excerpt": "事実は、才能の不足を暴露するかもしれないとの卑怯な危惧と、刻苦を【いとう】怠惰とがおれのすべてだったのだ。",
-      "choices": [
-        "嫌がる",
-        "続ける",
-        "引き受ける",
-        "誇る"
-      ],
-      "answer": 0,
-      "summary": "「いとう（厭う）」は、嫌がる・避けるという意味です。",
-      "detail": "「刻苦をいとう」＝苦労して努力することを嫌がる。語彙養成・学習課題の頻出語です。"
-    },
-    {
-      "id": "v30",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene3",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "言い終わって、叢中から【慟哭】の声が聞こえた。",
-      "choices": [
-        "悲しみに耐えきれず、声をあげて激しく泣くこと",
-        "人目をはばかって静かにすすり泣くこと",
-        "怒りに任せて大声でののしること",
-        "ほっとして安堵のため息をつくこと"
-      ],
-      "answer": 0,
-      "summary": "「慟哭（どうこく）」は、悲しみに耐えきれず大声で激しく泣くことです。",
-      "detail": "妻子の行く末を袁傪に託した直後の描写です（評問標準【六】・授プリ）。"
-    },
-    {
-      "id": "v31",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene3",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "袁傪は草むらに向かって、【懇ろ】に別れの言葉を述べ、馬に上った。",
-      "choices": [
-        "心をこめて親切・丁寧に扱うようす",
-        "形式的に手短に済ませるようす",
-        "恐怖を抑えながらおそるおそる話すようす",
-        "別れを惜しんでいつまでも離れないようす"
-      ],
-      "answer": 0,
-      "summary": "「懇ろ（ねんごろ）」は、心をこめて親切・丁寧に扱うようすです。",
-      "detail": "異類の姿になった旧友に対しても変わらぬ誠実さで接する袁傪の温和な人柄が表れています。"
-    },
-    {
-      "id": "v32",
-      "type": "choice",
-      "category": "語句の意味",
-      "sceneId": "scene3",
-      "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
-      "excerpt": "虎は、すでに白く光を失った月を仰いで、二声三声【咆哮】したかと思うと",
-      "choices": [
-        "猛獣などが大きな声でほえたけること",
-        "美しい声で詩を朗詠すること",
-        "低い声でうなりながら威嚇すること",
-        "哀しげに小さな声で鳴くこと"
-      ],
-      "answer": 0,
-      "summary": "「咆哮（ほうこう）」は、虎や獅子などの猛獣がほえたけることです。",
-      "detail": "物語の結末を象徴する重要語。もはや人語ではなく虎の咆哮だけを残して姿を消します。"
-    },
-    {
-      "id": "v33",
-      "type": "choice",
-      "category": "対義語",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
-      "excerpt": "一読して作者の才の【非凡】を思わせるものばかりである。",
-      "choices": [
-        "平凡",
-        "普通",
-        "鈍才",
-        "無能"
-      ],
-      "answer": 0,
-      "summary": "「非凡（ひぼん）」の対義語は「平凡（へいぼん）」です。",
-      "detail": "『語彙養成』『評問標準【四】』で出題される基本対義語です。"
-    },
-    {
-      "id": "v34",
-      "type": "choice",
-      "category": "対義語",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
-      "excerpt": "自分が生涯それに【執着】したところのものを、一部なりとも後代に伝えないでは",
-      "choices": [
-        "断念",
-        "絶望",
-        "忘却",
-        "放任"
-      ],
-      "answer": 0,
-      "summary": "「執着（しゅうちゃく）」の対義語は「断念（だんねん）」です。",
-      "detail": "『語彙養成』収録の対義語。強くこだわり続ける「執着」に対し、思い切ってあきらめるのが「断念」です。"
-    },
-    {
-      "id": "v35",
-      "type": "choice",
-      "category": "対義語",
-      "sceneId": "scene2",
-      "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
-      "excerpt": "刻苦をいとう【怠惰】とがおれのすべてだったのだ。",
-      "choices": [
-        "勤勉",
-        "誠実",
-        "慎重",
-        "謙虚"
-      ],
-      "answer": 0,
-      "summary": "「怠惰（たいだ）」の対義語は「勤勉（きんべん）」です。",
-      "detail": "『語彙養成』収録の対義語。なまける「怠惰」に対し、一生懸命に励むのが「勤勉」です。"
-    },
-    {
-      "id": "v36",
-      "type": "choice",
-      "category": "対義語",
-      "sceneId": "scene1",
-      "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
-      "excerpt": "しかし、袁傪は【感嘆】しながらも漠然と次のように感じていた。",
-      "choices": [
-        "罵倒",
-        "無視",
-        "失望",
-        "軽視"
-      ],
-      "answer": 0,
-      "summary": "「感嘆（かんたん）」の対義語は「罵倒（ばとう）」です。",
-      "detail": "『語彙養成』収録の対義語。深く感心してほめる「感嘆」に対し、激しくののしるのが「罵倒」です。"
-    }
-  ],
-  "contentQuestions": [
-    {
-      "id": "c01",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "「袁傪はじめ一行は、息をのんで、叢中の声の語る不思議に聞き入っていた。声は続けて言う。」のように、李徴の語りの途中に語り手の言葉が差し挟まれることには、どのような効果があるか。",
-      "excerpt": "袁傪はじめ一行は、息をのんで、叢中の声の語る不思議に聞き入っていた。声は続けて言う。",
-      "choices": [
-        "李徴の語りに聞き入る袁傪たちの姿を伝えることで、読者が場面を客観的・冷静に捉え直すことができる。",
-        "袁傪たちが李徴の話を疑い始めていることを示し、二人の対立を際立たせている。",
-        "李徴が虎に変身した原因を語り手の立場から直接読者に解説している。",
-        "時間がすでに昼過ぎまで経過したことを読者に知らせている。"
-      ],
-      "answer": 0,
-      "summary": "語り手の客観的な描写を挟むことで、読者が場面を冷静に捉え直せる効果があります。",
-      "detail": "李徴の熱い独白に没入しきるのではなく、聞き手である袁傪一行の姿を映すことで適度な距離が生まれます（指導書問・評問新傾向）。"
-    },
-    {
-      "id": "c02",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "「しかも、業いまだ成らざるに、この運命に立ち至った。」とあるが、ここでいう「業」とは何か。",
-      "excerpt": "自分は元来詩人として名を成すつもりでいた。しかも、業いまだ成らざるに、この運命に立ち至った。",
-      "choices": [
-        "詩人として名を成すこと（詩業）",
-        "監察御史として高い官位に昇ること",
-        "妻子を養い故郷で平穏に暮らすこと",
-        "袁傪とともに科挙に合格すること"
-      ],
-      "answer": 0,
-      "summary": "直前の「詩人として名を成す」を受け、詩人としての仕事（詩業）を指します。",
-      "detail": "学習課題では「詩人として名を成す（こと）」と抜き出す設問になっています。官吏の仕事や家庭のことではありません。"
-    },
-    {
-      "id": "c03",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "「産を破り心を狂わせてまで自分が生涯それに執着したところのものを、一部なりとも後代に伝えないでは、死んでも死にきれないのだ。」に表れる李徴の気持ちとして最も適切なものはどれか。",
-      "excerpt": "産を破り心を狂わせてまで自分が生涯それに執着したところのものを、一部なりとも後代に伝えないでは、死んでも死にきれないのだ。",
-      "choices": [
-        "人間としての暮らしを失ってまで執着した詩の成果を少しでもこの世に遺さなければ、生きた証しが消えてしまい耐えられない気持ち。",
-        "自分の詩が第一流であることを袁傪に証明し、都で高く評価されたいという名誉欲だけの気持ち。",
-        "詩を書き残してもらえば、その功徳によって再び人間の姿に戻れるかもしれないと期待する気持ち。",
-        "これまで家族に苦労をかけた償いとして、詩を売って妻子の生活費にしたいという気持ち。"
-      ],
-      "answer": 0,
-      "summary": "人生すべてを懸けた詩業の痕跡を一部でも後世に遺さねば耐えられない切実な思いです。",
-      "detail": "「一人前の詩人面をしたいのではない。作の巧拙は知らず」と前置きしており、単なる名誉欲や金銭目的ではなく、人間として生きた証しを遺したいという執念です（指導書問脚問5）。"
-    },
-    {
-      "id": "c04",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "李徴が朗々と詠じた旧詩およそ三十編に対して、袁傪はどのように感じたか。本文の内容に合うものを選びなさい。",
-      "excerpt": "なるほど、作者の素質が第一流に属するものであることは疑いない。しかし、このままでは、第一流の作品となるのには、どこか（非常に微妙な点において）欠けるところがあるのではないか、と。",
-      "choices": [
-        "作者の素質は間違いなく第一流だが、第一流の作品となるには非常に微妙な点で何か欠けるところがあると感じた。",
-        "格調も意趣も申し分なく、そのまま長安で第一流の傑作として通用すると確信した。",
-        "虎になってしまったため教養が衰え、かつての非凡な才能がすでに失われていると感じた。",
-        "表現は巧みだが、あまりに自嘲的な内容ばかりで人に読ませるにはふさわしくないと感じた。"
-      ],
-      "answer": 0,
-      "summary": "素質は第一流だが、第一流の作品となるには「非常に微妙な点で欠けるところがある」と感じました。",
-      "detail": "袁傪は「格調高雅、意趣卓逸」と感嘆しつつも漠然とした不足を感じます。この「欠けるところ」は、後の李徴の独白（他者との切磋琢磨の欠如や自己中心性）と響き合います。"
-    },
-    {
-      "id": "c05",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "「旧詩を吐き終わった李徴の声は、突然調子を変え、自らを嘲るがごとくに言った。」とあるが、李徴が突然調子を変えた理由として最も適切なものはどれか。",
-      "excerpt": "旧詩を吐き終わった李徴の声は、突然調子を変え、自らを嘲るがごとくに言った。",
-      "choices": [
-        "虎になり果ててまでも、なお詩や文名に執着している自分の姿に気づき、恥ずかしく思ったから。",
-        "袁傪が自分の詩に欠点を感じていることを見抜き、怒りと失望を覚えたから。",
-        "後代に詩を遺す見通しがついたことに満足し、心に余裕が生まれたから。",
-        "旧詩を詠じているうちに、虎としての本能が強まり冷静さを保てなくなったから。"
-      ],
-      "answer": 0,
-      "summary": "虎になってもなお詩や文名に執着している自分に気づき、恥ずかしく思ったからです。",
-      "detail": "直後に「恥ずかしいことだが、今でも〜おれの詩集が長安風流人士の机の上に置かれているさまを、夢に見ることがあるのだ」と語っています（評問標準【四】・学習課題）。"
-    },
-    {
-      "id": "c06",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "「突然調子を変え、自らを嘲るがごとくに言った。」の前後で、李徴の一人称と語りの調子はどのように変化しているか。",
-      "excerpt": "（前）これを我がために伝録していただきたいのだ。→（後）恥ずかしいことだが、今でも……おれは、おれの詩集が……",
-      "choices": [
-        "一人称が「自分」から「おれ」に変わり、真剣な依頼の調子から自嘲的な語りへと変わっている。",
-        "一人称が「おれ」から「自分」に変わり、感情的な語りから冷静な説明へと変わっている。",
-        "一人称は一貫して「自分」のままだが、敬語を使わない乱暴な口調に変わっている。",
-        "一人称が「我」から「私」に変わり、袁傪への感謝を強調する調子に変わっている。"
-      ],
-      "answer": 0,
-      "summary": "一人称が「自分」から「おれ」へ変わり、真剣な依頼から自嘲的な語りへ転じています。",
-      "detail": "『山月記』では「自分＝冷静・客観的」「おれ＝感情が高ぶり内面を吐露するとき」という使い分けが一貫しています（指導書問）。"
-    },
-    {
-      "id": "c07",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "「この虎の中に、まだ、かつての李徴が生きているしるしに。」とはどういう意味か。",
-      "excerpt": "そうだ。お笑い草ついでに、今の思いを即席の詩に述べてみようか。この虎の中に、まだ、かつての李徴が生きているしるしに。",
-      "choices": [
-        "外見は虎になってしまったが、内側にはまだ人間の心が残っており、即興で詩を作る教養と言語能力があるということ。",
-        "虎の肉体の奥に人間の肉体が隠されており、いずれ元の姿に戻れる見込みがあるということ。",
-        "虎としての強大な力を手に入れた今も、かつての同輩たちへの恨みを忘れていないということ。",
-        "袁傪と再会したことで、完全に虎の心が消え去り人間に戻ったということ。"
-      ],
-      "answer": 0,
-      "summary": "外見は虎でも、中にはまだ「人間の心」と即興詩を作れる教養・言語能力が残っているということです。",
-      "detail": "人間の心が消えつつある中、かつての詩人・李徴がまだここに存在している証しを即席の七言律詩に託そうとしています（指導書問脚問6）。"
-    },
-    {
-      "id": "c08",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "李徴が詠んだ即席の漢詩「偶因狂疾〜但成嘷」の詩形と、対句になっている句の組み合わせとして正しいものを選びなさい。",
-      "excerpt": "(1)偶因狂疾成殊類 (2)災患相仍不可逃 (3)今日爪牙誰敢敵 (4)当時声跡共相高 (5)我為異物蓬茅下 (6)君已乗軺気勢豪 (7)此夕渓山対明月 (8)不成長嘯但成嘷",
-      "choices": [
-        "七言律詩 ／ (3)と(4)・(5)と(6)が対句",
-        "七言絶句 ／ (1)と(2)・(7)と(8)が対句",
-        "五言律詩 ／ (3)と(4)・(5)と(6)が対句",
-        "七言律詩 ／ (1)と(2)・(5)と(6)が対句"
-      ],
-      "answer": 0,
-      "summary": "一句七字・全八句の「七言律詩」で、(3)(4)と(5)(6)が対句です。",
-      "detail": "第3・4句は「今日」と「当時」の状況を、第5・6句は現在の「我（李徴）」と「君（袁傪）」の立場を鮮やかに対照させています（評問標準【四】・授プリ）。"
-    },
-    {
-      "id": "c09",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "即席の漢詩の第1句「偶因狂疾成殊類」の書き下し文と、第2句「不可逃」の読みの組み合わせとして正しいものを選びなさい。",
-      "excerpt": "偶因狂疾成殊類 ／ 災患相仍不可逃",
-      "choices": [
-        "偶（たまたま）狂疾に因って殊類と成る ／ のがるべからず",
-        "偶（たまたま）狂疾を因って殊類に成る ／ にぐべからず",
-        "偶（ぐう）狂疾に因りて殊類を成す ／ のがれずべし",
-        "偶（たまたま）殊類に因って狂疾と成る ／ のがるべからず"
-      ],
-      "answer": 0,
-      "summary": "「偶（たまたま）狂疾に因って殊類と成る」「逃るべからず（のがるべからず）」です。",
-      "detail": "「不可〜（〜べからず）」は不可能の重要句形。評問標準【四】で書き下し・ひらがな読みとしてそのまま出題されるポイントです。"
-    },
-    {
-      "id": "c10",
-      "type": "choice",
-      "category": "場面① 旧詩伝録・漢詩",
-      "sceneId": "scene1",
-      "prompt": "漢詩の結句「不成長嘯但成嘷（長嘯を成さずして但嘷を成すのみ）」から読み取れる李徴の心情として最も適切なものはどれか。",
-      "excerpt": "此夕渓山対明月　不成長嘯但成嘷",
-      "choices": [
-        "明月に向かって詩を吟じようとしても、獣の吠え声としてしか響かないことへのむなしさと悲しみ。",
-        "虎の爪や牙の強さを誇り、かつての自分より強くなったことへの満足感。",
-        "出世して馬車に乗る袁傪への激しい嫉妬と恨み。",
-        "念願だった詩を袁傪に書き取ってもらえたことへの安堵と喜び。"
-      ],
-      "answer": 0,
-      "summary": "詩を吟じようとしても獣の吠え声にしかならないことへのむなしさと悲しみです。",
-      "detail": "「長嘯」＝声を長く引いて詩を吟じること、「嘷」＝獣の吠え声。なお第3句「今日爪牙誰敢敵」には虎の肉体の強さを誇る意識も垣間見えますが、結句では深い悲哀に収束します。"
-    },
-    {
-      "id": "c11",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "人間であったとき、人々は李徴を「倨傲だ、尊大だ」と言ったが、李徴自身はその態度の実体が何に近いものであったと語っているか。",
-      "excerpt": "人々はおれを倨傲だ、尊大だと言った。実は、それがほとんど〇〇に近いものであることを、人々は知らなかった。",
-      "choices": [
-        "羞恥心",
-        "嫉妬心",
-        "敵愾心",
-        "向上心"
-      ],
-      "answer": 0,
-      "summary": "周囲からは傲慢に見えていた態度の実体は、ほとんど「羞恥心」に近いものでした。",
-      "detail": "外からは「倨傲（おごり高ぶる）・尊大」と誤解されていましたが、内側では傷つきやすく、劣等感を暴かれることを恐れる羞恥心だったと告白しています。"
-    },
-    {
-      "id": "c12",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "「臆病な自尊心と、尊大な羞恥心」とはどのような心情か。最も適切なものを選びなさい。",
-      "excerpt": "ともに、我が臆病な自尊心と、尊大な羞恥心とのせいである。",
-      "choices": [
-        "自分の才能を半ばしか信じられず不足が暴露するのを恐れる一方、凡庸な人々とは交わりたくないと思うほど大きな誇りも抱き、矛盾した感情がねじれて同居している心情。",
-        "自分の才能を完全に信じきっているため、他人の意見に一切耳を貸さず誰に対しても威圧的に振る舞う心情。",
-        "自分には全く才能がないと絶望しているため、人と会うことを極端に恐れ引きこもってしまう心情。",
-        "高い官位に就くことばかりを望み、詩作の努力を恥ずかしいことだと軽視する心情。"
-      ],
-      "answer": 0,
-      "summary": "才能不足を恐れる臆病さと、凡人を見下す尊大さが矛盾しつつ同居した心情です。",
-      "detail": "「臆病×自尊心」「尊大×羞恥心」という撞着語法（相反する語の組み合わせ）によって、李徴の屈折した内面が鋭く表現されています（指導書問脚問7）。"
-    },
-    {
-      "id": "c13",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "「己の珠にあらざることを惧れるがゆえに、あえて刻苦して磨こうともせず、また、己の珠なるべきを半ば信ずるがゆえに、碌々として瓦に伍することもできなかった。」における「珠」と「瓦」のたとえとして正しいものはどれか。",
-      "excerpt": "己の珠にあらざることを惧れるがゆえに……碌々として瓦に伍することもできなかった。",
-      "choices": [
-        "珠＝優れた才能の持ち主 ／ 瓦＝俗物・つまらない人物",
-        "珠＝高い官位の役人 ／ 瓦＝貧しい庶民",
-        "珠＝完成された名詩 ／ 瓦＝未熟な習作",
-        "珠＝人間の心 ／ 瓦＝獣の本能"
-      ],
-      "answer": 0,
-      "summary": "「珠」＝優れた才能の持ち主、「瓦」＝俗物・つまらない人物のたとえです。",
-      "detail": "直前の「俗物の間に伍する」と「瓦に伍する」が言い換えの関係になっていることから、「瓦」の同義語は「俗物」、対義語は「珠」となります（評問標準【五】・授プリ）。"
-    },
-    {
-      "id": "c14",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "李徴が「進んで師に就いたり、求めて詩友と交わって切磋琢磨に努めたりすることをしなかった」のはなぜか。本文の論理に合うものを選びなさい。",
-      "excerpt": "己の珠にあらざることを惧れるがゆえに、あえて刻苦して磨こうともせず",
-      "choices": [
-        "努力して磨いた結果、自分に本物の才能がない（珠ではない）ことが明らかになるのを恐れたから。",
-        "当時の長安には自分の師となるにふさわしい優れた詩人が一人もいなかったから。",
-        "家族の生活を支える仕事が忙しく、詩友と交わる時間的余裕がなかったから。",
-        "詩は孤独の中で一人で書くべきものであり、他者と交わると質が落ちると信じていたから。"
-      ],
-      "answer": 0,
-      "summary": "努力した結果、自分に本物の才能がないと明らかになるのを恐れたからです。",
-      "detail": "「己の珠にあらざることを惧れる」「才能の不足を暴露するかもしれないとの卑怯な危惧」という、臆病な自尊心ゆえの行動でした。"
-    },
-    {
-      "id": "c15",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "「人間は誰でも猛獣使いであり、その猛獣に当たるのが、各人の性情だという。」とあるが、李徴にとっての「猛獣（虎）」とは何だったか。",
-      "excerpt": "おれの場合、この〇〇が猛獣だった。虎だったのだ。",
-      "choices": [
-        "尊大な羞恥心（臆病な自尊心）",
-        "かつての同輩に対する激しい憎悪",
-        "貧窮から抜け出したいという金銭欲",
-        "詩人として有名になりたいという純粋な情熱"
-      ],
-      "answer": 0,
-      "summary": "李徴にとっての猛獣（虎）は「尊大な羞恥心（臆病な自尊心）」でした。",
-      "detail": "本文では「この尊大な羞恥心が猛獣だった。虎だったのだ」と明言されており、評問標準【五】では「臆病な自尊心と、尊大な羞恥心」が正解とされています。"
-    },
-    {
-      "id": "c16",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "「おれの外形をかくのごとく、内心にふさわしいものに変えてしまったのだ。」と李徴が語るとき、李徴は虎になったことをどう捉え直しているか。",
-      "excerpt": "これがおれを損ない、妻子を苦しめ、友人を傷つけ、果ては、おれの外形をかくのごとく、内心にふさわしいものに変えてしまったのだ。",
-      "choices": [
-        "理不尽な偶然ではなく、自分の内なる歪んだ性情（猛獣）がそのまま外見に表れた必然的な結果だったと捉え直している。",
-        "周囲の人々が自分の才能を理解しなかったため、世間への復讐として自ら虎の姿を選んだと捉えている。",
-        "虎の肉体は自分の高貴な精神にふさわしい気高い姿であると誇りに思っている。",
-        "やはり虎になった理由は全くわからず、単なる生き物のさだめとして諦めるしかないと結論づけている。"
-      ],
-      "answer": 0,
-      "summary": "内なる歪んだ性情（猛獣）がそのまま外形に表れた必然的な結果だと捉え直しています。",
-      "detail": "先刻までは「なぜこんな運命になったかわからぬ」と不条理を嘆いていましたが、ここでは自らの中に飼いふとらせた猛獣こそが真因だと自己省察しています。"
-    },
-    {
-      "id": "c17",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "「人生は何事をもなさぬにはあまりに長いが、何事かをなすにはあまりに短い」という警句を、現在の李徴はどのように自己分析しているか。",
-      "excerpt": "人生は何事をもなさぬにはあまりに長いが、何事かをなすにはあまりに短いなどと口先ばかりの警句を弄しながら",
-      "choices": [
-        "口先ばかりの言い訳にすぎず、実態は才能不足への卑怯な危惧と、苦労を嫌がる怠惰だったと反省している。",
-        "人生の真理を突いた名言であり、自分の詩人としての哲学を支えていたと誇っている。",
-        "袁傪のように出世した人間には理解できない、不遇な天才の嘆きだったと正当化している。",
-        "若いころに師から教わった言葉に縛られすぎたことが失敗の原因だったと悔やんでいる。"
-      ],
-      "answer": 0,
-      "summary": "口先ばかりの言い訳であり、実態は「卑怯な危惧」と「刻苦をいとう怠惰」だったと反省しています。",
-      "detail": "格好をつけた警句を並べて努力を避けていた自分の弱さを、虎となった今になって厳しく見据えています（授プリ）。"
-    },
-    {
-      "id": "c18",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "李徴が「今も胸を灼かれるような悔いを感じる」のは、何に気がついたからか。",
-      "excerpt": "虎となり果てた今、おれはようやくそれに気がついた。それを思うと、おれは今も胸を灼かれるような悔いを感じる。",
-      "choices": [
-        "自分よりはるかに乏しい才能でも専一に磨いて堂々たる詩家になった者がいくらでもいるのに、自分は危惧と怠惰から才能を空費してしまったこと。",
-        "官吏を辞めずに続けていれば、袁傪と同じように監察御史になれたはずだったこと。",
-        "もっと早く袁傪に相談していれば、虎になる前に病気を治してもらえたはずだったこと。",
-        "故郷に残した遺稿を大切に保管しておけば、今ごろ長安で有名になっていたはずだったこと。"
-      ],
-      "answer": 0,
-      "summary": "危惧と怠惰から努力をせず、持っていたわずかな才能を空費してしまったことへの後悔です。",
-      "detail": "直前で「おれよりもはるかに乏しい才能でありながら、それを専一に磨いたがために、堂々たる詩家となった者がいくらでもいる」と気づいたことが痛切な悔いにつながっています。"
-    },
-    {
-      "id": "c19",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "「この胸を灼く悲しみを誰かに訴えたいのだ。」の「悲しみ」の内容として、本文に即した組み合わせはどれか。",
-      "excerpt": "おれにはもはや人間としての生活はできない。……どうすればいいのだ。おれの空費された過去は？",
-      "choices": [
-        "もはや人間としての生活はできず、空費された過去を取り戻すこともできないという悲しみ。",
-        "袁傪との友情が壊れてしまい、二度と信頼してもらえないという悲しみ。",
-        "自分の作った詩が袁傪に低く評価されてしまったという悲しみ。",
-        "山林での生活が寒くて苦しく、獲物を捕らえるのがつらいという悲しみ。"
-      ],
-      "answer": 0,
-      "summary": "「もはや人間としての生活はできない」「空費された過去を取り戻せない」という悲しみです。",
-      "detail": "評問標準【五】問五で「本文中の言葉を用いて二つ答えよ」として問われる重要ポイントです。"
-    },
-    {
-      "id": "c20",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "山の頂の巌に上って月や空谷に向かって咆えても、獣たちや自然はどのように受け取るか。また、それが何に重ねられているか。",
-      "excerpt": "天に躍り地に伏して嘆いても、誰一人おれの気持ちをわかってくれる者はない。ちょうど、人間だったころ、おれの傷つきやすい内心を誰も理解してくれなかったように。",
-      "choices": [
-        "ただ一匹の虎が怒り狂って哮っているとしか受け取られず、人間だったころ誰も傷つきやすい内心を理解してくれなかった孤独と重ねられている。",
-        "獣たちは李徴の悲しみに共感して涙を流すが、言葉が通じないため慰め合えないことが人間時代の孤独と重ねられている。",
-        "山や月だけは李徴の苦しみを理解してくれるが、獣たちが恐れて逃げ出すことが官吏時代の孤立と重ねられている。",
-        "虎の咆哮が立派な詩として谷に響くのに、聴衆がいないことが詩作時代の不遇と重ねられている。"
-      ],
-      "answer": 0,
-      "summary": "「怒り狂って哮る虎」としか見られない姿が、人間時代に誤解された孤独と重ねられています。",
-      "detail": "外からの見え方（怒り狂う虎／倨傲・尊大な男）と、内面の真実（悲しみを訴えたい／傷つきやすい内心）の断絶が重なっています。"
-    },
-    {
-      "id": "c21",
-      "type": "choice",
-      "category": "場面② 自尊心と羞恥心",
-      "sceneId": "scene2",
-      "prompt": "「おれの毛皮のぬれたのは、夜露のためばかりではない。」とは、どういう意味か。",
-      "excerpt": "ちょうど、人間だったころ、おれの傷つきやすい内心を誰も理解してくれなかったように。おれの毛皮のぬれたのは、夜露のためばかりではない。",
-      "choices": [
-        "悔いと悲しみ、誰にも理解されない孤独のあまり流した涙によってぬれたということ。",
-        "谷川に身を投げて死のうとしたため、川の水でぬれたということ。",
-        "夜の雨に打たれながら山林を駆け回っていたためぬれたということ。",
-        "獲物を追って草むらを駆け抜けた汗でぬれたということ。"
-      ],
-      "answer": 0,
-      "summary": "悔いと悲しみ、誰にも理解されない孤独から流れた「涙」でぬれたという意味です。",
-      "detail": "直接「泣いた」と言わず「夜露のためばかりではない」と表現することで、虎の身の深い哀しみを余韻深く伝えています（指導書問脚問8・評問標準【五】）。"
-    },
-    {
-      "id": "c22",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "「酔わねばならぬときが、（虎に還らねばならぬときが）近づいたから」とあるが、「自分が酔っていて」とはどのような状態を指すか。",
-      "excerpt": "もはや、別れを告げねばならぬ。酔わねばならぬときが、（虎に還らねばならぬときが）近づいたから",
-      "choices": [
-        "人間の心（理性）を失って、本能のまま虎として行動している状態。",
-        "酒に酔ったように気分が高揚し、詩を次々と詠める状態。",
-        "夜明けの冷気で意識がもうろうとし、深い眠りに落ちている状態。",
-        "袁傪との再会に感激し、冷静な判断ができなくなっている状態。"
-      ],
-      "answer": 0,
-      "summary": "人間の心を失い、本能のまま虎として行動している状態を指します。",
-      "detail": "本文中に「（虎に還らねばならぬときが）」と補足されており、評問標準【六】では25字以内の記述問題としても出題されます。"
-    },
-    {
-      "id": "c23",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "妻子に対して「おれはすでに死んだと彼らに告げてもらえないだろうか。決して今日のことだけは明かさないでほしい。」と李徴が頼んだ理由として最も適切なものはどれか。",
-      "excerpt": "君が南から帰ったら、おれはすでに死んだと彼らに告げてもらえないだろうか。決して今日のことだけは明かさないでほしい。",
-      "choices": [
-        "これまで心配や苦労をかけてきたうえに、夫が虎になったという事実でさらに妻子に苦痛を味わわせたくなかったから。",
-        "自分が虎になったことが役所に知られると、家族が罪に問われる恐れがあったから。",
-        "妻子が山林まで自分を探しに来て、他の旅人の迷惑になるのを防ぎたかったから。",
-        "詩集が世に出るまで、自分の生存を秘密にして話題性を高めたかったから。"
-      ],
-      "answer": 0,
-      "summary": "これまで心配をかけてきたうえに、さらに妻子へ苦痛を味わわせたくなかったからです。",
-      "detail": "夫が人食い虎になったという残酷な真実を隠すことで、残された妻子の心を守ろうとしています（評問標準【六】）。"
-    },
-    {
-      "id": "c24",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "「本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。」の「このこと」とは何か。",
-      "excerpt": "本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。",
-      "choices": [
-        "妻子が今後とも飢え凍えることなく生活できるように計らってほしいということ。",
-        "袁傪に嶺南からの帰途にはこの道を通らないでほしいということ。",
-        "自分の遺稿を故郷の虢略から探し出して整理してほしいということ。",
-        "丘の上から振り返って自分の虎の姿を見てほしいということ。"
-      ],
-      "answer": 0,
-      "summary": "妻子が飢え凍えないよう、生活の面倒を計らってほしいという依頼を指します。",
-      "detail": "李徴は第一の願いとして「自作の詩の伝録」を頼み、第二の願いとして「妻子の生活」を頼んだ順番そのものに自己の醜さを見いだします（評問標準【六】・授プリ）。"
-    },
-    {
-      "id": "c25",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "「おれが人間だったなら。」の言い換えとして最も適切なものはどれか。",
-      "excerpt": "本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。",
-      "choices": [
-        "おれが人間の心（人間らしさ）を持っていたなら",
-        "おれが虎に変身していなかったなら",
-        "おれが再び人間の姿に戻れたなら",
-        "おれが袁傪と同じ官吏の立場だったなら"
-      ],
-      "answer": 0,
-      "summary": "外形ではなく「おれが人間の心を持っていたなら」という意味です。",
-      "detail": "授プリの選択問題そのままのポイント。妻子より自分の詩業を優先してしまう点に、自らの人間らしさの欠如を認めています。"
-    },
-    {
-      "id": "c26",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "「飢え凍えようとする妻子のことよりも、己の乏しい詩業のほうを気にかけているような男だから、こんな獣に身を堕すのだ。」に表れる李徴の心情として最も適切なものはどれか。",
-      "excerpt": "飢え凍えようとする妻子のことよりも、己の乏しい詩業のほうを気にかけているような男だから、こんな獣に身を堕すのだ。",
-      "choices": [
-        "家族よりも自分の名声や詩業を優先してしまう、己の利己的な生き方を厳しく反省し自嘲する気持ち。",
-        "妻子を養う責任を放棄すれば、ようやく詩作に専念できると割り切る気持ち。",
-        "詩業に執着するのは芸術家として当然であり、仕方がないことだと自分を慰める気持ち。",
-        "袁傪が先に妻子のことを尋ねてくれなかったことに対するかすかな不満。"
-      ],
-      "answer": 0,
-      "summary": "妻子より己の詩業を優先する、自分の利己的な生き方を反省・自嘲する気持ちです。",
-      "detail": "場面②では「臆病な自尊心・尊大な羞恥心」を原因としましたが、ここではさらに深く「利己性・他者への愛の欠如」にまで踏み込んでいます（評問標準【六】）。"
-    },
-    {
-      "id": "c27",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "李徴が袁傪に対して「嶺南からの帰途には決してこの道を通らないでほしい」と頼んだのはなぜか。",
-      "excerpt": "袁傪が嶺南からの帰途には決してこの道を通らないでほしい、そのときには自分が酔っていて故人を認めずに襲いかかるかもしれないから。",
-      "choices": [
-        "そのときには人間の心を失って酔っており、旧友の袁傪だと気づかずに襲いかかってしまうかもしれないから。",
-        "この道には李徴以外にも獰猛な人食い虎が数多く棲み着いていて危険だから。",
-        "もう一度会うと未練が残り、虎として生きていく覚悟が揺らいでしまうから。",
-        "袁傪の部下たちに自分が虎であることを言いふらされるのを恐れたから。"
-      ],
-      "answer": 0,
-      "summary": "そのときには酔っていて、故人（旧友）と認めずに襲いかかるかもしれないからです。",
-      "detail": "人間の心が還る時間は日に日に短くなっており、次に会えば旧友を傷つけてしまうという切実な危惧からの願いです。"
-    },
-    {
-      "id": "c28",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "李徴が「前方百歩の所にある、あの丘に上ったら、こちらを振り返って見てもらいたい。自分は今の姿をもう一度お目にかけよう。」と頼んだ理由は何か。",
-      "excerpt": "勇に誇ろうとしてではない。我が醜悪な姿を示して、もって、再びここを過ぎて自分に会おうとの気持ちを君に起こさせないためであると。",
-      "choices": [
-        "自分の醜悪な虎の姿を見せることで、袁傪が再びここを通って自分に会おうという気持ちを起こさせないようにするため。",
-        "虎としての勇猛で立派な姿を旧友の記憶に焼き付けておいてほしかったから。",
-        "最後に一度だけ人間だったころの面影が残る顔を見てもらいたかったから。",
-        "袁傪の部下たちに、草むらに隠れていたのが確かに虎であったことを証明するため。"
-      ],
-      "answer": 0,
-      "summary": "醜悪な姿を示すことで、袁傪が再び会いに来ようという気持ちを起こさせないためです。",
-      "detail": "あえて恐ろしい虎の姿を見せることで、旧友の身を守り、永遠の別れを決定的にしようとする李徴なりの思いやりです。"
-    },
-    {
-      "id": "c29",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "結末の「すでに白く光を失った月」には、李徴のどのような心境や運命が重ね合わされているか。",
-      "excerpt": "虎は、すでに白く光を失った月を仰いで、二声三声咆哮したかと思うと、また、もとの草むらに躍り入って、再びその姿を見なかった。",
-      "choices": [
-        "夜明けとともに光が消えていく月のように、人間の心も失われつつあり、二度と人間に戻れないと覚悟を決めた孤独な悲しみ。",
-        "夜の闇が去って新しい朝が来るように、やがて李徴の苦悩も晴れて救われるという希望。",
-        "妻子の生活と詩の伝録を旧友に託すことができた、晴れやかで満ち足りた安堵感。",
-        "月明かりが消えたことで人目を気にせず自由に生きられるようになったという解放感。"
-      ],
-      "answer": 0,
-      "summary": "夜明け前の月のように人間の心も消えつつあり、二度と人間に戻れないと覚悟した孤独な悲しみです。",
-      "detail": "月の輝きと李徴が人間でいられる時間が対応しており、二人の永遠の決別も象徴しています（評問標準【六】・学習課題）。"
-    },
-    {
-      "id": "c30",
-      "type": "choice",
-      "category": "場面③ 妻子への依頼・別れ",
-      "sceneId": "scene3",
-      "prompt": "物語の最後が「再びその姿を見なかった。」と結ばれていることには、どのような表現上の効果があるか。",
-      "excerpt": "また、もとの草むらに躍り入って、再びその姿を見なかった。",
-      "choices": [
-        "袁傪一行からの視覚でのみ捉えることで、もう二度と人間が李徴の声を聞くことはなく、近い将来完全に人間の心を失うであろうことを暗示する効果。",
-        "虎が遠くの山へ逃げ去ったことを示し、のちに再び別の土地で袁傪と再会する余韻を残す効果。",
-        "李徴が草むらの中で元の人間の姿に戻ったかもしれないという希望を読者に抱かせる効果。",
-        "袁傪が恐怖のあまり目を背けてしまったことを示し、二人の友情の終わりを強調する効果。"
-      ],
-      "answer": 0,
-      "summary": "袁傪たちの視覚のみから捉えることで、二度と人語を交わさず完全に虎となる運命を暗示しています。",
-      "detail": "最後の場面で李徴は言葉を発さず、咆哮だけを残して消えます。人間社会との断絶を余韻深く結ぶ表現です（指導書問脚問9）。"
-    }
-  ]
-};
+  {
+    "id": "scene2",
+    "title": "場面② 臆病な自尊心と尊大な羞恥心・夜露の涙",
+    "paragraphs": [
+      "　時に、<ruby>残月<rt>ざんげつ<\/rt><\/ruby>、光冷ややかに、<ruby>白露<rt>はくろ<\/rt><\/ruby>は地にしげく、樹間を渡る冷風はすでに<ruby>暁<rt>あかつき<\/rt><\/ruby>の近きを告げていた。人々はもはや、事の<ruby>奇異<rt>きい<\/rt><\/ruby>を忘れ、<ruby>粛然<rt>しゅくぜん<\/rt><\/ruby>として、この詩人の<ruby>薄幸<rt>はっこう<\/rt><\/ruby>を嘆じた。李徴の声は再び続ける。",
+      "　なぜこんな運命になったかわからぬと、先刻は言ったが、しかし、考えようによれば、思い当たることが全然ないでもない。人間であったとき、おれは<ruby>努<rt>つと<\/rt><\/ruby>めて人との交わりを避けた。人々はおれを<ruby>倨傲<rt>きょごう<\/rt><\/ruby>だ、<ruby>尊大<rt>そんだい<\/rt><\/ruby>だと言った。実は、それがほとんど<ruby>羞恥心<rt>しゅうちしん<\/rt><\/ruby>に近いものであることを、人々は知らなかった。もちろん、かつての<ruby>郷党<rt>きょうとう<\/rt><\/ruby>の<ruby>鬼才<rt>きさい<\/rt><\/ruby>と言われた自分に、自尊心がなかったとは言わない。しかし、それは<ruby>臆病<rt>おくびょう<\/rt><\/ruby>な自尊心とでも言うべきものであった。おれは詩によって名を成そうと思いながら、進んで師に<ruby>就<rt>つ<\/rt><\/ruby>いたり、求めて詩友と交わって<ruby>切磋琢磨<rt>せっさたくま<\/rt><\/ruby>に努めたりすることをしなかった。かといって、また、おれは俗物の間に<ruby>伍<rt>ご<\/rt><\/ruby>することも<ruby>潔<rt>いさぎよ<\/rt><\/ruby>しとしなかった。ともに、我が臆病な自尊心と、尊大な羞恥心とのせいである。己の<ruby>珠<rt>たま<\/rt><\/ruby>にあらざることを<ruby>惧<rt>おそ<\/rt><\/ruby>れるがゆえに、あえて<ruby>刻苦<rt>こっく<\/rt><\/ruby>して磨こうともせず、また、己の珠なるべきを半ば信ずるがゆえに、<ruby>碌々<rt>ろくろく<\/rt><\/ruby>として<ruby>瓦<rt>かわら<\/rt><\/ruby>に伍することもできなかった。おれはしだいに世と離れ、人と遠ざかり、<ruby>憤悶<rt>ふんもん<\/rt><\/ruby>と<ruby>慙恚<rt>ざんい<\/rt><\/ruby>とによってますます己の内なる臆病な自尊心を飼いふとらせる結果になった。人間は誰でも猛獣使いであり、その猛獣に当たるのが、各人の<ruby>性情<rt>せいじょう<\/rt><\/ruby>だという。おれの場合、この尊大な羞恥心が猛獣だった。虎だったのだ。これがおれを<ruby>損<rt>そこ<\/rt><\/ruby>ない、妻子を苦しめ、友人を傷つけ、果ては、おれの外形をかくのごとく、内心にふさわしいものに変えてしまったのだ。今思えば、全く、おれは、おれの持っていたわずかばかりの才能を<ruby>空費<rt>くうひ<\/rt><\/ruby>してしまったわけだ。人生は何事をもなさぬにはあまりに長いが、何事かをなすにはあまりに短いなどと口先ばかりの<ruby>警句<rt>けいく<\/rt><\/ruby>を<ruby>弄<rt>ろう<\/rt><\/ruby>しながら、事実は、才能の不足を<ruby>暴露<rt>ばくろ<\/rt><\/ruby>するかもしれないとの<ruby>卑怯<rt>ひきょう<\/rt><\/ruby>な<ruby>危惧<rt>きぐ<\/rt><\/ruby>と、刻苦をいとう<ruby>怠惰<rt>たいだ<\/rt><\/ruby>とがおれのすべてだったのだ。おれよりもはるかに<ruby>乏<rt>とぼ<\/rt><\/ruby>しい才能でありながら、それを<ruby>専一<rt>せんいつ<\/rt><\/ruby>に磨いたがために、堂々たる詩家となった者がいくらでもいるのだ。虎となり果てた今、おれはようやくそれに気がついた。それを思うと、おれは今も胸を<ruby>灼<rt>や<\/rt><\/ruby>かれるような<ruby>悔<rt>く<\/rt><\/ruby>いを感じる。おれにはもはや人間としての生活はできない。たとえ、今、おれが頭の中で、どんな<ruby>優<rt>すぐ<\/rt><\/ruby>れた詩を作ったにしたところで、どういう手段で発表できよう。まして、おれの頭は日ごとに虎に近づいてゆく。どうすればいいのだ。おれの空費された過去は？　おれはたまらなくなる。そういうとき、おれは、向こうの山の<ruby>頂<rt>いただき<\/rt><\/ruby>の<ruby>巌<rt>いわお<\/rt><\/ruby>に上り、<ruby>空谷<rt>くうこく<\/rt><\/ruby>に向かって<ruby>吼<rt>ほ<\/rt><\/ruby>える。この胸を灼く悲しみを誰かに訴えたいのだ。おれは昨夕も、あそこで月に向かって<ruby>咆<rt>ほ<\/rt><\/ruby>えた。誰かにこの苦しみがわかってもらえないかと。しかし、獣どもはおれの声を聞いて、ただ、懼れ、ひれ伏すばかり。山も木も月も露も、一匹の虎が怒り狂って、<ruby>哮<rt>たけ<\/rt><\/ruby>っているとしか考えない。天に躍り地に伏して<ruby>嘆<rt>なげ<\/rt><\/ruby>いても、誰一人おれの気持ちをわかってくれる者はない。ちょうど、人間だったころ、おれの傷つきやすい内心を誰も理解してくれなかったように。おれの毛皮のぬれたのは、<ruby>夜露<rt>よつゆ<\/rt><\/ruby>のためばかりではない。"
+    ]
+  },
+  {
+    "id": "scene3",
+    "title": "場面③ 妻子への依頼と自己嫌悪・丘の上の別れ",
+    "paragraphs": [
+      "　ようやくあたりの暗さが薄らいできた。木の間を伝って、いずこからか、<ruby>暁角<rt>ぎょうかく<\/rt><\/ruby>が哀しげに響き始めた。",
+      "　もはや、別れを告げねばならぬ。<ruby>酔<rt>よ<\/rt><\/ruby>わねばならぬときが、（虎に還らねばならぬときが）近づいたから、と、李徴の声が言った。だが、お別れする前にもう一つ頼みがある。それは我が妻子のことだ。彼らはいまだ<ruby>虢略<rt>かくりゃく<\/rt><\/ruby>にいる。もとより、おれの運命については知るはずがない。君が南から帰ったら、おれはすでに死んだと彼らに告げてもらえないだろうか。決して今日のことだけは明かさないでほしい。厚かましいお願いだが、彼らの<ruby>孤弱<rt>こじゃく<\/rt><\/ruby>を哀れんで、今後とも<ruby>道塗<rt>どうと<\/rt><\/ruby>に<ruby>飢凍<rt>きとう<\/rt><\/ruby>することのないように計らっていただけるならば、自分にとって、<ruby>恩幸<rt>おんこう<\/rt><\/ruby>、これに過ぎたるはない。",
+      "　言い終わって、叢中から<ruby>慟哭<rt>どうこく<\/rt><\/ruby>の声が聞こえた。袁もまた涙を浮かべ、喜んで李徴の意に<ruby>添<rt>そ<\/rt><\/ruby>いたい<ruby>旨<rt>むね<\/rt><\/ruby>を答えた。李徴の声はしかしたちまちまた先刻の自嘲的な調子に戻って、言った。",
+      "　本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。飢え<ruby>凍<rt>こご<\/rt><\/ruby>えようとする妻子のことよりも、己の乏しい詩業のほうを気にかけているような男だから、こんな獣に身を<ruby>堕<rt>おと<\/rt><\/ruby>すのだ。",
+      "　そうして、つけ加えて言うことに、袁傪が嶺南からの帰途には決してこの道を通らないでほしい、そのときには自分が酔っていて<ruby>故人<rt>とも<\/rt><\/ruby>を認めずに襲いかかるかもしれないから。また、今別れてから、前方百歩の所にある、あの丘に上ったら、こちらを振り返って見てもらいたい。自分は今の姿をもう一度お目にかけよう。勇に<ruby>誇<rt>ほこ<\/rt><\/ruby>ろうとしてではない。我が<ruby>醜悪<rt>しゅうあく<\/rt><\/ruby>な姿を示して、もって、再びここを過ぎて自分に会おうとの気持ちを君に起こさせないためであると。",
+      "　袁傪は草むらに向かって、<ruby>懇<rt>ねんご<\/rt><\/ruby>ろに別れの言葉を述べ、馬に上った。草むらの中からは、また、堪え得ざるがごとき<ruby>悲泣<rt>ひきゅう<\/rt><\/ruby>の声が<ruby>漏<rt>も<\/rt><\/ruby>れた。袁傪も幾度か草むらを振り返りながら、涙のうちに出発した。",
+      "　一行が丘の上に着いたとき、彼らは、言われたとおりに振り返って、先ほどの林間の草地を眺めた。たちまち、一匹の虎が草の茂みから道の上に躍り出たのを彼らは見た。虎は、すでに白く光を失った月を仰いで、二声三声<ruby>咆哮<rt>ほうこう<\/rt><\/ruby>したかと思うと、また、もとの草むらに躍り入って、再びその姿を見なかった。"
+    ]
+  }
+];
+window.VOCAB_QUESTIONS = [
+  {
+    "id": "v01",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "袁傪は部下に命じ、筆を【執】って叢中の声に従って書き取らせた。",
+    "choices": [
+      "と",
+      "も",
+      "にぎ",
+      "ふる"
+    ],
+    "answer": 0,
+    "summary": "正解は「執（と）る」。手にもつ・仕事を行うという意味です。",
+    "detail": "部下に筆をもたせて李徴の詩を書き取らせた場面です。同字の「執着（しゅうちゃく）」も試験範囲内の頻出語です。"
+  },
+  {
+    "id": "v02",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "長短およそ三十編、格調高雅、意趣【卓逸】、一読して作者の才の非凡を思わせるものばかりである。",
+    "choices": [
+      "たくいつ",
+      "しゃくいつ",
+      "たくえつ",
+      "たっいつ"
+    ],
+    "answer": 0,
+    "summary": "正解は「卓逸（たくいつ）」。他よりはるかに抜け出て優れていることです。",
+    "detail": "学習課題の漢字読み出題語。「卓越（たくえつ）」と読み間違えないよう「逸（いつ）」の音に注意しましょう。"
+  },
+  {
+    "id": "v03",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "人々はもはや、事の奇異を忘れ、粛然として、この詩人の【薄幸】を嘆じた。",
+    "choices": [
+      "はっこう",
+      "はくこう",
+      "うすさち",
+      "ばっこう"
+    ],
+    "answer": 0,
+    "summary": "正解は「薄幸（はっこう）」。幸せが薄いこと、不運であることを指します。",
+    "detail": "「はくこう」ではなく促音化して「はっこう」と読みます。直前の「粛然（しゅくぜん）」「奇異（きい）」も頻出です。"
+  },
+  {
+    "id": "v04",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "進んで師に【就】いたり、求めて詩友と交わって切磋琢磨に努めたりすることをしなかった。",
+    "choices": [
+      "つ",
+      "なら",
+      "したが",
+      "むか"
+    ],
+    "answer": 0,
+    "summary": "正解は「就（つ）く」。師のもとに弟子入りする・職に就くという意味です。",
+    "detail": "「付く」「着く」ではなく「就く」を使う点に注意。小テスト・学習課題の両方で頻出の重要語です。"
+  },
+  {
+    "id": "v05",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "事実は、才能の不足を【暴露】するかもしれないとの卑怯な危惧と、刻苦をいとう怠惰とがおれのすべてだったのだ。",
+    "choices": [
+      "ばくろ",
+      "ぼうろ",
+      "ばくろう",
+      "はくろ"
+    ],
+    "answer": 0,
+    "summary": "正解は「暴露（ばくろ）」。隠していた欠点や秘密をさらけ出すことです。",
+    "detail": "「ぼうろ」と読み間違えやすいので要注意。漢字の書き取り問題でもよく出題されます。"
+  },
+  {
+    "id": "v06",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "そういうとき、おれは、向こうの山の【頂】の巌に上り、空谷に向かって吼える。",
+    "choices": [
+      "いただき",
+      "ちょう",
+      "てっぺん",
+      "みね"
+    ],
+    "answer": 0,
+    "summary": "正解は「頂（いただき）」。山のいちばん高いところを指します。",
+    "detail": "同じ一文にある「巌（いわお）」「吼（ほ）える」もあわせて読めるようにしておくと万全です。"
+  },
+  {
+    "id": "v07",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "向こうの山の頂の巌に上り、【空谷】に向かって吼える。",
+    "choices": [
+      "くうこく",
+      "そらだに",
+      "からたに",
+      "くうたに"
+    ],
+    "answer": 0,
+    "summary": "正解は「空谷（くうこく）」。人けのない、ひっそりとした深い谷のことです。",
+    "detail": "学習課題・通信制報告課題の両方で出題される漢字読み問題です。音読みで「くうこく」と読みます。"
+  },
+  {
+    "id": "v08",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "おれの毛皮のぬれたのは、【夜露】のためばかりではない。",
+    "choices": [
+      "よつゆ",
+      "やろ",
+      "よづゆ",
+      "よるつゆ"
+    ],
+    "answer": 0,
+    "summary": "正解は「夜露（よつゆ）」。夜に降りる露のことです。",
+    "detail": "「よづゆ」と濁らない点に注意。毛皮がぬれたのは夜露だけでなく、悲しみと後悔から流した涙のためでもあるという名台詞です。"
+  },
+  {
+    "id": "v09",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "彼らの孤弱を哀れんで、今後とも道塗に【飢凍】することのないように計らっていただけるならば",
+    "choices": [
+      "きとう",
+      "ぎとう",
+      "うごこ",
+      "きどう"
+    ],
+    "answer": 0,
+    "summary": "正解は「飢凍（きとう）」。食べ物に飢え、寒さに凍えることです。",
+    "detail": "「道塗（どうと＝道ばた）」で飢え凍えることのないように、と袁傪に妻子の生活保護を頼む場面の語句です。"
+  },
+  {
+    "id": "v10",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "袁もまた涙を浮かべ、喜んで李徴の意に添いたい【旨】を答えた。",
+    "choices": [
+      "むね",
+      "し",
+      "こころ",
+      "ねがい"
+    ],
+    "answer": 0,
+    "summary": "正解は「旨（むね）」。意向・趣旨・話の要点という意味です。",
+    "detail": "ここでは「喜んで依頼を引き受けるという意向」を表します。直前の「添（そ）いたい」の読みも頻出です。"
+  },
+  {
+    "id": "v11",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "草むらの中からは、また、堪え得ざるがごとき【悲泣】の声が漏れた。",
+    "choices": [
+      "ひきゅう",
+      "ひきょく",
+      "かななき",
+      "ひりゅう"
+    ],
+    "answer": 0,
+    "summary": "正解は「悲泣（ひきゅう）」。悲しんで泣くことを意味します。",
+    "detail": "別れを告げる袁傪の言葉を聞いて、草むらの中の李徴がこらえきれず泣く場面です。「漏（も）れた」の漢字も確認しておきましょう。"
+  },
+  {
+    "id": "v12",
+    "type": "choice",
+    "group": "reading",
+    "category": "漢字の読み",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の漢字の読みとして正しいものを選びなさい。",
+    "excerpt": "袁傪は草むらに向かって、【懇】ろに別れの言葉を述べ、馬に上った。",
+    "choices": [
+      "ねんご",
+      "こころ",
+      "ていねい",
+      "おもむ"
+    ],
+    "answer": 0,
+    "summary": "正解は「懇（ねんご）ろ」。心をこめて親切・丁寧に扱うようすです。",
+    "detail": "小テスト・評問標準・学習課題・授プリのすべてに登場する最重要語。読み・意味ともに必ず押さえましょう。"
+  },
+  {
+    "id": "v13",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene1",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "遺稿の【ショザイ】ももはやわからなくなっていよう。",
+    "answerText": "所在",
+    "answerReading": "しょざい",
+    "summary": "物や人のある場所・ありかのこと。「所」＋「在」です。",
+    "detail": "「処在」「所材」と書き間違えやすいので注意。李徴が過去に作った数百編の詩の行方がわからなくなっている場面です。"
+  },
+  {
+    "id": "v14",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene1",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "産を破り心を狂わせてまで自分が【ショウガイ】それに執着したところのものを",
+    "answerText": "生涯",
+    "answerReading": "しょうがい",
+    "summary": "生きている間・一生のこと。「涯」はさんずいに「厂」＋「土」二つです。",
+    "detail": "「障害」「生害」との混同に注意。一生涯をかけて詩作に打ち込んだ執念を表しています。"
+  },
+  {
+    "id": "v15",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene1",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "自分が生涯それに【シュウチャク】したところのものを、一部なりとも後代に伝えないでは",
+    "answerText": "執着",
+    "answerReading": "しゅうちゃく",
+    "summary": "一つの物事に強く心がとらわれて離れられないことです。",
+    "detail": "「執」は「筆を執る」の「執」と同じ字。つくりの「丸」の点（丶）を忘れないよう確認しましょう。"
+  },
+  {
+    "id": "v16",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene1",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "なるほど、作者の【ソシツ】が第一流に属するものであることは疑いない。",
+    "answerText": "素質",
+    "answerReading": "そしつ",
+    "summary": "生まれつき備わっている性質や才能のことです。",
+    "detail": "袁傪が李徴の旧詩を評する重要箇所の語句。「質」の上部は「斤」が二つ並びます。"
+  },
+  {
+    "id": "v17",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene1",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "しかし、袁傪は【カンタン】しながらも漠然と次のように感じていた。",
+    "answerText": "感嘆",
+    "answerReading": "かんたん",
+    "summary": "深く感心してため息をつくこと。教科書表記は「感嘆」です。",
+    "detail": "「嘆」は口へんに「漢」のつくり。同じ箇所の「漠然」「微妙」も評問標準【四】の書き取り出題語です。"
+  },
+  {
+    "id": "v18",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene2",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "人々はおれを倨傲だ、【ソンダイ】だと言った。",
+    "answerText": "尊大",
+    "answerReading": "そんだい",
+    "summary": "思いあがって偉そうに人を見下す態度のことです。",
+    "detail": "「尊大な羞恥心」という作品の最重要キーワードにも使われます。「尊」の中の横棒の抜けに注意しましょう。"
+  },
+  {
+    "id": "v19",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene2",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "しかし、それは【オクビョウ】な自尊心とでも言うべきものであった。",
+    "answerText": "臆病",
+    "answerReading": "おくびょう",
+    "summary": "気が弱く怖がりなこと。「臆」はにくづき（月）です。",
+    "detail": "「記憶」の「憶（りっしんべん）」と書き間違えやすい頻出漢字。「臆病な自尊心」は丸ごと書けるようにしましょう。"
+  },
+  {
+    "id": "v20",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene2",
+    "prompt": "次の文の【カタカナ】を下のマス（2×2）に手書きしましょう。",
+    "excerpt": "求めて詩友と交わって【セッサタクマ】に努めたりすることをしなかった。",
+    "answerText": "切磋琢磨",
+    "answerReading": "せっさたくま",
+    "summary": "仲間と励み合い、学問や技芸を互いに磨き向上させる四字熟語です。",
+    "detail": "「磋」は石へんに差、「琢」は王へんに豖（点の有無に注意）、「磨」は麻の下に石。評問標準【五】・学習課題の超頻出語です。"
+  },
+  {
+    "id": "v21",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene2",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "才能の不足を【バクロ】するかもしれないとの卑怯な危惧",
+    "answerText": "暴露",
+    "answerReading": "ばくろ",
+    "summary": "隠していた欠点や秘密をさらけ出すことです。",
+    "detail": "「暴」の下部は「水」ではなく「氺」、「露」は雨かんむりに「路」。評問標準【五】・学習課題・報告課題すべてで出題されます。"
+  },
+  {
+    "id": "v22",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene2",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "刻苦をいとう【タイダ】とがおれのすべてだったのだ。",
+    "answerText": "怠惰",
+    "answerReading": "たいだ",
+    "summary": "なまけて物事をしないこと。「惰」はりっしんべん（忄）です。",
+    "detail": "「堕落」の「堕（土）」と混同しないよう注意。対義語の「勤勉」とセットで覚えておくと確実です。"
+  },
+  {
+    "id": "v23",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene2",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "おれよりもはるかに乏しい才能でありながら、それを【センイツ】に磨いたがために",
+    "answerText": "専一",
+    "answerReading": "せんいつ",
+    "summary": "心をほかへ向けず、ただ一つのことに集中するようすです。",
+    "detail": "「専」の上に点が要らない点に注意（旧字「專」と混同しないこと）。評問標準【五】・学習課題の出題語です。"
+  },
+  {
+    "id": "v24",
+    "type": "handwriting",
+    "group": "writing",
+    "category": "漢字の書き（手書き）",
+    "sceneId": "scene3",
+    "prompt": "次の文の【カタカナ】を下のマスに手書きしましょう。",
+    "excerpt": "自分は今の姿をもう一度お目にかけよう。勇に【ホコ】ろうとしてではない。",
+    "answerText": "誇",
+    "answerReading": "ほこ（ろう）",
+    "summary": "得意になって自慢すること。ごんべん（言）に「夸」です。",
+    "detail": "送り仮名「ろう」が文中に付いているため漢字部分は「誇」の一字。小テスト・評問標準【六】の頻出語です。"
+  },
+  {
+    "id": "v25",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の表現の意味として最も適切なものを選びなさい。",
+    "excerpt": "袁傪はじめ一行は、【息をのんで】、叢中の声の語る不思議に聞き入っていた。",
+    "choices": [
+      "驚きや緊張のあまり、思わず息を止めるようす",
+      "深い安堵のため息をついて肩の力を抜くようす",
+      "恐怖のあまり声をあげて泣き叫ぶようす",
+      "退屈さをこらえて静かに話を聞き流すようす"
+    ],
+    "answer": 0,
+    "summary": "「息をのむ」は、驚いたり緊張したりして思わず息を止めることです。",
+    "detail": "試験範囲の冒頭を飾る重要慣用句（授プリ語彙）。李徴の語る不可思議な運命に一行が強く引き込まれている場面です。"
+  },
+  {
+    "id": "v26",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "袁傪はじめ一行は、息をのんで、【叢中】の声の語る不思議に聞き入っていた。",
+    "choices": [
+      "くさむらの中",
+      "暗い岩穴の奥",
+      "深い谷底のあたり",
+      "霧に包まれた林の向こう"
+    ],
+    "answer": 0,
+    "summary": "「叢中（そうちゅう）」は、くさむらの中という意味です。",
+    "detail": "李徴は醜悪な虎の姿を旧友に見せないため、草むらに身を隠したまま語りかけています。"
+  },
+  {
+    "id": "v27",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "自分は元来詩人として名を成すつもりでいた。しかも、【業いまだ成らざる】に、この運命に立ち至った。",
+    "choices": [
+      "志していた詩人としての仕事・業績がまだ達成されないうちに",
+      "役人としての出世の望みが完全に断たれたあとに",
+      "故郷に残した家業を十分に継ぎ終わらないうちに",
+      "師匠のもとでの厳しい修行をようやく終えたところに"
+    ],
+    "answer": 0,
+    "summary": "「業（ぎょう）」は詩人として名を成すこと。「いまだ成らず」はまだ達成されない意です。",
+    "detail": "学習課題でも「業」の内容を抜き出す設問として重視される表現です。"
+  },
+  {
+    "id": "v28",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "ところで、そのうち、今もなお【記誦】せるものが数十ある。",
+    "choices": [
+      "暗記していて、口に出してとなえること",
+      "書き留めて大切に保管しておくこと",
+      "他人の作品から引用して記録すること",
+      "声に出さずに心の中で黙読すること"
+    ],
+    "answer": 0,
+    "summary": "「記誦（きしょう）」は、覚えていてそらんじることです。",
+    "detail": "遺稿の所在はわからなくなったものの、かつて作った数百編のうち数十編を今でも暗記しているため、書き留めてほしいと頼んでいます。"
+  },
+  {
+    "id": "v29",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "これを我がために【伝録】していただきたいのだ。",
+    "choices": [
+      "書き記して後世に伝えること",
+      "うわさ話として世間に広めること",
+      "詩の優劣を評価して採点すること",
+      "遺稿を探し出して持ち帰ること"
+    ],
+    "answer": 0,
+    "summary": "「伝録（でんろく）」は、書き記して後世に伝えることです。",
+    "detail": "「録」は書き記す、「伝」は後代に伝えるという意味。袁傪は部下に命じて李徴の声を書き取らせます。"
+  },
+  {
+    "id": "v30",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "作の【巧拙】は知らず、とにかく、産を破り心を狂わせてまで自分が生涯それに執着したところのものを",
+    "choices": [
+      "出来ばえがうまいことと、へたなこと",
+      "詩の長さが長いことと、短いこと",
+      "内容が新しいことと、古いこと",
+      "世間での評判が高いことと、低いこと"
+    ],
+    "answer": 0,
+    "summary": "「巧拙（こうせつ）」は、うまい（巧）こととへたな（拙）ことです。",
+    "detail": "「作の巧拙は知らず」は、出来が良いか悪いかはさておき、という意味。授プリ・学習課題・報告課題すべてで出題される重要語です。"
+  },
+  {
+    "id": "v31",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "自分が生涯それに【執着】したところのものを、一部なりとも後代に伝えないでは",
+    "choices": [
+      "一つの物事に強く心がとらわれて離れられないこと",
+      "冷静な距離を保ちながら客観的に取り組むこと",
+      "周囲の期待に応えるため無理に努力すること",
+      "一度決めた目標を途中で簡単に投げ出すこと"
+    ],
+    "answer": 0,
+    "summary": "「執着（しゅうちゃく）」は、一つの物事に強く心がとらわれて離れられないことです。",
+    "detail": "産を破り心を狂わせてまで詩業にこだわり続けた李徴の生き方そのものを表すキーワードです。"
+  },
+  {
+    "id": "v32",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "李徴の声は草むらの中から【朗々】と響いた。",
+    "choices": [
+      "声が大きく、澄んではっきりと響くようす",
+      "低くくぐもって聞き取りにくいようす",
+      "悲しげにふるえながら途切れがちなようす",
+      "怒りに満ちて荒々しく叫ぶようす"
+    ],
+    "answer": 0,
+    "summary": "「朗々（ろうろう）」は、声が大きく澄んでよく響くようすです。",
+    "detail": "詩を詠じる李徴の誇りと情熱が表れている描写です（授プリ語彙）。"
+  },
+  {
+    "id": "v33",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "長短およそ三十編、【格調高雅、意趣卓逸】、一読して作者の才の非凡を思わせるものばかりである。",
+    "choices": [
+      "表現の風格が気高く上品で、内容・着想もひときわ優れていること",
+      "形式は整っているが、内容が難解すぎて理解しにくいこと",
+      "言葉づかいが平易で、誰にでも親しみやすいこと",
+      "詩の雰囲気は上品だが、作者の感情がまったく表れていないこと"
+    ],
+    "answer": 0,
+    "summary": "表現の風格（格調）も内容・着想（意趣）もともに優れていることです。",
+    "detail": "「格調高雅」＝表現の調子や風格が気高く上品、「意趣卓逸」＝詩の趣や着想が並外れて優れていること（評問標準【四】）。"
+  },
+  {
+    "id": "v34",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "しかし、袁傪は【感嘆】しながらも漠然と次のように感じていた。",
+    "choices": [
+      "深く感心して、思わずため息をつくこと",
+      "かわいそうに思って深く同情すること",
+      "不可思議な出来事に強い恐怖を抱くこと",
+      "相手の欠点を見つけて心の中で軽蔑すること"
+    ],
+    "answer": 0,
+    "summary": "「感嘆（かんたん）」は、深く感心してため息をつくことです。",
+    "detail": "袁傪は李徴の非凡な才能に深く感心しつつも、同時に「第一流の作品となるには微妙な点で欠けるところがある」と感じています。"
+  },
+  {
+    "id": "v35",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "しかし、袁傪は感嘆しながらも【漠然と】次のように感じていた。",
+    "choices": [
+      "はっきりせず、ぼんやりとしているさま",
+      "論理的に明確な根拠をもって確信するさま",
+      "突然ひらめいて一気に理解するさま",
+      "激しい怒りを込めて厳しく批判するさま"
+    ],
+    "answer": 0,
+    "summary": "「漠然（ばくぜん）」は、輪郭がはっきりせずぼんやりしているさまです。",
+    "detail": "言葉で明確に言い当てられない「非常に微妙な点」の欠如を、袁傪が感覚的に捉えていることを示します。"
+  },
+  {
+    "id": "v36",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "旧詩を吐き終わった李徴の声は、突然調子を変え、【自らを嘲る】がごとくに言った。",
+    "choices": [
+      "自分自身の愚かさや情けなさをあざけり笑うこと",
+      "自分の優れた才能を自慢げに語り始めること",
+      "周囲の人々の無理解を激しく非難すること",
+      "自分の過去の過ちを他人事のように忘れること"
+    ],
+    "answer": 0,
+    "summary": "「自らを嘲（あざけ）る」は、自分の欠点や愚かさをあざけり笑う（自嘲する）ことです。",
+    "detail": "直後に袁傪が「昔の青年李徴の自嘲癖（じちょうへき）を思い出しながら」と受け止めています（授プリ・評問標準【四】）。"
+  },
+  {
+    "id": "v37",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "そうだ、【お笑い草】ついでに、今の思いを即席の詩に述べてみようか。",
+    "choices": [
+      "笑いもの・あざけりの種",
+      "心を和ませる楽しい冗談",
+      "草むらの中に咲く小さな花",
+      "旅の疲れを癒やす軽い余興"
+    ],
+    "answer": 0,
+    "summary": "「お笑い草（わらいぐさ）」は、人の笑いもの・あざけりの種という意味です。",
+    "detail": "「嗤ってくれ。詩人になりそこなって虎になった哀れな男を」という直前の自嘲を受けた表現です。"
+  },
+  {
+    "id": "v38",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "人々はもはや、事の奇異を忘れ、【粛然】として、この詩人の薄幸を嘆じた。",
+    "choices": [
+      "心が引き締まり、厳かで静まりかえるさま",
+      "ざわざわと騒ぎ立てて興奮するさま",
+      "あまりの恐ろしさに震え上がるさま",
+      "すっかり気が緩んで眠気を催すさま"
+    ],
+    "answer": 0,
+    "summary": "「粛然（しゅくぜん）」は、心が引き締まり厳かに静まりかえるさまです。",
+    "detail": "即席の漢詩を聞いた一行が、虎が話すという怪異さえ忘れて静かに心を打たれた情景を表します（授プリ）。"
+  },
+  {
+    "id": "v39",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "人々はもはや、事の奇異を忘れ、粛然として、この詩人の【薄幸】を嘆じた。",
+    "choices": [
+      "幸せが薄いこと・不運なこと",
+      "才能が乏しくて未熟なこと",
+      "人徳がなく周囲から嫌われること",
+      "寿命が短く若くして亡くなること"
+    ],
+    "answer": 0,
+    "summary": "「薄幸（はっこう）」は、幸せが薄いこと・不運な境遇であることです。",
+    "detail": "非凡な詩才を持ちながら虎に身を堕とした李徴の不運を、袁傪と部下たちが深く嘆いています。"
+  },
+  {
+    "id": "v40",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "人間であったとき、おれは努めて人との交わりを避けた。人々はおれを【倨傲】だ、尊大だと言った。",
+    "choices": [
+      "おごり高ぶって人を見下すさま",
+      "気が小さくておどおどしているさま",
+      "心が狭くすぐに怒り出すさま",
+      "無口で何を考えているかわからないさま"
+    ],
+    "answer": 0,
+    "summary": "「倨傲（きょごう）」は、おごり高ぶり人を見下す態度のことです。",
+    "detail": "「尊大」と並べて用いられ、周囲から見た李徴の冷たく偉そうな外見的印象を表しています。"
+  },
+  {
+    "id": "v41",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "人々はおれを倨傲だ、【尊大】だと言った。",
+    "choices": [
+      "思いあがって、偉そうに人を見下した態度であること",
+      "堂々として威厳があり、誰からも尊敬されること",
+      "人づきあいが苦手で恥ずかしがり屋であること",
+      "細かいことにこだわらず心が広いこと"
+    ],
+    "answer": 0,
+    "summary": "「尊大（そんだい）」は、思いあがって偉そうに人を見下す態度のことです。",
+    "detail": "授プリ語彙の重要語。後に「尊大な羞恥心」として李徴の複雑な内面を表す核となります。"
+  },
+  {
+    "id": "v42",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "もちろん、かつての【郷党の鬼才】と言われた自分に、自尊心がなかったとは言わない。",
+    "choices": [
+      "故郷の仲間内で知られた、人間離れした鋭い才能の持ち主",
+      "都の宮廷で恐れられた、冷酷で気性の激しい役人",
+      "同じ一族の中で最も変わり者として孤立した人物",
+      "学問よりも武芸に秀でた勇猛な若者"
+    ],
+    "answer": 0,
+    "summary": "「郷党」は故郷の仲間、「鬼才」は人間のものとは思えない鋭い才能のことです。",
+    "detail": "学習課題の語句設問。「鬼才」は決して悪い意味ではなく、常人離れした天才的な才能を指します。"
+  },
+  {
+    "id": "v43",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "求めて詩友と交わって【切磋琢磨】に努めたりすることをしなかった。",
+    "choices": [
+      "学問や芸道を励み合い、互いに磨き向上させること",
+      "他人と競い合って相手を打ち負かすこと",
+      "一人で山にこもって静かに思索すること",
+      "師の教えをそのまま暗記して受け継ぐこと"
+    ],
+    "answer": 0,
+    "summary": "「切磋琢磨（せっさたくま）」は、仲間と励み合い互いに磨き向上させることです。",
+    "detail": "玉や石を切って磨くことに由来する四字熟語。評問標準【五】・学習課題の定番出題語です。"
+  },
+  {
+    "id": "v44",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "かといって、また、おれは【俗物の間に伍する】ことも潔しとしなかった。",
+    "choices": [
+      "平凡でつまらない人々の仲間に加わること",
+      "優れた詩人たちと議論を交わすこと",
+      "世俗の評判を気にして行動すること",
+      "高い官位に就いて人々を支配すること"
+    ],
+    "answer": 0,
+    "summary": "「伍（ご）する」は仲間に入る・肩を並べるという意味です。",
+    "detail": "直後の「碌々として瓦に伍する」と同じ意味で、「俗物」と「瓦」が対応しています。"
+  },
+  {
+    "id": "v45",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "おれは俗物の間に伍することも【潔しとしなかった】。",
+    "choices": [
+      "自らの信念や誇りに照らして受け入れられないと思った",
+      "自分の実力ではとうてい無理だとあきらめた",
+      "周囲の目が気になって恥ずかしいと感じた",
+      "汚れを嫌って身ぎれいに保とうとした"
+    ],
+    "answer": 0,
+    "summary": "「潔（いさぎよ）しとしない」は、自らの信念に照らして受け入れられないことです。",
+    "detail": "語彙養成・評問標準【五】ともに頻出の重要表現です。"
+  },
+  {
+    "id": "v46",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "己の珠なるべきを半ば信ずるがゆえに、【碌々】として瓦に伍することもできなかった。",
+    "choices": [
+      "これといった才能や功績もなく、平凡でつまらないさま",
+      "不平不満ばかり口にして怒っているさま",
+      "あわただしく落ち着きがないさま",
+      "礼儀正しく慎み深いさま"
+    ],
+    "answer": 0,
+    "summary": "「碌々（ろくろく）」は、平凡で役に立たない・つまらないさまです。",
+    "detail": "板書例答にも明記される重要語。自分の才能（珠）を半ば信じていたため、平凡な人々（瓦）に混じれなかった文脈です。"
+  },
+  {
+    "id": "v47",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "おれはしだいに世と離れ、人と遠ざかり、【憤悶と慙恚】とによってますます己の内なる臆病な自尊心を飼いふとらせる結果になった。",
+    "choices": [
+      "やり場のない怒り・もだえ苦しみと、恥じ恨む気持ち",
+      "穏やかなあきらめと、孤独を楽しむ静かな気持ち",
+      "他者への深い感謝と、自らを省みる謙虚な気持ち",
+      "将来の成功への希望と、創作への純粋な喜び"
+    ],
+    "answer": 0,
+    "summary": "「憤悶（ふんもん）」は怒りもだえること、「慙恚（ざんい）」は恥じ恨むことです。",
+    "detail": "社会から孤立するほど怒りと恥辱感がふくらみ、内なる「臆病な自尊心」という猛獣を肥大させていきました。"
+  },
+  {
+    "id": "v48",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "今思えば、全く、おれは、おれの持っていたわずかばかりの才能を【空費】してしまったわけだ。",
+    "choices": [
+      "大切なもの（才能や時間など）をむだに費やしてしまうこと",
+      "持てる力をすべて出し切って大きな成果を上げること",
+      "他人のために自分の能力を惜しみなく分け与えること",
+      "才能を隠したまま大切に温存しておくこと"
+    ],
+    "answer": 0,
+    "summary": "「空費（くうひ）」は、才能や時間などをむだに費やしてしまうことです。",
+    "detail": "直後に「おれの空費された過去は？」と繰り返され、取り返しのつかない後悔の核心となっています。"
+  },
+  {
+    "id": "v49",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の表現の意味として最も適切なものを選びなさい。",
+    "excerpt": "人生は何事をもなさぬにはあまりに長いが、何事かをなすにはあまりに短いなどと口先ばかりの【警句を弄し】ながら",
+    "choices": [
+      "気の利いた名言めいた言葉を、口先だけでたくみに操ること",
+      "厳しい戒めの言葉に従って地道に努力を続けること",
+      "他人の作った詩句を無断で自分の作品に取り入れること",
+      "大切な教訓を忘れて軽率な発言を繰り返すこと"
+    ],
+    "answer": 0,
+    "summary": "「警句」は鋭く気の利いた短句、「弄する」はもてあそぶ・口先で操ることです。",
+    "detail": "もっともらしい理屈を並べて、努力しない自分を正当化していたことへの厳しい自己批判です。"
+  },
+  {
+    "id": "v50",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の表現の意味として最も適切なものを選びなさい。",
+    "excerpt": "事実は、才能の不足を暴露するかもしれないとの卑怯な危惧と、【刻苦をいとう】怠惰とがおれのすべてだったのだ。",
+    "choices": [
+      "苦労して懸命に努力することを嫌がること",
+      "つらい苦労にも耐えて最後までやり抜くこと",
+      "細かい字句の修正ばかりにこだわること",
+      "他人に対して厳しい要求を押しつけること"
+    ],
+    "answer": 0,
+    "summary": "「刻苦」は苦労して努力すること、「いとう（厭う）」は嫌がるという意味です。",
+    "detail": "語彙養成・学習課題の頻出表現。李徴は自らの本質を「卑怯な危惧」と「刻苦をいとう怠惰」だったと見抜きます。"
+  },
+  {
+    "id": "v51",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "おれよりもはるかに乏しい才能でありながら、それを【専一】に磨いたがために、堂々たる詩家となった者がいくらでもいるのだ。",
+    "choices": [
+      "心をほかへ向けず、ただ一つのことに集中するようす",
+      "人並み外れた速さで一気に仕上げるようす",
+      "誰にも頼らず孤立したまま独学で進めるようす",
+      "流行に合わせて器用に作風を変えるようす"
+    ],
+    "answer": 0,
+    "summary": "「専一（せんいつ）」は、わき目もふらずただ一つのことに集中するようすです。",
+    "detail": "才能の多寡よりも、ひたむきに磨き続ける姿勢こそが詩家を生むという、遅すぎた気づきを表しています。"
+  },
+  {
+    "id": "v52",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の表現の意味として最も適切なものを選びなさい。",
+    "excerpt": "厚かましいお願いだが、彼らの孤弱を哀れんで、今後とも【道塗に飢凍する】ことのないように計らっていただけるならば",
+    "choices": [
+      "道ばたで食べ物に飢え、寒さに凍えること",
+      "遠い異郷へ旅に出て二度と帰れなくなること",
+      "厳しい冬の嵐に巻き込まれて道に迷うこと",
+      "世間の冷たい目にさらされて孤立すること"
+    ],
+    "answer": 0,
+    "summary": "「道塗（どうと）」は道ばた、「飢凍（きとう）」は飢えて凍えることです。",
+    "detail": "残された妻子が生活に困窮し路頭に迷うことがないよう、袁傪に支援を懇願する切実な表現です。"
+  },
+  {
+    "id": "v53",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の表現の意味として最も適切なものを選びなさい。",
+    "excerpt": "今後とも道塗に飢凍することのないように計らっていただけるならば、自分にとって、【恩幸、これに過ぎたるはない】。",
+    "choices": [
+      "これ以上にありがたい恵み・幸せはない",
+      "この恩を返す方法はもう何一つ残っていない",
+      "どれほど感謝しても十分に伝えきれないほど申し訳ない",
+      "かつて受けた恩義はすでに十分に報われた"
+    ],
+    "answer": 0,
+    "summary": "「恩幸（おんこう）」はありがたい恵み。「これに過ぎたるはない」はこれ以上のものはない意です。",
+    "detail": "漢文調の格調高い言い回しで、妻子の生活を託す李徴の深い感謝と懇願が込められています。"
+  },
+  {
+    "id": "v54",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "言い終わって、叢中から【慟哭】の声が聞こえた。",
+    "choices": [
+      "悲しみに耐えきれず、声をあげて激しく泣くこと",
+      "人目をはばかって静かにすすり泣くこと",
+      "怒りに任せて大声でののしること",
+      "ほっとして安堵のため息をつくこと"
+    ],
+    "answer": 0,
+    "summary": "「慟哭（どうこく）」は、悲しみに耐えきれず大声で激しく泣くことです。",
+    "detail": "妻子の行く末を袁傪に託した直後の描写です（評問標準【六】・授プリ語彙）。"
+  },
+  {
+    "id": "v55",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "袁傪は草むらに向かって、【懇ろ】に別れの言葉を述べ、馬に上った。",
+    "choices": [
+      "心をこめて親切・丁寧に扱うようす",
+      "形式的に手短に済ませるようす",
+      "恐怖を抑えながらおそるおそる話すようす",
+      "別れを惜しんでいつまでも離れないようす"
+    ],
+    "answer": 0,
+    "summary": "「懇ろ（ねんごろ）」は、心をこめて親切・丁寧に扱うようすです。",
+    "detail": "異類の姿になった旧友に対しても変わらぬ誠実さで接する袁傪の温和な人柄が表れています。"
+  },
+  {
+    "id": "v56",
+    "type": "choice",
+    "group": "meaning",
+    "category": "語句の意味",
+    "sceneId": "scene3",
+    "prompt": "次の文の【　】内の語句の意味として最も適切なものを選びなさい。",
+    "excerpt": "虎は、すでに白く光を失った月を仰いで、二声三声【咆哮】したかと思うと",
+    "choices": [
+      "猛獣などが大きな声でほえたけること",
+      "美しい声で詩を朗詠すること",
+      "低い声でうなりながら威嚇すること",
+      "哀しげに小さな声で鳴くこと"
+    ],
+    "answer": 0,
+    "summary": "「咆哮（ほうこう）」は、虎や獅子などの猛獣がほえたけることです。",
+    "detail": "物語の結末を象徴する重要語。もはや人語ではなく虎の咆哮だけを残して姿を消します。"
+  },
+  {
+    "id": "v57",
+    "type": "choice",
+    "group": "meaning",
+    "category": "対義語",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
+    "excerpt": "一読して作者の才の【非凡】を思わせるものばかりである。",
+    "choices": [
+      "平凡",
+      "普通",
+      "鈍才",
+      "無能"
+    ],
+    "answer": 0,
+    "summary": "「非凡（ひぼん）」の対義語は「平凡（へいぼん）」です。",
+    "detail": "『語彙養成』『評問標準【四】』で出題される基本対義語です。"
+  },
+  {
+    "id": "v58",
+    "type": "choice",
+    "group": "meaning",
+    "category": "対義語",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
+    "excerpt": "自分が生涯それに【執着】したところのものを、一部なりとも後代に伝えないでは",
+    "choices": [
+      "断念",
+      "絶望",
+      "忘却",
+      "放任"
+    ],
+    "answer": 0,
+    "summary": "「執着（しゅうちゃく）」の対義語は「断念（だんねん）」です。",
+    "detail": "『語彙養成』収録の対義語。強くこだわり続ける「執着」に対し、思い切ってあきらめるのが「断念」です。"
+  },
+  {
+    "id": "v59",
+    "type": "choice",
+    "group": "meaning",
+    "category": "対義語",
+    "sceneId": "scene2",
+    "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
+    "excerpt": "刻苦をいとう【怠惰】とがおれのすべてだったのだ。",
+    "choices": [
+      "勤勉",
+      "誠実",
+      "慎重",
+      "謙虚"
+    ],
+    "answer": 0,
+    "summary": "「怠惰（たいだ）」の対義語は「勤勉（きんべん）」です。",
+    "detail": "『語彙養成』収録の対義語。なまける「怠惰」に対し、一生懸命に励むのが「勤勉」です。"
+  },
+  {
+    "id": "v60",
+    "type": "choice",
+    "group": "meaning",
+    "category": "対義語",
+    "sceneId": "scene1",
+    "prompt": "次の文の【　】内の語句の対義語として最も適切なものを選びなさい。",
+    "excerpt": "しかし、袁傪は【感嘆】しながらも漠然と次のように感じていた。",
+    "choices": [
+      "罵倒",
+      "無視",
+      "失望",
+      "軽視"
+    ],
+    "answer": 0,
+    "summary": "「感嘆（かんたん）」の対義語は「罵倒（ばとう）」です。",
+    "detail": "『語彙養成』収録の対義語。深く感心してほめる「感嘆」に対し、激しくののしるのが「罵倒」です。"
+  }
+];
+window.CONTENT_QUESTIONS = [
+  {
+    "id": "c01",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "「袁傪はじめ一行は、息をのんで、叢中の声の語る不思議に聞き入っていた。声は続けて言う。」のように、李徴の語りの途中に語り手の言葉が差し挟まれることには、どのような効果があるか。",
+    "excerpt": "袁傪はじめ一行は、息をのんで、叢中の声の語る不思議に聞き入っていた。声は続けて言う。",
+    "choices": [
+      "李徴の語りに聞き入る袁傪たちの姿を伝えることで、読者が場面を客観的・冷静に捉え直すことができる。",
+      "袁傪たちが李徴の話を疑い始めていることを示し、二人の対立を際立たせている。",
+      "李徴が虎に変身した原因を語り手の立場から直接読者に解説している。",
+      "時間がすでに昼過ぎまで経過したことを読者に知らせている。"
+    ],
+    "answer": 0,
+    "summary": "語り手の客観的な描写を挟むことで、読者が場面を冷静に捉え直せる効果があります。",
+    "detail": "李徴の熱い独白に没入しきるのではなく、聞き手である袁傪一行の姿を映すことで適度な距離が生まれます（指導書問・評問新傾向）。"
+  },
+  {
+    "id": "c02",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "「しかも、業いまだ成らざるに、この運命に立ち至った。」とあるが、ここでいう「業」とは何か。",
+    "excerpt": "自分は元来詩人として名を成すつもりでいた。しかも、業いまだ成らざるに、この運命に立ち至った。",
+    "choices": [
+      "詩人として名を成すこと（詩業）",
+      "監察御史として高い官位に昇ること",
+      "妻子を養い故郷で平穏に暮らすこと",
+      "袁傪とともに科挙に合格すること"
+    ],
+    "answer": 0,
+    "summary": "直前の「詩人として名を成す」を受け、詩人としての仕事（詩業）を指します。",
+    "detail": "学習課題では「詩人として名を成す（こと）」と抜き出す設問になっています。官吏の仕事や家庭のことではありません。"
+  },
+  {
+    "id": "c03",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "「産を破り心を狂わせてまで自分が生涯それに執着したところのものを、一部なりとも後代に伝えないでは、死んでも死にきれないのだ。」に表れる李徴の気持ちとして最も適切なものはどれか。",
+    "excerpt": "産を破り心を狂わせてまで自分が生涯それに執着したところのものを、一部なりとも後代に伝えないでは、死んでも死にきれないのだ。",
+    "choices": [
+      "人間としての暮らしを失ってまで執着した詩の成果を少しでもこの世に遺さなければ、生きた証しが消えてしまい耐えられない気持ち。",
+      "自分の詩が第一流であることを袁傪に証明し、都で高く評価されたいという名誉欲だけの気持ち。",
+      "詩を書き残してもらえば、その功徳によって再び人間の姿に戻れるかもしれないと期待する気持ち。",
+      "これまで家族に苦労をかけた償いとして、詩を売って妻子の生活費にしたいという気持ち。"
+    ],
+    "answer": 0,
+    "summary": "人生すべてを懸けた詩業の痕跡を一部でも後世に遺さねば耐えられない切実な思いです。",
+    "detail": "「一人前の詩人面をしたいのではない。作の巧拙は知らず」と前置きしており、単なる名誉欲や金銭目的ではなく、人間として生きた証しを遺したいという執念です（指導書問脚問5）。"
+  },
+  {
+    "id": "c04",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "李徴が朗々と詠じた旧詩およそ三十編に対して、袁傪はどのように感じたか。本文の内容に合うものを選びなさい。",
+    "excerpt": "なるほど、作者の素質が第一流に属するものであることは疑いない。しかし、このままでは、第一流の作品となるのには、どこか（非常に微妙な点において）欠けるところがあるのではないか、と。",
+    "choices": [
+      "作者の素質は間違いなく第一流だが、第一流の作品となるには非常に微妙な点で何か欠けるところがあると感じた。",
+      "格調も意趣も申し分なく、そのまま長安で第一流の傑作として通用すると確信した。",
+      "虎になってしまったため教養が衰え、かつての非凡な才能がすでに失われていると感じた。",
+      "表現は巧みだが、あまりに自嘲的な内容ばかりで人に読ませるにはふさわしくないと感じた。"
+    ],
+    "answer": 0,
+    "summary": "素質は第一流だが、第一流の作品となるには「非常に微妙な点で欠けるところがある」と感じました。",
+    "detail": "袁傪は「格調高雅、意趣卓逸」と感嘆しつつも漠然とした不足を感じます。この「欠けるところ」は、後の李徴の独白（他者との切磋琢磨の欠如や自己中心性）と響き合います。"
+  },
+  {
+    "id": "c05",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "「旧詩を吐き終わった李徴の声は、突然調子を変え、自らを嘲るがごとくに言った。」とあるが、李徴が突然調子を変えた理由として最も適切なものはどれか。",
+    "excerpt": "旧詩を吐き終わった李徴の声は、突然調子を変え、自らを嘲るがごとくに言った。",
+    "choices": [
+      "虎になり果ててまでも、なお詩や文名に執着している自分の姿に気づき、恥ずかしく思ったから。",
+      "袁傪が自分の詩に欠点を感じていることを見抜き、怒りと失望を覚えたから。",
+      "後代に詩を遺す見通しがついたことに満足し、心に余裕が生まれたから。",
+      "旧詩を詠じているうちに、虎としての本能が強まり冷静さを保てなくなったから。"
+    ],
+    "answer": 0,
+    "summary": "虎になってもなお詩や文名に執着している自分に気づき、恥ずかしく思ったからです。",
+    "detail": "直後に「恥ずかしいことだが、今でも〜おれの詩集が長安風流人士の机の上に置かれているさまを、夢に見ることがあるのだ」と語っています（評問標準【四】・学習課題）。"
+  },
+  {
+    "id": "c06",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "「突然調子を変え、自らを嘲るがごとくに言った。」の前後で、李徴の一人称と語りの調子はどのように変化しているか。",
+    "excerpt": "（前）これを我がために伝録していただきたいのだ。→（後）恥ずかしいことだが、今でも……おれは、おれの詩集が……",
+    "choices": [
+      "一人称が「自分」から「おれ」に変わり、真剣な依頼の調子から自嘲的な語りへと変わっている。",
+      "一人称が「おれ」から「自分」に変わり、感情的な語りから冷静な説明へと変わっている。",
+      "一人称は一貫して「自分」のままだが、敬語を使わない乱暴な口調に変わっている。",
+      "一人称が「我」から「私」に変わり、袁傪への感謝を強調する調子に変わっている。"
+    ],
+    "answer": 0,
+    "summary": "一人称が「自分」から「おれ」へ変わり、真剣な依頼から自嘲的な語りへ転じています。",
+    "detail": "『山月記』では「自分＝冷静・客観的」「おれ＝感情が高ぶり内面を吐露するとき」という使い分けが一貫しています（指導書問）。"
+  },
+  {
+    "id": "c07",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "「この虎の中に、まだ、かつての李徴が生きているしるしに。」とはどういう意味か。",
+    "excerpt": "そうだ。お笑い草ついでに、今の思いを即席の詩に述べてみようか。この虎の中に、まだ、かつての李徴が生きているしるしに。",
+    "choices": [
+      "外見は虎になってしまったが、内側にはまだ人間の心が残っており、即興で詩を作る教養と言語能力があるということ。",
+      "虎の肉体の奥に人間の肉体が隠されており、いずれ元の姿に戻れる見込みがあるということ。",
+      "虎としての強大な力を手に入れた今も、かつての同輩たちへの恨みを忘れていないということ。",
+      "袁傪と再会したことで、完全に虎の心が消え去り人間に戻ったということ。"
+    ],
+    "answer": 0,
+    "summary": "外見は虎でも、中にはまだ「人間の心」と即興詩を作れる教養・言語能力が残っているということです。",
+    "detail": "人間の心が消えつつある中、かつての詩人・李徴がまだここに存在している証しを即席の七言律詩に託そうとしています（指導書問脚問6）。"
+  },
+  {
+    "id": "c08",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "李徴が詠んだ即席の漢詩「偶因狂疾〜但成嘷」の詩形と、対句になっている句の組み合わせとして正しいものを選びなさい。",
+    "excerpt": "(1)偶因狂疾成殊類 (2)災患相仍不可逃 (3)今日爪牙誰敢敵 (4)当時声跡共相高 (5)我為異物蓬茅下 (6)君已乗軺気勢豪 (7)此夕渓山対明月 (8)不成長嘯但成嘷",
+    "choices": [
+      "七言律詩 ／ (3)と(4)・(5)と(6)が対句",
+      "七言絶句 ／ (1)と(2)・(7)と(8)が対句",
+      "五言律詩 ／ (3)と(4)・(5)と(6)が対句",
+      "七言律詩 ／ (1)と(2)・(5)と(6)が対句"
+    ],
+    "answer": 0,
+    "summary": "一句七字・全八句の「七言律詩」で、(3)(4)と(5)(6)が対句です。",
+    "detail": "第3・4句は「今日」と「当時」の状況を、第5・6句は現在の「我（李徴）」と「君（袁傪）」の立場を鮮やかに対照させています（評問標準【四】・授プリ）。"
+  },
+  {
+    "id": "c09",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "即席の漢詩の第1句「偶因狂疾成殊類」の書き下し文と、第2句「不可逃」の読みの組み合わせとして正しいものを選びなさい。",
+    "excerpt": "偶因狂疾成殊類 ／ 災患相仍不可逃",
+    "choices": [
+      "偶（たまたま）狂疾に因って殊類と成る ／ のがるべからず",
+      "偶（たまたま）狂疾を因って殊類に成る ／ にぐべからず",
+      "偶（ぐう）狂疾に因りて殊類を成す ／ のがれずべし",
+      "偶（たまたま）殊類に因って狂疾と成る ／ のがるべからず"
+    ],
+    "answer": 0,
+    "summary": "「偶（たまたま）狂疾に因って殊類と成る」「逃るべからず（のがるべからず）」です。",
+    "detail": "「不可〜（〜べからず）」は不可能の重要句形。評問標準【四】で書き下し・ひらがな読みとしてそのまま出題されるポイントです。"
+  },
+  {
+    "id": "c10",
+    "type": "choice",
+    "group": "scene1",
+    "category": "場面① 旧詩伝録・漢詩",
+    "sceneId": "scene1",
+    "prompt": "漢詩の結句「不成長嘯但成嘷（長嘯を成さずして但嘷を成すのみ）」から読み取れる李徴の心情として最も適切なものはどれか。",
+    "excerpt": "此夕渓山対明月　不成長嘯但成嘷",
+    "choices": [
+      "明月に向かって詩を吟じようとしても、獣の吠え声としてしか響かないことへのむなしさと悲しみ。",
+      "虎の爪や牙の強さを誇り、かつての自分より強くなったことへの満足感。",
+      "出世して馬車に乗る袁傪への激しい嫉妬と恨み。",
+      "念願だった詩を袁傪に書き取ってもらえたことへの安堵と喜び。"
+    ],
+    "answer": 0,
+    "summary": "詩を吟じようとしても獣の吠え声にしかならないことへのむなしさと悲しみです。",
+    "detail": "「長嘯」＝声を長く引いて詩を吟じること、「嘷」＝獣の吠え声。なお第3句「今日爪牙誰敢敵」には虎の肉体の強さを誇る意識も垣間見えますが、結句では深い悲哀に収束します。"
+  },
+  {
+    "id": "c11",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "人間であったとき、人々は李徴を「倨傲だ、尊大だ」と言ったが、李徴自身はその態度の実体が何に近いものであったと語っているか。",
+    "excerpt": "人々はおれを倨傲だ、尊大だと言った。実は、それがほとんど〇〇に近いものであることを、人々は知らなかった。",
+    "choices": [
+      "羞恥心",
+      "嫉妬心",
+      "敵愾心",
+      "向上心"
+    ],
+    "answer": 0,
+    "summary": "周囲からは傲慢に見えていた態度の実体は、ほとんど「羞恥心」に近いものでした。",
+    "detail": "外からは「倨傲・尊大」と誤解されていましたが、内側では傷つきやすく、劣等感を暴かれることを恐れる羞恥心だったと告白しています。"
+  },
+  {
+    "id": "c12",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "「臆病な自尊心と、尊大な羞恥心」とはどのような心情か。最も適切なものを選びなさい。",
+    "excerpt": "ともに、我が臆病な自尊心と、尊大な羞恥心とのせいである。",
+    "choices": [
+      "自分の才能を半ばしか信じられず不足が暴露するのを恐れる一方、凡庸な人々とは交わりたくないと思うほど大きな誇りも抱き、矛盾した感情がねじれて同居している心情。",
+      "自分の才能を完全に信じきっているため、他人の意見に一切耳を貸さず誰に対しても威圧的に振る舞う心情。",
+      "自分には全く才能がないと絶望しているため、人と会うことを極端に恐れ引きこもってしまう心情。",
+      "高い官位に就くことばかりを望み、詩作の努力を恥ずかしいことだと軽視する心情。"
+    ],
+    "answer": 0,
+    "summary": "才能不足を恐れる臆病さと、凡人を見下す尊大さが矛盾しつつ同居した心情です。",
+    "detail": "「臆病×自尊心」「尊大×羞恥心」という撞着語法（相反する語の組み合わせ）によって、李徴の屈折した内面が鋭く表現されています（指導書問脚問7）。"
+  },
+  {
+    "id": "c13",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "「己の珠にあらざることを惧れるがゆえに、あえて刻苦して磨こうともせず、また、己の珠なるべきを半ば信ずるがゆえに、碌々として瓦に伍することもできなかった。」における「珠」と「瓦」のたとえとして正しいものはどれか。",
+    "excerpt": "己の珠にあらざることを惧れるがゆえに……碌々として瓦に伍することもできなかった。",
+    "choices": [
+      "珠＝優れた才能の持ち主 ／ 瓦＝俗物・つまらない人物",
+      "珠＝高い官位の役人 ／ 瓦＝貧しい庶民",
+      "珠＝完成された名詩 ／ 瓦＝未熟な習作",
+      "珠＝人間の心 ／ 瓦＝獣の本能"
+    ],
+    "answer": 0,
+    "summary": "「珠」＝優れた才能の持ち主、「瓦」＝俗物・つまらない人物のたとえです。",
+    "detail": "直前の「俗物の間に伍する」と「瓦に伍する」が言い換えの関係になっていることから、「瓦」の同義語は「俗物」、対義語は「珠」となります（評問標準【五】・授プリ）。"
+  },
+  {
+    "id": "c14",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "李徴が「進んで師に就いたり、求めて詩友と交わって切磋琢磨に努めたりすることをしなかった」のはなぜか。本文の論理に合うものを選びなさい。",
+    "excerpt": "己の珠にあらざることを惧れるがゆえに、あえて刻苦して磨こうともせず",
+    "choices": [
+      "努力して磨いた結果、自分に本物の才能がない（珠ではない）ことが明らかになるのを恐れたから。",
+      "当時の長安には自分の師となるにふさわしい優れた詩人が一人もいなかったから。",
+      "家族の生活を支える仕事が忙しく、詩友と交わる時間的余裕がなかったから。",
+      "詩は孤独の中で一人で書くべきものであり、他者と交わると質が落ちると信じていたから。"
+    ],
+    "answer": 0,
+    "summary": "努力した結果、自分に本物の才能がないと明らかになるのを恐れたからです。",
+    "detail": "「己の珠にあらざることを惧れる」「才能の不足を暴露するかもしれないとの卑怯な危惧」という、臆病な自尊心ゆえの行動でした。"
+  },
+  {
+    "id": "c15",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "「人間は誰でも猛獣使いであり、その猛獣に当たるのが、各人の性情だという。」とあるが、李徴にとっての「猛獣（虎）」とは何だったか。",
+    "excerpt": "おれの場合、この〇〇が猛獣だった。虎だったのだ。",
+    "choices": [
+      "尊大な羞恥心（臆病な自尊心）",
+      "かつての同輩に対する激しい憎悪",
+      "貧窮から抜け出したいという金銭欲",
+      "詩人として有名になりたいという純粋な情熱"
+    ],
+    "answer": 0,
+    "summary": "李徴にとっての猛獣（虎）は「尊大な羞恥心（臆病な自尊心）」でした。",
+    "detail": "本文では「この尊大な羞恥心が猛獣だった。虎だったのだ」と明言されており、評問標準【五】では「臆病な自尊心と、尊大な羞恥心」が正解とされています。"
+  },
+  {
+    "id": "c16",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "「おれの外形をかくのごとく、内心にふさわしいものに変えてしまったのだ。」と李徴が語るとき、李徴は虎になったことをどう捉え直しているか。",
+    "excerpt": "これがおれを損ない、妻子を苦しめ、友人を傷つけ、果ては、おれの外形をかくのごとく、内心にふさわしいものに変えてしまったのだ。",
+    "choices": [
+      "理不尽な偶然ではなく、自分の内なる歪んだ性情（猛獣）がそのまま外見に表れた必然的な結果だったと捉え直している。",
+      "周囲の人々が自分の才能を理解しなかったため、世間への復讐として自ら虎の姿を選んだと捉えている。",
+      "虎の肉体は自分の高貴な精神にふさわしい気高い姿であると誇りに思っている。",
+      "やはり虎になった理由は全くわからず、単なる生き物のさだめとして諦めるしかないと結論づけている。"
+    ],
+    "answer": 0,
+    "summary": "内なる歪んだ性情（猛獣）がそのまま外形に表れた必然的な結果だと捉え直しています。",
+    "detail": "先刻までは「なぜこんな運命になったかわからぬ」と不条理を嘆いていましたが、ここでは自らの中に飼いふとらせた猛獣こそが真因だと自己省察しています。"
+  },
+  {
+    "id": "c17",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "「人生は何事をもなさぬにはあまりに長いが、何事かをなすにはあまりに短い」という警句を、現在の李徴はどのように自己分析しているか。",
+    "excerpt": "人生は何事をもなさぬにはあまりに長いが、何事かをなすにはあまりに短いなどと口先ばかりの警句を弄しながら",
+    "choices": [
+      "口先ばかりの言い訳にすぎず、実態は才能不足への卑怯な危惧と、苦労を嫌がる怠惰だったと反省している。",
+      "人生の真理を突いた名言であり、自分の詩人としての哲学を支えていたと誇っている。",
+      "袁傪のように出世した人間には理解できない、不遇な天才の嘆きだったと正当化している。",
+      "若いころに師から教わった言葉に縛られすぎたことが失敗の原因だったと悔やんでいる。"
+    ],
+    "answer": 0,
+    "summary": "口先ばかりの言い訳であり、実態は「卑怯な危惧」と「刻苦をいとう怠惰」だったと反省しています。",
+    "detail": "格好をつけた警句を並べて努力を避けていた自分の弱さを、虎となった今になって厳しく見据えています（授プリ）。"
+  },
+  {
+    "id": "c18",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "李徴が「今も胸を灼かれるような悔いを感じる」のは、何に気がついたからか。",
+    "excerpt": "虎となり果てた今、おれはようやくそれに気がついた。それを思うと、おれは今も胸を灼かれるような悔いを感じる。",
+    "choices": [
+      "自分よりはるかに乏しい才能でも専一に磨いて堂々たる詩家になった者がいくらでもいるのに、自分は危惧と怠惰から才能を空費してしまったこと。",
+      "官吏を辞めずに続けていれば、袁傪と同じように監察御史になれたはずだったこと。",
+      "もっと早く袁傪に相談していれば、虎になる前に病気を治してもらえたはずだったこと。",
+      "故郷に残した遺稿を大切に保管しておけば、今ごろ長安で有名になっていたはずだったこと。"
+    ],
+    "answer": 0,
+    "summary": "危惧と怠惰から努力をせず、持っていたわずかな才能を空費してしまったことへの後悔です。",
+    "detail": "直前で「おれよりもはるかに乏しい才能でありながら、それを専一に磨いたがために、堂々たる詩家となった者がいくらでもいる」と気づいたことが痛切な悔いにつながっています。"
+  },
+  {
+    "id": "c19",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "「この胸を灼く悲しみを誰かに訴えたいのだ。」の「悲しみ」の内容として、本文に即した組み合わせはどれか。",
+    "excerpt": "おれにはもはや人間としての生活はできない。……どうすればいいのだ。おれの空費された過去は？",
+    "choices": [
+      "もはや人間としての生活はできず、空費された過去を取り戻すこともできないという悲しみ。",
+      "袁傪との友情が壊れてしまい、二度と信頼してもらえないという悲しみ。",
+      "自分の作った詩が袁傪に低く評価されてしまったという悲しみ。",
+      "山林での生活が寒くて苦しく、獲物を捕らえるのがつらいという悲しみ。"
+    ],
+    "answer": 0,
+    "summary": "「もはや人間としての生活はできない」「空費された過去を取り戻せない」という悲しみです。",
+    "detail": "評問標準【五】問五で「本文中の言葉を用いて二つ答えよ」として問われる重要ポイントです。"
+  },
+  {
+    "id": "c20",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "山の頂の巌に上って月や空谷に向かって咆えても、獣たちや自然はどのように受け取るか。また、それが何に重ねられているか。",
+    "excerpt": "天に躍り地に伏して嘆いても、誰一人おれの気持ちをわかってくれる者はない。ちょうど、人間だったころ、おれの傷つきやすい内心を誰も理解してくれなかったように。",
+    "choices": [
+      "ただ一匹の虎が怒り狂って哮っているとしか受け取られず、人間だったころ誰も傷つきやすい内心を理解してくれなかった孤独と重ねられている。",
+      "獣たちは李徴の悲しみに共感して涙を流すが、言葉が通じないため慰め合えないことが人間時代の孤独と重ねられている。",
+      "山や月だけは李徴の苦しみを理解してくれるが、獣たちが恐れて逃げ出すことが官吏時代の孤立と重ねられている。",
+      "虎の咆哮が立派な詩として谷に響くのに、聴衆がいないことが詩作時代の不遇と重ねられている。"
+    ],
+    "answer": 0,
+    "summary": "「怒り狂って哮る虎」としか見られない姿が、人間時代に誤解された孤独と重ねられています。",
+    "detail": "外からの見え方（怒り狂う虎／倨傲・尊大な男）と、内面の真実（悲しみを訴えたい／傷つきやすい内心）の断絶が重なっています。"
+  },
+  {
+    "id": "c21",
+    "type": "choice",
+    "group": "scene2",
+    "category": "場面② 自尊心と羞恥心",
+    "sceneId": "scene2",
+    "prompt": "「おれの毛皮のぬれたのは、夜露のためばかりではない。」とは、どういう意味か。",
+    "excerpt": "ちょうど、人間だったころ、おれの傷つきやすい内心を誰も理解してくれなかったように。おれの毛皮のぬれたのは、夜露のためばかりではない。",
+    "choices": [
+      "悔いと悲しみ、誰にも理解されない孤独のあまり流した涙によってぬれたということ。",
+      "谷川に身を投げて死のうとしたため、川の水でぬれたということ。",
+      "夜の雨に打たれながら山林を駆け回っていたためぬれたということ。",
+      "獲物を追って草むらを駆け抜けた汗でぬれたということ。"
+    ],
+    "answer": 0,
+    "summary": "悔いと悲しみ、誰にも理解されない孤独から流れた「涙」でぬれたという意味です。",
+    "detail": "直接「泣いた」と言わず「夜露のためばかりではない」と表現することで、虎の身の深い哀しみを余韻深く伝えています（指導書問脚問8・評問標準【五】）。"
+  },
+  {
+    "id": "c22",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "「酔わねばならぬときが、（虎に還らねばならぬときが）近づいたから」とあるが、「自分が酔っていて」とはどのような状態を指すか。",
+    "excerpt": "もはや、別れを告げねばならぬ。酔わねばならぬときが、（虎に還らねばならぬときが）近づいたから",
+    "choices": [
+      "人間の心（理性）を失って、本能のまま虎として行動している状態。",
+      "酒に酔ったように気分が高揚し、詩を次々と詠める状態。",
+      "夜明けの冷気で意識がもうろうとし、深い眠りに落ちている状態。",
+      "袁傪との再会に感激し、冷静な判断ができなくなっている状態。"
+    ],
+    "answer": 0,
+    "summary": "人間の心を失い、本能のまま虎として行動している状態を指します。",
+    "detail": "本文中に「（虎に還らねばならぬときが）」と補足されており、評問標準【六】では25字以内の記述問題としても出題されます。"
+  },
+  {
+    "id": "c23",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "妻子に対して「おれはすでに死んだと彼らに告げてもらえないだろうか。決して今日のことだけは明かさないでほしい。」と李徴が頼んだ理由として最も適切なものはどれか。",
+    "excerpt": "君が南から帰ったら、おれはすでに死んだと彼らに告げてもらえないだろうか。決して今日のことだけは明かさないでほしい。",
+    "choices": [
+      "これまで心配や苦労をかけてきたうえに、夫が虎になったという事実でさらに妻子に苦痛を味わわせたくなかったから。",
+      "自分が虎になったことが役所に知られると、家族が罪に問われる恐れがあったから。",
+      "妻子が山林まで自分を探しに来て、他の旅人の迷惑になるのを防ぎたかったから。",
+      "詩集が世に出るまで、自分の生存を秘密にして話題性を高めたかったから。"
+    ],
+    "answer": 0,
+    "summary": "これまで心配をかけてきたうえに、さらに妻子へ苦痛を味わわせたくなかったからです。",
+    "detail": "夫が人食い虎になったという残酷な真実を隠すことで、残された妻子の心を守ろうとしています（評問標準【六】）。"
+  },
+  {
+    "id": "c24",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "「本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。」の「このこと」とは何か。",
+    "excerpt": "本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。",
+    "choices": [
+      "妻子が今後とも飢え凍えることなく生活できるように計らってほしいということ。",
+      "袁傪に嶺南からの帰途にはこの道を通らないでほしいということ。",
+      "自分の遺稿を故郷の虢略から探し出して整理してほしいということ。",
+      "丘の上から振り返って自分の虎の姿を見てほしいということ。"
+    ],
+    "answer": 0,
+    "summary": "妻子が飢え凍えないよう、生活の面倒を計らってほしいという依頼を指します。",
+    "detail": "李徴は第一の願いとして「自作の詩の伝録」を頼み、第二の願いとして「妻子の生活」を頼んだ順番そのものに自己の醜さを見いだします（評問標準【六】・授プリ）。"
+  },
+  {
+    "id": "c25",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "「おれが人間だったなら。」の言い換えとして最も適切なものはどれか。",
+    "excerpt": "本当は、まず、このことのほうを先にお願いすべきだったのだ、おれが人間だったなら。",
+    "choices": [
+      "おれが人間の心（人間らしさ）を持っていたなら",
+      "おれが虎に変身していなかったなら",
+      "おれが再び人間の姿に戻れたなら",
+      "おれが袁傪と同じ官吏の立場だったなら"
+    ],
+    "answer": 0,
+    "summary": "外形ではなく「おれが人間の心を持っていたなら」という意味です。",
+    "detail": "授プリの選択問題そのままのポイント。妻子より自分の詩業を優先してしまう点に、自らの人間らしさの欠如を認めています。"
+  },
+  {
+    "id": "c26",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "「飢え凍えようとする妻子のことよりも、己の乏しい詩業のほうを気にかけているような男だから、こんな獣に身を堕すのだ。」に表れる李徴の心情として最も適切なものはどれか。",
+    "excerpt": "飢え凍えようとする妻子のことよりも、己の乏しい詩業のほうを気にかけているような男だから、こんな獣に身を堕すのだ。",
+    "choices": [
+      "家族よりも自分の名声や詩業を優先してしまう、己の利己的な生き方を厳しく反省し自嘲する気持ち。",
+      "妻子を養う責任を放棄すれば、ようやく詩作に専念できると割り切る気持ち。",
+      "詩業に執着するのは芸術家として当然であり、仕方がないことだと自分を慰める気持ち。",
+      "袁傪が先に妻子のことを尋ねてくれなかったことに対するかすかな不満。"
+    ],
+    "answer": 0,
+    "summary": "妻子より己の詩業を優先する、自分の利己的な生き方を反省・自嘲する気持ちです。",
+    "detail": "場面②では「臆病な自尊心・尊大な羞恥心」を原因としましたが、ここではさらに深く「利己性・他者への愛の欠如」にまで踏み込んでいます（評問標準【六】）。"
+  },
+  {
+    "id": "c27",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "李徴が袁傪に対して「嶺南からの帰途には決してこの道を通らないでほしい」と頼んだのはなぜか。",
+    "excerpt": "袁傪が嶺南からの帰途には決してこの道を通らないでほしい、そのときには自分が酔っていて故人を認めずに襲いかかるかもしれないから。",
+    "choices": [
+      "そのときには人間の心を失って酔っており、旧友の袁傪だと気づかずに襲いかかってしまうかもしれないから。",
+      "この道には李徴以外にも獰猛な人食い虎が数多く棲み着いていて危険だから。",
+      "もう一度会うと未練が残り、虎として生きていく覚悟が揺らいでしまうから。",
+      "袁傪の部下たちに自分が虎であることを言いふらされるのを恐れたから。"
+    ],
+    "answer": 0,
+    "summary": "そのときには酔っていて、故人（旧友）と認めずに襲いかかるかもしれないからです。",
+    "detail": "人間の心が還る時間は日に日に短くなっており、次に会えば旧友を傷つけてしまうという切実な危惧からの願いです。"
+  },
+  {
+    "id": "c28",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "李徴が「前方百歩の所にある、あの丘に上ったら、こちらを振り返って見てもらいたい。自分は今の姿をもう一度お目にかけよう。」と頼んだ理由は何か。",
+    "excerpt": "勇に誇ろうとしてではない。我が醜悪な姿を示して、もって、再びここを過ぎて自分に会おうとの気持ちを君に起こさせないためであると。",
+    "choices": [
+      "自分の醜悪な虎の姿を見せることで、袁傪が再びここを通って自分に会おうという気持ちを起こさせないようにするため。",
+      "虎としての勇猛で立派な姿を旧友の記憶に焼き付けておいてほしかったから。",
+      "最後に一度だけ人間だったころの面影が残る顔を見てもらいたかったから。",
+      "袁傪の部下たちに、草むらに隠れていたのが確かに虎であったことを証明するため。"
+    ],
+    "answer": 0,
+    "summary": "醜悪な姿を示すことで、袁傪が再び会いに来ようという気持ちを起こさせないためです。",
+    "detail": "あえて恐ろしい虎の姿を見せることで、旧友の身を守り、永遠の別れを決定的にしようとする李徴なりの思いやりです。"
+  },
+  {
+    "id": "c29",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "結末の「すでに白く光を失った月」には、李徴のどのような心境や運命が重ね合わされているか。",
+    "excerpt": "虎は、すでに白く光を失った月を仰いで、二声三声咆哮したかと思うと、また、もとの草むらに躍り入って、再びその姿を見なかった。",
+    "choices": [
+      "夜明けとともに光が消えていく月のように、人間の心も失われつつあり、二度と人間に戻れないと覚悟を決めた孤独な悲しみ。",
+      "夜の闇が去って新しい朝が来るように、やがて李徴の苦悩も晴れて救われるという希望。",
+      "妻子の生活と詩の伝録を旧友に託すことができた、晴れやかで満ち足りた安堵感。",
+      "月明かりが消えたことで人目を気にせず自由に生きられるようになったという解放感。"
+    ],
+    "answer": 0,
+    "summary": "夜明け前の月のように人間の心も消えつつあり、二度と人間に戻れないと覚悟した孤独な悲しみです。",
+    "detail": "月の輝きと李徴が人間でいられる時間が対応しており、二人の永遠の決別も象徴しています（評問標準【六】・学習課題）。"
+  },
+  {
+    "id": "c30",
+    "type": "choice",
+    "group": "scene3",
+    "category": "場面③ 妻子への依頼・別れ",
+    "sceneId": "scene3",
+    "prompt": "物語の最後が「再びその姿を見なかった。」と結ばれていることには、どのような表現上の効果があるか。",
+    "excerpt": "また、もとの草むらに躍り入って、再びその姿を見なかった。",
+    "choices": [
+      "袁傪一行からの視覚でのみ捉えることで、もう二度と人間が李徴の声を聞くことはなく、近い将来完全に人間の心を失うであろうことを暗示する効果。",
+      "虎が遠くの山へ逃げ去ったことを示し、のちに再び別の土地で袁傪と再会する余韻を残す効果。",
+      "李徴が草むらの中で元の人間の姿に戻ったかもしれないという希望を読者に抱かせる効果。",
+      "袁傪が恐怖のあまり目を背けてしまったことを示し、二人の友情の終わりを強調する効果。"
+    ],
+    "answer": 0,
+    "summary": "袁傪たちの視覚のみから捉えることで、二度と人語を交わさず完全に虎となる運命を暗示しています。",
+    "detail": "最後の場面で李徴は言葉を発さず、咆哮だけを残して消えます。人間社会との断絶を余韻深く結ぶ表現です（指導書問脚問9）。"
+  }
+];
   </script>
+  <!-- アプリケーションロジック -->
   <script>
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "sangetsuki_liberte_2term_v1";
-  const DATA = window.SANGETSUKI_DATA;
-  const VOCAB_QS = DATA.vocabQuestions;
-  const CONTENT_QS = DATA.contentQuestions;
+  // =========================================================================
+  // 先生側設定（生徒画面にAPIキー入力欄は出しません）
+  // 安全なプロキシURL（GAS Webアプリ / Cloudflare Workers 等）を設定すると
+  // 手書き問題で「AIで自動判定」ボタンが有効になります。未設定時はお手本比較モードで動作します。
+  // =========================================================================
+  const AI_PROXY_ENDPOINT = "";
+  const AI_MODEL_NAME = "gemini-2.5-flash";
+  const AI_TIMEOUT_MS = 8000;
+
+  const STORAGE_KEY = "sangetsuki_liberte_2term_v2";
+  const VOCAB_QS = window.VOCAB_QUESTIONS;
+  const CONTENT_QS = window.CONTENT_QUESTIONS;
   const ALL_QS = [...VOCAB_QS, ...CONTENT_QS];
-  const PASSAGES = DATA.passages;
-  const PRE_SUMMARY = DATA.preScopeSummary || [];
+  const PASSAGES = window.PASSAGES_DATA;
+  const PRE_SUMMARY = window.PRE_SCOPE_SUMMARY;
 
   let store = loadStore();
+  let selectedGroup = { vocab: "all", content: "all" };
 
   let session = {
     part: "vocab",
     mode: "order",
+    group: "all",
     queue: [],
     index: 0,
     answered: false,
-    revealed: false,
+    compared: false,
+    aiBusy: false,
     currentChoices: [],
     correctCount: 0,
     wrongQueue: []
   };
 
+  // 手書きキャンバス状態（軽量ストローク配列管理）
+  let hwState = {
+    cells: [],         // [{ canvas, ctx, modelTopEl, overlayEl, expectedChar }]
+    strokeHistory: [], // [{ cellIndex, points: [{x, y}] }]
+    drawing: false,
+    activeCell: -1,
+    activeStroke: null,
+    overlayOn: false
+  };
+
   let listState = { part: "vocab", filter: "all" };
   let activeSceneId = "scene1";
 
+  // DOM要素
   const views = {
     home: document.getElementById("view-home"),
     quiz: document.getElementById("view-quiz"),
@@ -1896,12 +2600,18 @@ window.SANGETSUKI_DATA = {
   const elQPrompt = document.getElementById("q-prompt");
   const elQExcerpt = document.getElementById("q-excerpt");
   const elChoicesList = document.getElementById("choices-list");
-  const elFlashcardArea = document.getElementById("flashcard-area");
-  const elRevealBtn = document.getElementById("flash-reveal-btn");
-  const elFlashAnswerBox = document.getElementById("flash-answer-box");
-  const elFlashReading = document.getElementById("flash-reading");
-  const elFlashKanji = document.getElementById("flash-kanji");
-  const elSelfGradeRow = document.getElementById("self-grade-row");
+
+  // 手書きDOM
+  const elHwArea = document.getElementById("hw-area");
+  const elHwGrid = document.getElementById("hw-grid");
+  const elHwUndoBtn = document.getElementById("hw-undo-btn");
+  const elHwClearBtn = document.getElementById("hw-clear-btn");
+  const elHwAiBtn = document.getElementById("hw-ai-btn");
+  const elHwCompareBtn = document.getElementById("hw-compare-btn");
+  const elHwAiStatus = document.getElementById("hw-ai-status");
+  const elHwComparePanel = document.getElementById("hw-compare-panel");
+  const elHwCompareAns = document.getElementById("hw-compare-ans");
+  const elHwOverlayToggle = document.getElementById("hw-overlay-toggle");
   const elSelfOkBtn = document.getElementById("self-ok-btn");
   const elSelfNgBtn = document.getElementById("self-ng-btn");
 
@@ -1931,13 +2641,15 @@ window.SANGETSUKI_DATA = {
   const elSettingsModal = document.getElementById("settings-modal");
   const elImportStatus = document.getElementById("import-status");
 
+  // ---------- ストレージ ----------
   function loadStore() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return { records: {}, updatedAt: null };
-      const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed.records === "object") {
-        return { records: parsed.records, updatedAt: parsed.updatedAt || null };
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed.records === "object") {
+          return { records: parsed.records, updatedAt: parsed.updatedAt || null };
+        }
       }
     } catch (e) {}
     return { records: {}, updatedAt: null };
@@ -1963,6 +2675,7 @@ window.SANGETSUKI_DATA = {
     saveStore();
   }
 
+  // ---------- ユーティリティ ----------
   function shuffleArray(arr) {
     const copy = arr.slice();
     for (let i = copy.length - 1; i > 0; i--) {
@@ -1988,12 +2701,13 @@ window.SANGETSUKI_DATA = {
     if (!iso) return "まだ学習記録がありません";
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return "まだ学習記録がありません";
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, "0");
-    const day = String(d.getDate()).padStart(2, "0");
-    const hh = String(d.getHours()).padStart(2, "0");
-    const mm = String(d.getMinutes()).padStart(2, "0");
-    return `最終学習：${y}/${m}/${day} ${hh}:${mm}`;
+    return `最終学習：${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+  }
+
+  function getPool(part, group) {
+    const base = part === "vocab" ? VOCAB_QS : CONTENT_QS;
+    if (!group || group === "all") return base;
+    return base.filter((q) => q.group === group);
   }
 
   function calcStats(questions) {
@@ -2016,11 +2730,12 @@ window.SANGETSUKI_DATA = {
     if (name === "list") renderList();
   }
 
+  // ---------- ホーム描画 ----------
   function renderHome() {
-    const vStats = calcStats(VOCAB_QS);
-    const cStats = calcStats(CONTENT_QS);
-    const allTotal = vStats.total + cStats.total;
-    const allCorrect = vStats.correct + cStats.correct;
+    const vAll = calcStats(VOCAB_QS);
+    const cAll = calcStats(CONTENT_QS);
+    const allTotal = vAll.total + cAll.total;
+    const allCorrect = vAll.correct + cAll.correct;
     const allRate = allTotal > 0 ? Math.round((allCorrect / allTotal) * 100) : 0;
 
     elLastStudied.textContent = formatDateTime(store.updatedAt);
@@ -2029,16 +2744,18 @@ window.SANGETSUKI_DATA = {
     elTotalBarWrap.setAttribute("aria-valuenow", String(allRate));
     elTotalDetail.textContent = `${allCorrect} / ${allTotal} 問 正解（${allRate}%）`;
 
-    elVocabStat.textContent = `${vStats.correct} / ${vStats.total} 問（${vStats.rate}%）`;
-    elVocabBar.style.width = `${vStats.rate}%`;
-    elContentStat.textContent = `${cStats.correct} / ${cStats.total} 問（${cStats.rate}%）`;
-    elContentBar.style.width = `${cStats.rate}%`;
+    elVocabStat.textContent = `${vAll.correct} / ${vAll.total} 問（${vAll.rate}%）`;
+    elVocabBar.style.width = `${vAll.rate}%`;
+    elContentStat.textContent = `${cAll.correct} / ${cAll.total} 問（${cAll.rate}%）`;
+    elContentBar.style.width = `${cAll.rate}%`;
 
-    elVocabCounts.innerHTML = renderCountBadges(vStats);
-    elContentCounts.innerHTML = renderCountBadges(cStats);
+    const vScoped = calcStats(getPool("vocab", selectedGroup.vocab));
+    const cScoped = calcStats(getPool("content", selectedGroup.content));
+    elVocabCounts.innerHTML = renderCountBadges(vScoped);
+    elContentCounts.innerHTML = renderCountBadges(cScoped);
 
-    updateWeakButton(elVocabWeakBtn, vStats.remaining);
-    updateWeakButton(elContentWeakBtn, cStats.remaining);
+    updateWeakButton(elVocabWeakBtn, vScoped.remaining);
+    updateWeakButton(elContentWeakBtn, cScoped.remaining);
   }
 
   function renderCountBadges(st) {
@@ -2051,7 +2768,7 @@ window.SANGETSUKI_DATA = {
 
   function updateWeakButton(btn, remaining) {
     if (remaining === 0) {
-      btn.textContent = "全問正解済み！";
+      btn.textContent = "選択範囲は全問クリア！";
       btn.disabled = true;
     } else {
       btn.textContent = `未正解・誤答だけ復習（残${remaining}問）`;
@@ -2059,17 +2776,25 @@ window.SANGETSUKI_DATA = {
     }
   }
 
+  // ---------- クイズ開始 ----------
   function startQuiz(part, mode, customQueue) {
-    const pool = part === "vocab" ? VOCAB_QS : CONTENT_QS;
+    const group = selectedGroup[part] || "all";
+    const pool = getPool(part, group);
     let queue = [];
+
     if (Array.isArray(customQueue) && customQueue.length > 0) {
       queue = customQueue.slice();
+    } else if (mode === "quick10") {
+      // 未正解・要復習を優先して最大10問抽出
+      const weak = shuffleArray(pool.filter((q) => getStatus(q.id) !== "correct"));
+      const done = shuffleArray(pool.filter((q) => getStatus(q.id) === "correct"));
+      queue = [...weak, ...done].slice(0, Math.min(10, pool.length));
     } else if (mode === "order") {
       queue = pool.slice();
     } else if (mode === "weak") {
       queue = pool.filter((q) => getStatus(q.id) !== "correct");
       if (queue.length === 0) {
-        alert("未正解・誤答の問題はありません。全問正解済みです！");
+        alert("この範囲に未正解・誤答の問題はありません。全問正解済みです！");
         return;
       }
     } else if (mode === "shuffle") {
@@ -2077,8 +2802,8 @@ window.SANGETSUKI_DATA = {
     }
 
     session = {
-      part, mode, queue, index: 0,
-      answered: false, revealed: false,
+      part, mode, group, queue, index: 0,
+      answered: false, compared: false, aiBusy: false,
       currentChoices: [], correctCount: 0, wrongQueue: []
     };
     showView("quiz");
@@ -2087,8 +2812,15 @@ window.SANGETSUKI_DATA = {
 
   function getModeLabel(part, mode) {
     const partText = part === "vocab" ? "第1部：語彙編" : "第2部：内容編";
-    const modeMap = { order: "順番に全問", weak: "弱点克服", shuffle: "シャッフル", single: "一覧から復習", retry: "誤答リトライ" };
-    return `${partText}（${modeMap[mode] || "演習"}）`;
+    const modeMap = {
+      quick10: "10問ショート",
+      order: "順番に全問",
+      weak: "弱点克服",
+      shuffle: "シャッフル",
+      single: "一覧から復習",
+      retry: "誤答リトライ"
+    };
+    return `${partText}・${modeMap[mode] || "演習"}`;
   }
 
   function showFeedback(q, styleClass, mark, title) {
@@ -2105,20 +2837,23 @@ window.SANGETSUKI_DATA = {
     }
   }
 
+  // ---------- 1問単位DOM描画 ----------
   function renderCurrentQuestion() {
     const q = session.queue[session.index];
     if (!q) { renderResult(); return; }
 
     session.answered = false;
-    session.revealed = false;
+    session.compared = false;
+    session.aiBusy = false;
     activeSceneId = q.sceneId || "scene1";
 
+    const remainAfter = session.queue.length - session.index;
     elQuizPartLabel.textContent = getModeLabel(session.part, session.mode);
-    elQuizCounter.textContent = `${session.index + 1} / ${session.queue.length}`;
+    elQuizCounter.textContent = `${session.index + 1} / ${session.queue.length}（あと${remainAfter}問）`;
     elQuizSessionBar.style.width = `${Math.round((session.index / session.queue.length) * 100)}%`;
 
     elQCategory.textContent = q.category;
-    elQCategory.className = "category-chip" + (q.type === "flashcard" ? " flash-chip" : "");
+    elQCategory.className = "category-chip" + (q.type === "handwriting" ? " hw-chip" : "");
 
     const st = getStatus(q.id);
     elQStatus.className = "status-pill";
@@ -2132,17 +2867,15 @@ window.SANGETSUKI_DATA = {
     elQuizPrevBtn.disabled = session.index === 0;
     elQuizNextBtn.disabled = true;
 
-    if (q.type === "flashcard") {
+    if (q.type === "handwriting") {
       elChoicesList.classList.add("hidden");
-      elFlashcardArea.classList.remove("hidden");
-      elRevealBtn.classList.remove("hidden");
-      elFlashAnswerBox.classList.add("hidden");
-      elSelfGradeRow.classList.add("hidden");
-      elSelfOkBtn.disabled = false;
-      elSelfNgBtn.disabled = false;
-      elQuizNextBtn.textContent = "答えを確認して自己記録してください";
+      elChoicesList.innerHTML = "";
+      elHwArea.classList.remove("hidden");
+      setupHandwriting(q);
+      elQuizNextBtn.textContent = "書いて答え合わせをしてください";
     } else {
-      elFlashcardArea.classList.add("hidden");
+      elHwArea.classList.add("hidden");
+      elHwGrid.innerHTML = "";
       elChoicesList.classList.remove("hidden");
       const indexedChoices = q.choices.map((text, idx) => ({ text, isCorrect: idx === q.answer }));
       session.currentChoices = shuffleArray(indexedChoices);
@@ -2160,21 +2893,208 @@ window.SANGETSUKI_DATA = {
     }
   }
 
-  function revealFlashcard() {
-    const q = session.queue[session.index];
-    if (!q || q.type !== "flashcard" || session.revealed) return;
-    session.revealed = true;
-    elRevealBtn.classList.add("hidden");
-    elFlashReading.textContent = q.answerReading || "";
-    elFlashKanji.textContent = q.answerText || "";
-    elFlashAnswerBox.classList.remove("hidden");
-    elSelfGradeRow.classList.remove("hidden");
-    showFeedback(q, "neutral", "答", "漢字を確認して「書けた／要復習」を記録しましょう");
+  // ==================== 手書きキャンバス（軽量ストローク配列管理） ====================
+  function setupHandwriting(q) {
+    const chars = Array.from(q.answerText || "");
+    hwState = {
+      cells: [],
+      strokeHistory: [],
+      drawing: false,
+      activeCell: -1,
+      activeStroke: null,
+      overlayOn: false
+    };
+
+    elHwOverlayToggle.checked = false;
+    elHwComparePanel.classList.add("hidden");
+    elHwAiStatus.classList.add("hidden");
+    elHwAiStatus.textContent = "";
+    elSelfOkBtn.disabled = false;
+    elSelfNgBtn.disabled = false;
+
+    // プロキシURLが設定されている場合のみ「AIで自動判定」を表示
+    const hasAi = Boolean(AI_PROXY_ENDPOINT && AI_PROXY_ENDPOINT.trim());
+    elHwAiBtn.classList.toggle("hidden", !hasAi);
+    elHwAiBtn.disabled = false;
+    elHwAiBtn.textContent = "AIで自動判定する";
+    elHwCompareBtn.textContent = hasAi ? "自分で答えを見て判定する" : "お手本と比べる（答えを表示）";
+    elHwCompareBtn.classList.remove("hidden");
+
+    // 1文字は1列、2〜4文字は2列（3〜4文字は2×2折り返し）
+    elHwGrid.className = "hw-grid " + (chars.length === 1 ? "cols-1" : "cols-2");
+    elHwGrid.innerHTML = "";
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    chars.forEach((ch, idx) => {
+      const wrap = document.createElement("div");
+      wrap.className = "hw-cell-wrap";
+
+      const modelTop = document.createElement("div");
+      modelTop.className = "hw-model-top hidden";
+      modelTop.textContent = ch;
+
+      const box = document.createElement("div");
+      box.className = "hw-canvas-box";
+
+      const overlay = document.createElement("div");
+      overlay.className = "hw-overlay-char hidden";
+      overlay.textContent = ch;
+
+      const canvas = document.createElement("canvas");
+      canvas.className = "hw-canvas";
+      const logicalSize = chars.length === 1 ? 126 : 112;
+      canvas.width = Math.round(logicalSize * dpr);
+      canvas.height = Math.round(logicalSize * dpr);
+
+      const ctx = canvas.getContext("2d");
+      ctx.scale(dpr, dpr);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = "#1d161b";
+      ctx.lineWidth = 4.2;
+
+      box.appendChild(overlay);
+      box.appendChild(canvas);
+      wrap.appendChild(modelTop);
+      wrap.appendChild(box);
+      elHwGrid.appendChild(wrap);
+
+      const cellObj = {
+        canvas, ctx, logicalSize, dpr,
+        modelTopEl: modelTop, overlayEl: overlay, expectedChar: ch
+      };
+      hwState.cells.push(cellObj);
+
+      bindCanvasPointer(canvas, idx);
+    });
+
+    updateHwButtons();
   }
 
-  function gradeFlashcard(isCorrect) {
+  function getCanvasPoint(canvas, e, logicalSize) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: ((e.clientX - rect.left) / rect.width) * logicalSize,
+      y: ((e.clientY - rect.top) / rect.height) * logicalSize
+    };
+  }
+
+  function bindCanvasPointer(canvas, cellIdx) {
+    canvas.addEventListener("pointerdown", (e) => {
+      if (session.answered || session.aiBusy) return;
+      e.preventDefault();
+      canvas.setPointerCapture(e.pointerId);
+      const cell = hwState.cells[cellIdx];
+      const pt = getCanvasPoint(canvas, e, cell.logicalSize);
+      hwState.drawing = true;
+      hwState.activeCell = cellIdx;
+      hwState.activeStroke = { cellIndex: cellIdx, points: [pt] };
+      hwState.strokeHistory.push(hwState.activeStroke);
+
+      const ctx = cell.ctx;
+      ctx.beginPath();
+      ctx.moveTo(pt.x, pt.y);
+      ctx.lineTo(pt.x + 0.1, pt.y + 0.1);
+      ctx.stroke();
+      updateHwButtons();
+    });
+
+    canvas.addEventListener("pointermove", (e) => {
+      if (!hwState.drawing || hwState.activeCell !== cellIdx || !hwState.activeStroke) return;
+      e.preventDefault();
+      const cell = hwState.cells[cellIdx];
+      const pt = getCanvasPoint(canvas, e, cell.logicalSize);
+      const pts = hwState.activeStroke.points;
+      const prev = pts[pts.length - 1];
+      pts.push(pt);
+
+      const ctx = cell.ctx;
+      ctx.beginPath();
+      ctx.moveTo(prev.x, prev.y);
+      ctx.lineTo(pt.x, pt.y);
+      ctx.stroke();
+    });
+
+    const endDraw = () => {
+      hwState.drawing = false;
+      hwState.activeCell = -1;
+      hwState.activeStroke = null;
+    };
+    canvas.addEventListener("pointerup", endDraw);
+    canvas.addEventListener("pointercancel", endDraw);
+  }
+
+  function redrawCell(cellIdx) {
+    const cell = hwState.cells[cellIdx];
+    if (!cell) return;
+    const ctx = cell.ctx;
+    ctx.clearRect(0, 0, cell.logicalSize, cell.logicalSize);
+    for (const stroke of hwState.strokeHistory) {
+      if (stroke.cellIndex !== cellIdx || stroke.points.length === 0) continue;
+      ctx.beginPath();
+      ctx.moveTo(stroke.points[0].x, stroke.points[0].y);
+      if (stroke.points.length === 1) {
+        ctx.lineTo(stroke.points[0].x + 0.1, stroke.points[0].y + 0.1);
+      } else {
+        for (let i = 1; i < stroke.points.length; i++) {
+          ctx.lineTo(stroke.points[i].x, stroke.points[i].y);
+        }
+      }
+      ctx.stroke();
+    }
+  }
+
+  // 全マス共通の直近1画を戻す
+  function undoLastStroke() {
+    if (hwState.strokeHistory.length === 0 || session.answered || session.aiBusy) return;
+    const removed = hwState.strokeHistory.pop();
+    redrawCell(removed.cellIndex);
+    updateHwButtons();
+  }
+
+  function clearAllCells() {
+    if (session.answered || session.aiBusy) return;
+    hwState.strokeHistory = [];
+    hwState.cells.forEach((_, idx) => redrawCell(idx));
+    updateHwButtons();
+  }
+
+  function updateHwButtons() {
+    const hasStrokes = hwState.strokeHistory.length > 0;
+    elHwUndoBtn.disabled = !hasStrokes || session.answered || session.aiBusy;
+    elHwClearBtn.disabled = !hasStrokes || session.answered || session.aiBusy;
+  }
+
+  // お手本比較モードを開く
+  function openCompareMode(optionalNotice, isError) {
     const q = session.queue[session.index];
-    if (!q || q.type !== "flashcard" || !session.revealed || session.answered) return;
+    if (!q || q.type !== "handwriting") return;
+    session.compared = true;
+
+    hwState.cells.forEach((cell) => {
+      cell.modelTopEl.classList.remove("hidden");
+      cell.overlayEl.classList.toggle("hidden", !hwState.overlayOn);
+    });
+
+    elHwCompareAns.innerHTML = `正解（${escapeHtml(q.answerReading)}）：<strong>${escapeHtml(q.answerText)}</strong>`;
+    elHwComparePanel.classList.remove("hidden");
+    elHwCompareBtn.classList.add("hidden");
+
+    if (optionalNotice) {
+      elHwAiStatus.textContent = optionalNotice;
+      elHwAiStatus.className = "hw-ai-status" + (isError ? " error" : "");
+      elHwAiStatus.classList.remove("hidden");
+    }
+
+    if (!session.answered) {
+      showFeedback(q, "neutral", "比", "お手本と見比べて「〇 書けた／✕ 要復習」を記録してください");
+    }
+  }
+
+  function gradeHandwriting(isCorrect, customTitle) {
+    const q = session.queue[session.index];
+    if (!q || q.type !== "handwriting" || session.answered) return;
     session.answered = true;
     recordAnswer(q.id, isCorrect);
     if (isCorrect) {
@@ -2185,13 +3105,17 @@ window.SANGETSUKI_DATA = {
 
     elSelfOkBtn.disabled = true;
     elSelfNgBtn.disabled = true;
+    elHwAiBtn.disabled = true;
+    updateHwButtons();
+
     elQStatus.className = "status-pill " + (isCorrect ? "correct" : "wrong");
     elQStatus.textContent = isCorrect ? "正解済み" : "要復習";
+
     showFeedback(
       q,
       isCorrect ? "ok" : "ng",
       isCorrect ? "〇" : "✕",
-      isCorrect ? "「書けた」として記録しました！" : "「要復習」に記録しました（後でまとめて復習できます）"
+      customTitle || (isCorrect ? "「書けた」として記録しました！" : "「要復習」に記録しました（後で復習できます）")
     );
 
     elQuizSessionBar.style.width = `${Math.round(((session.index + 1) / session.queue.length) * 100)}%`;
@@ -2199,6 +3123,131 @@ window.SANGETSUKI_DATA = {
     elQuizNextBtn.textContent = session.index === session.queue.length - 1 ? "結果を見る" : "次の問題へ →";
   }
 
+  // オフスクリーン合成（白背景＋黒線・1文字160px四方以上・全体長辺512px以内・JPEG 0.85）
+  function buildOffscreenHandwritingBase64() {
+    const count = hwState.cells.length;
+    const cellPx = 160;
+    const pad = 16;
+    const gap = 14;
+    const cols = count === 1 ? 1 : 2;
+    const rows = Math.ceil(count / cols);
+    const width = pad * 2 + cols * cellPx + (cols - 1) * gap;
+    const height = pad * 2 + rows * cellPx + (rows - 1) * gap;
+
+    const off = document.createElement("canvas");
+    off.width = width;
+    off.height = height;
+    const ctx = off.getContext("2d");
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, width, height);
+
+    for (let i = 0; i < count; i++) {
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const ox = pad + col * (cellPx + gap);
+      const oy = pad + row * (cellPx + gap);
+
+      ctx.strokeStyle = "#dddddd";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(ox, oy, cellPx, cellPx);
+
+      const cell = hwState.cells[i];
+      const scale = cellPx / cell.logicalSize;
+      ctx.strokeStyle = "#000000";
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = 5.5;
+
+      for (const stroke of hwState.strokeHistory) {
+        if (stroke.cellIndex !== i || stroke.points.length === 0) continue;
+        ctx.beginPath();
+        ctx.moveTo(ox + stroke.points[0].x * scale, oy + stroke.points[0].y * scale);
+        if (stroke.points.length === 1) {
+          ctx.lineTo(ox + stroke.points[0].x * scale + 0.2, oy + stroke.points[0].y * scale + 0.2);
+        } else {
+          for (let p = 1; p < stroke.points.length; p++) {
+            ctx.lineTo(ox + stroke.points[p].x * scale, oy + stroke.points[p].y * scale);
+          }
+        }
+        ctx.stroke();
+      }
+    }
+
+    const dataUrl = off.toDataURL("image/jpeg", 0.85);
+    return dataUrl.split(",")[1] || "";
+  }
+
+  // Google AI API（プロキシ経由）自動判定
+  async function runAiHandwritingJudge() {
+    const q = session.queue[session.index];
+    if (!q || q.type !== "handwriting" || session.aiBusy || session.answered) return;
+    if (!AI_PROXY_ENDPOINT || !AI_PROXY_ENDPOINT.trim()) {
+      openCompareMode();
+      return;
+    }
+    if (hwState.strokeHistory.length === 0) {
+      elHwAiStatus.textContent = "まずはマスに漢字を書いてから判定してください。";
+      elHwAiStatus.className = "hw-ai-status error";
+      elHwAiStatus.classList.remove("hidden");
+      return;
+    }
+
+    session.aiBusy = true;
+    elHwAiBtn.disabled = true;
+    elHwAiBtn.textContent = "AIが文字を読み取り中…";
+    elHwAiStatus.classList.add("hidden");
+    updateHwButtons();
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
+
+    try {
+      const imageBase64 = buildOffscreenHandwritingBase64();
+      const prompt = [
+        `手書き漢字の正誤判定をしてください。正解は「${q.answerText}」（読み：${q.answerReading}）です。`,
+        "スマホの指書きのため線が歪みやすい点に配慮し、細かなとめ・はね・はらいではなく、漢字の骨格・パーツ・送り仮名が正しく書けていてその字として読めるかで寛容に正解判定してください。",
+        '必ず次のJSON形式のみを返してください：{"recognized":"読み取った文字","isCorrect":trueまたはfalse,"feedback":"25字以内の簡潔な一言"}'
+      ].join("\n");
+
+      const res = await fetch(AI_PROXY_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          model: AI_MODEL_NAME,
+          mimeType: "image/jpeg",
+          imageBase64,
+          expected: q.answerText,
+          prompt
+        })
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const raw = await res.json();
+      const result = typeof raw === "string" ? JSON.parse(raw) : raw;
+      if (typeof result.isCorrect !== "boolean") throw new Error("Invalid JSON schema");
+
+      const recText = result.recognized ? `（認識：「${result.recognized}」）` : "";
+      const fbText = result.feedback ? ` ${result.feedback}` : "";
+      openCompareMode(`AI判定${recText}${fbText}`, !result.isCorrect);
+      gradeHandwriting(
+        result.isCorrect,
+        result.isCorrect ? `AI判定：正解！${recText}` : `AI判定：もう一度確認${recText}`
+      );
+    } catch (err) {
+      // タイムアウト・通信異常・不正JSON時は即座にお手本比較モードへフォールバック
+      openCompareMode("AI判定に接続できなかったため、お手本比較モードに切り替えました。", true);
+    } finally {
+      clearTimeout(timer);
+      session.aiBusy = false;
+      elHwAiBtn.textContent = "AIで自動判定する";
+      elHwAiBtn.disabled = session.answered;
+      updateHwButtons();
+    }
+  }
+
+  // ---------- 4択判定 ----------
   function handleSelectChoice(choiceIdx) {
     if (session.answered) return;
     const q = session.queue[session.index];
@@ -2256,6 +3305,7 @@ window.SANGETSUKI_DATA = {
     }
   }
 
+  // ---------- 結果画面 ----------
   function renderResult() {
     showView("result");
     const total = session.queue.length;
@@ -2265,9 +3315,9 @@ window.SANGETSUKI_DATA = {
     elResultScoreNum.textContent = `${session.correctCount} / ${total}`;
     elResultScoreRate.textContent = `正答率 ${rate}%`;
 
-    if (rate === 100) elResultMessage.textContent = "満点です！この範囲はバッチリ仕上がっています。";
-    else if (rate >= 80) elResultMessage.textContent = "よくできました！間違えた問題だけもう一度確認して完璧にしましょう。";
-    else elResultMessage.textContent = "解説と本文を確認しながら、間違えた問題を中心に反復しましょう。";
+    if (rate === 100) elResultMessage.textContent = "満点です！この範囲は完璧に仕上がっています。";
+    else if (rate >= 80) elResultMessage.textContent = "とてもよくできました！間違えた問題だけもう一度押さえましょう。";
+    else elResultMessage.textContent = "解説と本文を確認しながら、要復習の問題を中心に反復しましょう。";
 
     if (session.wrongQueue.length > 0) {
       elResultRetryWrongBtn.classList.remove("hidden");
@@ -2277,6 +3327,7 @@ window.SANGETSUKI_DATA = {
     }
   }
 
+  // ---------- 一覧画面 ----------
   function openList(part) {
     listState.part = part;
     listState.filter = "all";
@@ -2323,6 +3374,7 @@ window.SANGETSUKI_DATA = {
     });
   }
 
+  // ---------- 本文参照モーダル ----------
   function openPassageModal(sceneId) {
     if (sceneId) activeSceneId = sceneId;
     renderPassageModal();
@@ -2366,6 +3418,7 @@ window.SANGETSUKI_DATA = {
     elPassageBody.scrollTop = 0;
   }
 
+  // ---------- 記録管理モーダル ----------
   function openSettingsModal() {
     elImportStatus.textContent = "";
     elSettingsModal.classList.remove("hidden");
@@ -2373,7 +3426,7 @@ window.SANGETSUKI_DATA = {
   function closeSettingsModal() { elSettingsModal.classList.add("hidden"); }
 
   function exportJson() {
-    const payload = { app: "sangetsuki-exam-app", version: 2, exportedAt: new Date().toISOString(), data: store };
+    const payload = { app: "sangetsuki-exam-app-v2", version: 2, exportedAt: new Date().toISOString(), data: store };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -2421,7 +3474,6 @@ window.SANGETSUKI_DATA = {
   function resetPart(target) {
     const labelMap = { vocab: "第1部：語彙編", content: "第2部：内容編", all: "すべて" };
     if (!confirm(`${labelMap[target]}の学習記録をリセットします。よろしいですか？`)) return;
-
     if (target === "all") {
       store = { records: {}, updatedAt: null };
       try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
@@ -2435,10 +3487,24 @@ window.SANGETSUKI_DATA = {
     elImportStatus.textContent = `${labelMap[target]}の学習記録をリセットしました。`;
   }
 
+  // ---------- イベント登録 ----------
   function bindEvents() {
     const brandBtn = document.getElementById("brand-home-btn");
     brandBtn.addEventListener("click", () => showView("home"));
     brandBtn.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showView("home"); } });
+
+    // カテゴリ選択チップ
+    document.querySelectorAll("[data-group-part]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const part = btn.dataset.groupPart;
+        const grp = btn.dataset.groupVal;
+        selectedGroup[part] = grp;
+        document.querySelectorAll(`[data-group-part="${part}"]`).forEach((b) => {
+          b.classList.toggle("active", b.dataset.groupVal === grp);
+        });
+        renderHome();
+      });
+    });
 
     document.querySelectorAll("[data-start]").forEach((btn) => btn.addEventListener("click", () => startQuiz(btn.dataset.start, btn.dataset.mode)));
     document.querySelectorAll("[data-list]").forEach((btn) => btn.addEventListener("click", () => openList(btn.dataset.list)));
@@ -2446,9 +3512,19 @@ window.SANGETSUKI_DATA = {
     document.getElementById("quiz-back-btn").addEventListener("click", () => showView("home"));
     document.getElementById("quiz-passage-btn").addEventListener("click", () => openPassageModal(activeSceneId));
     document.getElementById("feedback-passage-btn").addEventListener("click", () => openPassageModal(activeSceneId));
-    elRevealBtn.addEventListener("click", revealFlashcard);
-    elSelfOkBtn.addEventListener("click", () => gradeFlashcard(true));
-    elSelfNgBtn.addEventListener("click", () => gradeFlashcard(false));
+
+    // 手書き操作
+    elHwUndoBtn.addEventListener("click", undoLastStroke);
+    elHwClearBtn.addEventListener("click", clearAllCells);
+    elHwAiBtn.addEventListener("click", runAiHandwritingJudge);
+    elHwCompareBtn.addEventListener("click", () => openCompareMode());
+    elHwOverlayToggle.addEventListener("change", () => {
+      hwState.overlayOn = elHwOverlayToggle.checked;
+      hwState.cells.forEach((cell) => cell.overlayEl.classList.toggle("hidden", !hwState.overlayOn));
+    });
+    elSelfOkBtn.addEventListener("click", () => gradeHandwriting(true));
+    elSelfNgBtn.addEventListener("click", () => gradeHandwriting(false));
+
     elQuizPrevBtn.addEventListener("click", goPrevQuestion);
     elQuizNextBtn.addEventListener("click", goNextQuestion);
 
@@ -2497,13 +3573,10 @@ window.SANGETSUKI_DATA = {
       const q = session.queue[session.index];
       if (!q) return;
 
-      if (q.type === "flashcard") {
-        if (!session.revealed && (e.key === "Enter" || e.key === " ")) {
-          e.preventDefault();
-          revealFlashcard();
-        } else if (session.revealed && !session.answered) {
-          if (e.key === "1") { e.preventDefault(); gradeFlashcard(true); }
-          else if (e.key === "2") { e.preventDefault(); gradeFlashcard(false); }
+      if (q.type === "handwriting") {
+        if (session.compared && !session.answered) {
+          if (e.key === "1") { e.preventDefault(); gradeHandwriting(true); }
+          else if (e.key === "2") { e.preventDefault(); gradeHandwriting(false); }
         } else if (session.answered && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           goNextQuestion();
