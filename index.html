@@ -2853,7 +2853,7 @@ window.CONTENT_QUESTIONS = [
   // =========================================================================
   const AI_PROXY_ENDPOINT = "";
   const AI_MODEL_NAME = "gemini-2.5-flash";
-  const AI_TIMEOUT_MS = 8000;
+  const AI_TIMEOUT_MS = 12000;
 
   const STORAGE_KEY = "sangetsuki_liberte_2term_v2";
   const VOCAB_QS = window.VOCAB_QUESTIONS;
@@ -3519,7 +3519,7 @@ window.CONTENT_QUESTIONS = [
         '必ず次のJSON形式のみを返してください：{"recognized":"読み取った文字","isCorrect":trueまたはfalse,"feedback":"25字以内の簡潔な一言"}'
       ].join("\n");
       const res = await fetch(AI_PROXY_ENDPOINT, {
-        method: "POST", headers: { "Content-Type": "application/json" }, signal: controller.signal,
+        method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, signal: controller.signal,
         body: JSON.stringify({ model: AI_MODEL_NAME, mimeType: "image/jpeg", imageBase64, expected: q.answerText, prompt })
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
